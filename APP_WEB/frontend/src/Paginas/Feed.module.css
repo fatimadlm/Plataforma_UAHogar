@@ -1,0 +1,283 @@
+.listaTareas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tarjetaTarea {
+  width: 100%;
+  height: auto !important;
+  min-height: fit-content;
+  padding: 25px !important;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.tarjetaHeader {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.tarjetaHeader:hover .tarjetaHogar {
+  color: #3d5a80;
+  text-decoration: underline;
+}
+
+.tarjetaHogar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+  color: #5c6b7a;
+  font-size: 0.9rem;
+}
+
+.estadoTarea {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.infoFecha {
+  display: flex;
+  align-items: center;
+  color: #5f7889;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tarjetaCuerpo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tarjetaImagen {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+  background-color: #e0e5ec;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tarjetaImagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjetaInfo {
+  flex-grow: 1;
+  min-width: 200px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tarjetaTitulo {
+  color: #3d5a80;
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.tarjetaPuntos {
+  color: #5c6b7a;
+  margin: 0 0 5px 0;
+  font-size: 0.95rem;
+}
+
+.puntosDestacados {
+  font-weight: bold;
+  color: #4a6b8a;
+}
+
+.tarjetaAcciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+  min-width: 140px;
+}
+
+.botonSecundario {
+  padding: 10px;
+  font-size: 0.95rem;
+  width: 100%;
+  background: transparent;
+  border: 2px solid #90b4ce;
+  color: #3d5a80;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.botonSecundario:hover {
+  background: rgba(144, 180, 206, 0.15);
+}
+
+.infoTarea {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 6px;
+  font-size: 0.8rem;
+  color: #5f7889;
+}
+
+.infoDescripcion {
+  color: #5c6b7a;
+  font-size: 0.875rem;
+}
+
+.bloqueEstado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 4px;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.sinTareas {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  text-align: center;
+  color: #5c6b7a;
+}
+
+.separadorHistorial {
+  border-top: 2px dashed rgba(144, 180, 206, 0.3);
+  margin: 24px 0 12px;
+}
+
+.botonHistorial {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: transparent;
+  border: 2px solid rgba(144, 180, 206, 0.4);
+  border-radius: 12px;
+  color: #4a6b8a;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.botonHistorial:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+.elementoInteractivo {
+  cursor: pointer;
+}
+
+.inputOculto {
+  display: none;
+}
+
+.imagenTarea {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.botonCompletar {
+  padding: 10px;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.filaIcono {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bloqueGracia {
+  color: #c22a53;
+}
+
+.estadoGracia {
+  color: #c22a53;
+}
+
+.estadoUrgente {
+  color: #a85a1a;
+}
+
+.textoUrgente {
+  color: #a85a1a;
+}
+.iconoUrgente {
+  color: #a85a1a;
+}
+
+.imagenHistorial {
+  filter: grayscale(30%);
+}
+
+.tarjetaHistorial {
+  opacity: 0.8;
+}
+
+.tituloCompletado {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.puntosHistorial {
+  margin-top: 6px;
+}
+
+.bloqueActividad {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #4a6b8a;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.headerFeed {
+  margin-bottom: 32px;
+}
+
+.tituloFeed {
+  color: #3d5a80;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.descripcionFeed {
+  color: #5c6b7a;
+}
+
+.cargandoFeed {
+  color: #4a6b8a;
+}

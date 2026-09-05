@@ -1,0 +1,19 @@
+/* Reseteo universal para quitar márgenes por defecto del navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; 
+  background-color: #fdfbf7;
+}
+
+/* El contenedor principal de React ocupará toda la pantalla */
+#root {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,12 @@
+package com.fatima.UAHogar.modelo;
+
+public enum TipoAccionAuditoria {
+    BLOQUEAR_USUARIO,
+    DESBLOQUEAR_USUARIO,
+    CAMBIAR_ROL,
+    ELIMINAR_USUARIO,
+    ELIMINAR_HOGAR,
+    ELIMINAR_TAREA,
+    CERRAR_INCIDENCIA,
+    LIMPIAR_FANTASMAS
+}

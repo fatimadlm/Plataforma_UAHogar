@@ -1,0 +1,552 @@
+/* Contenedor principal */
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Bloques principales */
+.bloque {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Cabecera de cada bloque */
+.tituloSeccion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #3d5a80;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.tituloSeccionTexto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subtitulo {
+  font-size: 0.78rem;
+  color: #90b4ce;
+  font-weight: 600;
+}
+
+/* Botón expandir / colapsar */
+.btnExpandir {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  color: #3d5a80;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.btnExpandir svg {
+  color: #90b4ce;
+}
+
+/* Listas */
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Filas de tareas y plantillas */
+.fila {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: rgba(144, 180, 206, 0.06);
+  border-left: 3px solid #90b4ce;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.fila:hover {
+  background: rgba(144, 180, 206, 0.1);
+}
+
+.filaUrgente {
+  background: rgba(244, 162, 97, 0.08);
+  border-left: 3px solid #f4a261;
+}
+
+.filaUrgente:hover {
+  background: rgba(244, 162, 97, 0.13);
+}
+
+/* Badge de tipo */
+.badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: white;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Badge de estado */
+.badgeEstado {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(144, 180, 206, 0.15);
+  color: #5c6b7a;
+  flex-shrink: 0;
+}
+
+.badgeEstadoVencida {
+  background: rgba(239, 71, 111, 0.12);
+  color: #ef476f;
+}
+
+/* Nombre de tarea */
+.nombreFila {
+  flex: 1;
+  font-weight: 700;
+  color: #3d5a80;
+  font-size: 0.9rem;
+}
+
+/* Metadatos */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #90b4ce;
+  font-size: 0.78rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.metaUrgente {
+  color: #f4a261;
+  font-weight: 700;
+}
+
+.tiempoRestante {
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+/* Puntos */
+.puntos {
+  font-weight: 700;
+  color: #90b4ce;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+/* Botón eliminar */
+.btnEliminar {
+  background: rgba(239, 71, 111, 0.08);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ef476f;
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.btnEliminar:hover {
+  background: rgba(239, 71, 111, 0.18);
+  transform: scale(1.1);
+}
+
+/* Formulario */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #5c6b7a;
+}
+
+.labelNota {
+  font-weight: 500;
+  color: #90b4ce;
+  margin-left: 6px;
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #3d5a80;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #90b4ce;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 15px rgba(144, 180, 206, 0.3);
+}
+
+.input::placeholder {
+  color: #b0b8c1;
+  font-style: italic;
+}
+
+.input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 78px;
+}
+
+/* Dos columnas */
+.gridDos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Estimación IA */
+.estimacionFila {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.tiempoInputWrapper {
+  position: relative;
+  flex: 1;
+}
+
+.tiempoInput {
+  padding-left: 42px;
+  height: 100%;
+}
+
+.tiempoIcono {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #90b4ce;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Botón IA */
+.btnEstimar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 16px;
+  border: 2px solid rgba(144, 180, 206, 0.5);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  color: #3d5a80;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnEstimar:hover:not(:disabled) {
+  background: rgba(144, 180, 206, 0.12);
+  border-color: #90b4ce;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(144, 180, 206, 0.2);
+}
+
+.btnEstimar:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+/* Resultado de la IA */
+.resultadoIA {
+  margin-top: 8px;
+  padding: 13px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(144, 180, 206, 0.25);
+  background: rgba(144, 180, 206, 0.08);
+  animation: aparecerResultado 0.25s ease;
+}
+
+@keyframes aparecerResultado {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.resultadoPrincipal {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.resultadoDato {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #3d5a80;
+  font-size: 0.9rem;
+}
+
+.resultadoDato svg {
+  color: #90b4ce;
+}
+
+.resultadoSeparador {
+  width: 1px;
+  height: 20px;
+  background: rgba(144, 180, 206, 0.35);
+}
+
+.confianza {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 7px;
+  color: #6c7a89;
+  font-size: 0.75rem;
+}
+
+.confianza strong {
+  color: #3d5a80;
+}
+
+/* Error */
+.error {
+  color: #ef476f;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: rgba(239, 71, 111, 0.07);
+}
+
+/* Acciones del formulario */
+.accionesFormulario {
+  display: flex;
+  gap: 10px;
+}
+
+.btnCrear {
+  flex: 1;
+  padding: 12px;
+}
+
+.btnCancelar {
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: 2px solid rgba(144, 180, 206, 0.5);
+  background: transparent;
+  color: #5c6b7a;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.btnCancelar:hover:not(:disabled) {
+  background: rgba(144, 180, 206, 0.08);
+}
+
+.btnCancelar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Modal */
+.modal {
+  position: relative;
+}
+
+.modalTitulo {
+  color: #3d5a80;
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.modalTexto {
+  color: #5c6b7a;
+  font-size: 0.9rem;
+}
+
+.modalOpciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Botones del modal */
+.btnModalPrimario {
+  padding: 14px;
+  border-radius: 20px;
+  border: none;
+  background: #ef476f;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.btnModalPrimario:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 71, 111, 0.3);
+}
+
+.btnModalSecundario {
+  padding: 14px;
+  border-radius: 20px;
+  border: 2px solid rgba(144, 180, 206, 0.5);
+  background: transparent;
+  color: #3d5a80;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.btnModalSecundario:hover {
+  background: rgba(144, 180, 206, 0.08);
+}
+
+.btnModalNota {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.85;
+  margin-top: 3px;
+}
+
+.btnModalNotaSecundaria {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #90b4ce;
+  margin-top: 3px;
+}
+
+/* Mensaje vacío */
+.vacio {
+  color: #90b4ce;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+
+  .bloque {
+    padding: 18px;
+  }
+
+  .gridDos {
+    grid-template-columns: 1fr;
+  }
+
+  .estimacionFila {
+    flex-direction: column;
+  }
+
+  .tiempoInputWrapper {
+    min-height: 46px;
+  }
+
+  .btnEstimar {
+    min-height: 46px;
+  }
+
+  .resultadoPrincipal {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .resultadoSeparador {
+    display: none;
+  }
+
+  .fila {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nombreFila {
+    min-width: 120px;
+  }
+
+  .meta {
+    font-size: 0.72rem;
+  }
+
+  .accionesFormulario {
+    flex-direction: column;
+  }
+
+  .btnCrear {
+    width: 100%;
+  }
+
+  .btnCancelar {
+    width: 100%;
+  }
+
+  .labelNota {
+    display: block;
+    margin-left: 0;
+    margin-top: 2px;
+  }
+}

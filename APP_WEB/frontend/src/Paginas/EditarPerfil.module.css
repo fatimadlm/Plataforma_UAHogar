@@ -1,0 +1,232 @@
+
+.contenedorFormulario { 
+  width: 100%; 
+  max-width: 600px; 
+}
+
+.formEditar { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+}
+
+.campoGrupo { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+}
+
+.labelEstilo { 
+  color: #3d5a80; 
+  font-weight: 700; 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  font-size: 0.95rem;
+}
+
+.inputEstilo {
+  padding: 15px; 
+  border: 1px solid rgba(144, 180, 206, 0.4); 
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8); 
+  color: #3d5a80; 
+  font-family: inherit;
+  outline: none; /* Sección del Avatar */
+
+.avatarEditarContenedor {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatarCirculo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+.imagenPerfilEditar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.inicialPerfilEditar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputImagenOculto {
+    display: none;
+}
+
+.btnCambiarFoto {
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: #f4a261;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    padding: 0;
+}
+
+.btnCambiarFoto:hover {
+    transform: scale(1.08);
+}
+  transition: 0.2s; 
+  width: 100%; 
+  box-sizing: border-box; 
+  font-weight: 600;
+}
+
+.inputEstilo:focus { 
+  border-color: #90b4ce; 
+  box-shadow: 0 0 0 3px rgba(144, 180, 206, 0.1); 
+}
+
+
+.avatarEditarContenedor {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatarCirculo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+.imagenPerfilEditar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.inicialPerfilEditar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputImagenOculto {
+    display: none;
+}
+
+.btnCambiarFoto {
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: #f4a261;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    padding: 0;
+}
+
+.btnCambiarFoto:hover {
+    transform: scale(1.08);
+}
+.mainCentrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.botonVolver {
+  background: transparent;
+  border: none;
+  color: #90b4ce;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.tarjetaFormulario {
+  padding: 35px;
+}
+
+.mensajeAlerta {
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mensajeError {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.mensajeExito {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.mensajeInfo {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.seccionTitulo {
+  color: #3d5a80;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+.seccionSeguridad {
+  margin-top: 20px;
+}
+
+.botonGuardar {
+  margin-top: 20px;
+  padding: 15px;
+}

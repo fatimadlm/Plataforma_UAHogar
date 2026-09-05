@@ -1,0 +1,385 @@
+.formCrear { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 25px; 
+}
+
+.inputGrupo { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+}
+
+.inputLabel { 
+  color: #3d5a80; 
+  font-weight: 700; 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.inputText, 
+.inputTextarea {
+  padding: 15px 20px; 
+  border: 1px solid rgba(144, 180, 206, 0.5);
+  border-radius: 15px; 
+  background: rgba(255, 255, 255, 0.8);
+  color: #3d5a80; 
+  font-family: inherit; 
+  outline: none; 
+  transition: all 0.2s; 
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.inputText:focus, 
+.inputTextarea:focus { 
+  border-color: #90b4ce; 
+  box-shadow: 0 0 0 3px rgba(144, 180, 206, 0.2); 
+}
+
+.inputTextarea { 
+  resize: vertical; 
+  min-height: 100px; 
+}
+
+.btnVolver {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+  background: transparent;
+  border: none; 
+  color: #5c6b7a; 
+  font-weight: 700; 
+  cursor: pointer;
+  margin-bottom: 20px; 
+  transition: 0.2s; 
+  padding: 0;
+}
+
+.btnVolver:hover { 
+  color: #3d5a80; 
+  transform: translateX(-5px); 
+}
+
+.gridVisual {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.opcionVisual {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opcionVisual img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+  padding: 5px; 
+  box-sizing: border-box; 
+}
+
+.seleccionada { 
+  border-color: #3d5a80; 
+  transform: scale(1.05); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+
+.iconoCheck {
+  position: absolute; 
+  top: 4px; 
+  right: 4px; 
+  background: #3d5a80; 
+  color: white;
+  border-radius: 50%; 
+  padding: 2px; 
+  display: flex;
+}
+
+/* Miembros */
+.listaMiembrosTags { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 10px; 
+  margin-top: 10px; 
+}
+
+.miembroTag { 
+  background: #eef2f6; 
+  color: #3d5a80; 
+  padding: 8px 15px; 
+  border-radius: 20px; 
+  font-size: 0.9rem; 
+  font-weight: 600; 
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
+}
+
+.btnQuitarMiembro {
+  background: rgba(231, 111, 81, 0.1); 
+  border: none; 
+  border-radius: 50%; 
+  color: #e76f51;
+  width: 20px; 
+  height: 20px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  cursor: pointer; 
+  transition: 0.2s;
+}
+
+.btnQuitarMiembro:hover { 
+  background: #e76f51; 
+  color: white; 
+}
+
+.btnAddMiembro {
+  background: #90b4ce; 
+  color: white; 
+  border: none; 
+  border-radius: 15px;
+  padding: 0 20px; 
+  cursor: pointer; 
+  transition: 0.2s; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.btnAddMiembro:hover { 
+  background: #3d5a80; 
+}
+
+.mainCentrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedorFormulario {
+  width: 100%;
+  max-width: 650px;
+}
+
+.cabecera {
+  margin-bottom: 30px;
+}
+
+.tituloPrincipal {
+  color: #3d5a80;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.subtituloPrincipal {
+  color: #5c6b7a;
+  margin-top: 5px;
+}
+
+.tarjetaFormulario {
+  padding: 40px;
+}
+
+.formCrear { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 25px; 
+}
+
+.inputGrupo { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+}
+
+.inputLabel { 
+  color: #3d5a80; 
+  font-weight: 700; 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.inputText, 
+.inputTextarea {
+  padding: 15px 20px; 
+  border: 1px solid rgba(144, 180, 206, 0.5);
+  border-radius: 15px; 
+  background: rgba(255, 255, 255, 0.8);
+  color: #3d5a80; 
+  font-family: inherit; 
+  outline: none; 
+  transition: all 0.2s; 
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.inputText:focus, 
+.inputTextarea:focus { 
+  border-color: #90b4ce; 
+  box-shadow: 0 0 0 3px rgba(144, 180, 206, 0.2); 
+}
+
+.inputTextarea { 
+  resize: vertical; 
+  min-height: 100px; 
+}
+
+.btnVolver {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+  background: transparent;
+  border: none; 
+  color: #5c6b7a; 
+  font-weight: 700; 
+  cursor: pointer;
+  margin-bottom: 20px; 
+  transition: 0.2s; 
+  padding: 0;
+}
+
+.btnVolver:hover { 
+  color: #3d5a80; 
+  transform: translateX(-5px); 
+}
+
+.gridVisual {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.opcionVisual {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seleccionada { 
+  border-color: #3d5a80; 
+  transform: scale(1.05); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+
+.iconoCheck {
+  position: absolute; 
+  top: 4px; 
+  right: 4px; 
+  background: #3d5a80; 
+  color: white;
+  border-radius: 50%; 
+  padding: 2px; 
+  display: flex;
+}
+
+.nombreApariencia {
+  color: #90b4ce;
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+.errorTexto {
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.botonCrear {
+  margin-top: 10px;
+  padding: 15px;
+}
+
+/* Pantalla de Éxito */
+.tarjetaExito {
+  padding: 40px;
+  text-align: center;
+}
+
+.iconoExito {
+  margin-bottom: 15px;
+}
+
+.tituloExito {
+  color: #3d5a80;
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.parrafoExito {
+  color: #5c6b7a;
+  margin-bottom: 30px;
+}
+
+.cajaCodigo {
+  background: #eef2f6;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.labelCodigo {
+  color: #90b4ce;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.filaCodigo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.valorCodigo {
+  color: #3d5a80;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+.btnCopiar {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #90b4ce;
+}
+
+.btnIrHogares {
+  width: 100%;
+  padding: 15px;
+}
+
+.inputCodigoUnirse {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1.2rem;
+  text-align: center;
+}

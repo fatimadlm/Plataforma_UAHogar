@@ -1,0 +1,503 @@
+.headerIcono {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.3;
+}
+
+.rankingFila {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.headerPanel { 
+  width: 100%; 
+  height: 180px; 
+  border-radius: 30px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  padding: 30px; 
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.headerPanel img { 
+  position: absolute; 
+  right: 30px; 
+  bottom: -10px; 
+  height: 120%; 
+  opacity: 0.8; 
+}
+
+.gridDashboard { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+  width: 100%;
+}
+
+.seccionPanel { 
+  padding: 25px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+}
+
+.tituloSeccion { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  color: #3d5a80; 
+  font-weight: 800; 
+  font-size: 1.2rem; 
+}
+
+.tituloSeccionTexto { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+/* Estilos Miembros */
+.miembroClickable {
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background 0.15s;
+}
+
+.miembroClickable:hover {
+  background: rgba(144, 180, 206, 0.12);
+}
+
+.miembroFila { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  padding: 10px 0; 
+  border-bottom: 1px solid rgba(0,0,0,0.03); 
+}
+
+.avatarMini { 
+  width: 35px; 
+  height: 35px; 
+  background: #90b4ce; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: white; 
+  font-weight: bold; 
+  font-size: 0.8rem; 
+}
+
+.btnAddMini {
+  background: rgba(144, 180, 206, 0.2); 
+  border: none; 
+  border-radius: 50%; 
+  color: #3d5a80;
+  width: 30px; 
+  height: 30px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  cursor: pointer; 
+  transition: 0.2s;
+}
+
+.btnAddMini:hover { 
+  background: #90b4ce; 
+  color: white; 
+  transform: scale(1.1); 
+}
+
+.btnExpulsar {
+  background: rgba(231, 111, 81, 0.12);
+  border: none;
+  border-radius: 50%;
+  color: #e76f51;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+  flex-shrink: 0;
+}
+
+.btnExpulsar:hover {
+  background: #e76f51;
+  color: white;
+  transform: scale(1.1);
+}
+
+.btnSalir {
+  width: 100%;
+  padding: 12px;
+  border-radius: 50px;
+  border: 2px solid #e76f51;
+  color: #e76f51;
+  background: transparent;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Modales de confirmación (expulsar / salir) */
+.modalTitulo {
+  color: #3d5a80;
+  margin: 0 0 10px 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.modalTexto {
+  color: #5c6b7a;
+  margin-bottom: 10px;
+}
+
+.modalError {
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.modalAcciones {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btnCancelar {
+  background: transparent;
+  border: 2px solid #90b4ce;
+  color: #5c6b7a;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.btnConfirmarPeligro {
+  background: #e76f51;
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.hItem { 
+  display: flex; 
+  gap: 12px; 
+  font-size: 0.9rem; 
+  color: #5c6b7a; 
+  line-height: 1.4; 
+}
+
+.hIcono { 
+  margin-top: 3px; 
+  color: #90b4ce; 
+}
+
+/* Input */
+.inputInvitacion {
+  padding: 15px;
+  border: 1px solid rgba(144, 180, 206, 0.5);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #3d5a80;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputInvitacion:focus {
+  border-color: #90b4ce;
+  box-shadow: 0 0 0 3px rgba(144, 180, 206, 0.2);
+}
+
+/* BotÃ³n volver */
+
+.btnVolver {
+  background: transparent;
+  border: none;
+  color: #90b4ce;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+/* Estado sin hogar seleccionado */
+
+.mainVacio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textoVacio {
+  color: #90b4ce;
+}
+
+/* Cabecera */
+
+.headerTexto {
+  position: relative;
+  z-index: 2;
+}
+
+.headerTitulo {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.headerSubtitulo {
+  margin: 0;
+  opacity: 0.85;
+  font-weight: 600;
+}
+
+/* Acciones rÃ¡pidas */
+
+.accionesLista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btnAccionPrimaria {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btnAccionSecundaria {
+  width: 100%;
+  padding: 12px;
+  border-radius: 50px;
+  border: 2px solid #90b4ce;
+  color: #5c6b7a;
+  background: transparent;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.btnAccionActiva {
+  border-color: #3d5a80;
+  color: #3d5a80;
+  background: rgba(61, 90, 128, 0.06);
+}
+
+/* Textos de estado de cada secciÃ³n (cargando / vacÃ­o) */
+
+.textoEstado {
+  color: #90b4ce;
+  font-size: 0.9rem;
+}
+
+/* Lista de miembros */
+
+.listaMiembros {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.miembroNombre {
+  font-weight: 700;
+  color: #3d5a80;
+}
+
+.miembroTu {
+  font-size: 0.7rem;
+  color: #90b4ce;
+  font-weight: 600;
+}
+
+.miembroMeta {
+  font-size: 0.75rem;
+  color: #90b4ce;
+}
+
+.btnVerTodos {
+  background: transparent;
+  border: none;
+  color: #90b4ce;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  padding: 8px 0 0;
+}
+
+/* Ranking */
+
+.tituloSeccionClickable {
+  cursor: pointer;
+}
+
+.verMas {
+  font-size: 0.8rem;
+  color: #90b4ce;
+  font-weight: 600;
+}
+
+.listaRanking {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rankingFilaPrimero {
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.rankingPos {
+  font-size: 0.8rem;
+  font-weight: 800;
+  min-width: 20px;
+}
+
+.avatarOro {
+  background: #ffd700;
+}
+
+.rankingNombre {
+  font-weight: 700;
+  color: #3d5a80;
+  font-size: 0.9rem;
+}
+
+.rankingPuntos {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* Actividad reciente */
+
+.listaActividad {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.actividadUsuario {
+  font-weight: 700;
+  color: #3d5a80;
+}
+
+.actividadMeta {
+  font-size: 0.7rem;
+  color: #90b4ce;
+}
+
+/* SecciÃ³n de tareas */
+
+.seccionTareas {
+  margin-top: 24px;
+}
+
+/* Modal de invitaciÃ³n */
+
+.modalTituloGrande {
+  color: #3d5a80;
+  margin: 0 0 10px 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.modalParrafo {
+  color: #5c6b7a;
+  margin-bottom: 20px;
+}
+
+.codigoCaja {
+  background: #eef2f6;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+}
+
+.codigoLabel {
+  color: #90b4ce;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.codigoValor {
+  color: #3d5a80;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+/* Modal de todos los miembros */
+
+.modalTituloLista {
+  color: #3d5a80;
+  margin: 0 0 5px 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.modalConteo {
+  color: #90b4ce;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.listaMiembrosModal {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  overflow-y: auto;
+  gap: 4px;
+}
+
+@media (max-width: 1000px) {
+  .gridDashboard {
+    grid-template-columns: 1fr;
+  }
+}

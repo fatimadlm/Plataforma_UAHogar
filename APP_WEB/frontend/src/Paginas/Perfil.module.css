@@ -1,0 +1,735 @@
+.perfilContainer {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.avatarContenedor {
+  width: 120px;
+  height: 120px;
+  background-color: #90b4ce;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: white;
+  border: 5px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.statsPanel {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+  justify-content: center;
+}
+
+.statBox {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 15px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  flex: 1;
+}
+
+.statValor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #3d5a80;
+}
+
+.statEtiqueta {
+  font-size: 0.8rem;
+  color: #90b4ce;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 5px;
+}
+
+.datosLista {
+  text-align: left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.datoItem {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datoLabel {
+  color: #90b4ce;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.datoValor {
+  color: #5c6b7a;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .statsPanel {
+    flex-direction: column;
+    width: 100%;
+  }
+  .perfilContainer {
+    padding: 30px 20px;
+  }
+}
+
+.modalFondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(61, 90, 128, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalTarjeta {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.gridCompis {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.avatarCompi {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #90b4ce;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 5px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  transition: 0.3s;
+  border: 3px solid #f8f9fa;
+}
+
+.avatarCompi:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.botonCerrar {
+  margin-top: 30px;
+  width: 100%;
+  padding: 12px;
+  background-color: #e76f51;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.2s;
+}
+
+.botonCerrar:hover {
+  background-color: #d65d3e;
+}
+
+.perfilContenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.botonVolver {
+  align-self: flex-start;
+  background: #90b4ce;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+
+.botonVolver:hover {
+  background: #293241;
+}
+
+.tarjetaPerfil {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.avatarSeccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nombreUsuario {
+  color: #3d5a80;
+  margin: 0 0 5px 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.tagUsuario {
+  color: #90b4ce;
+  font-weight: 700;
+  margin: 0;
+}
+
+.seccionEstadisticas {
+  margin-top: 30px;
+  background: rgba(244, 245, 247, 0.5);
+  padding: 25px;
+  border-radius: 25px;
+}
+
+.tituloSeccion {
+  color: #3d5a80;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.gridEstadisticasVisitas {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.tarjetaStat {
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statValor {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #3d5a80;
+}
+
+.statEtiqueta {
+  font-size: 0.75rem;
+  color: #90b4ce;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.contenedorCentrado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 15px;
+  font-size: 1.2rem;
+  color: #3d5a80;
+}
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexColCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.perfilContenedorVisita {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.botonChat {
+  margin-top: 30px !important;
+  width: 100% !important;
+}
+
+.listaTareasRecientes {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+  width: 100%;
+}
+
+.tareaItemVisita {
+  background: white;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  font-size: 0.9rem;
+}
+
+.tareaNombre {
+  font-weight: 700;
+  color: #3d5a80;
+}
+.tareaHogar {
+  color: #90b4ce;
+  font-size: 0.8rem;
+}
+.errorText {
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.botonIncidencias {
+  margin-top: 10px;
+  width: 100%;
+  background: transparent;
+  color: #e76f51;
+  border: 2px solid #e76f51;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.botonIncidencias:hover {
+  background: #e76f51;
+  color: white;
+}
+.perfilContainer {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.avatarContenedor {
+  width: 120px;
+  height: 120px;
+  background-color: #90b4ce;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: white;
+  border: 5px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cabeceraPrincipal {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tituloPrincipal {
+  color: #3d5a80;
+  font-size: 2.2rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.nombreUsuario {
+  color: #3d5a80;
+  margin: 0 0 5px 0;
+}
+
+.tagUsuario {
+  color: #90b4ce;
+  font-weight: 700;
+  margin: 0;
+}
+
+.statsPanel {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+  justify-content: center;
+}
+
+.statBox {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 15px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  flex: 1;
+}
+
+.statValor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #3d5a80;
+}
+
+.statEtiqueta {
+  font-size: 0.8rem;
+  color: #90b4ce;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 5px;
+}
+
+.datosLista {
+  text-align: left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.datoItem {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datoItemSinBorde {
+  border-bottom: none;
+}
+
+.datoLabel {
+  color: #90b4ce;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.datoValor {
+  color: #5c6b7a;
+  font-weight: 600;
+}
+
+.datoValorRango {
+  color: #ffb5a7;
+  font-weight: 800;
+  text-align: right;
+}
+
+.btnEditar {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.btnCompis {
+  margin-top: 10px;
+  width: 100%;
+  background: #f4a261;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btnCompis:hover {
+  background: #e76f51;
+}
+
+.botonIncidencias {
+  margin-top: 10px;
+  width: 100%;
+  background: transparent;
+  color: #e76f51;
+  border: 2px solid #e76f51;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.botonIncidencias:hover {
+  background: #e76f51;
+  color: white;
+}
+
+.mainCentrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centroVacio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para Perfil Ajeno */
+.perfilContenedorVisita {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tarjetaPerfil {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 40px;
+  width: 100%;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.avatarSeccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.seccionEstadisticas {
+  margin-top: 30px;
+  background: rgba(244, 245, 247, 0.5);
+  padding: 25px;
+  border-radius: 25px;
+}
+
+.seccionEstadisticasSeparada {
+  margin-top: 25px;
+}
+
+.tituloSeccion {
+  color: #3d5a80;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.gridEstadisticasVisitas {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.tarjetaStat {
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listaTareasRecientes {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+  width: 100%;
+}
+
+.tareaItemVisita {
+  background: white;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  font-size: 0.9rem;
+}
+
+.tareaNombre {
+  font-weight: 700;
+  color: #3d5a80;
+}
+.tareaHogar {
+  color: #90b4ce;
+  font-size: 0.8rem;
+}
+
+.sinTareasComunes {
+  text-align: center;
+  padding: 15px;
+  color: #90b4ce;
+  border: 1px dashed #90b4ce;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.sinTareasComunesTexto {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.botonChat {
+  margin-top: 30px !important;
+  width: 100% !important;
+}
+
+.botonVolver {
+  align-self: flex-start;
+  background: #90b4ce;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+
+.botonVolver:hover {
+  background: #293241;
+}
+
+.contenedorCentrado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.2rem;
+  color: #3d5a80;
+}
+
+.errorText {
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .statsPanel {
+    flex-direction: column;
+    width: 100%;
+  }
+  .perfilContainer {
+    padding: 30px 20px;
+  }
+}
+.zonaBorrado {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: none;
+  text-align: center;
+}
+
+.btnEliminarCuenta {
+  width: 100%;
+  background: transparent;
+  color: #ef476f;
+  border: 2px solid #ef476f;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.btnEliminarCuenta:hover {
+  background: #ef476f;
+  color: white;
+}

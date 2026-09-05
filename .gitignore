@@ -1,0 +1,16 @@
+# Frontend
+node_modules/
+dist/
+.vite/
+
+# Variables de entorno
+.env
+
+# Backend
+target/
+
+#Spring
+application.yaml
+
+# IntelliJ
+.idea/

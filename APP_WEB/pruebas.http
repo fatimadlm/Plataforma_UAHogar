@@ -1,0 +1,71 @@
+### Registrar a Fatima
+POST http://localhost:8080/api/usuarios/registrar
+Content-Type: application/json
+
+{
+  "usuario": "FatimaAdmin",
+  "email": "fatima@uah.es",
+  "telefono": "600111222",
+  "password": "password123"
+}
+
+### Registrar a Juan
+POST http://localhost:8080/api/usuarios/registrar
+Content-Type: application/json
+
+{
+  "usuario": "Juan99",
+  "email": "juan@uah.es",
+  "telefono": "600333444",
+  "password": "password123"
+}
+
+### Crear un Hogar
+POST http://localhost:8080/api/hogares/crear
+Content-Type: application/json
+
+{
+  "nombreHogar": "Atico Alcala",
+  "creadorId": 1
+}
+
+### Unirse al Hogar con codigo
+POST http://localhost:8080/api/hogares/unirse
+Content-Type: application/json
+
+{
+  "codigoInvitacion": "PON_TU_CODIGO_AQUI",
+  "usuarioId": 2
+}
+
+### Ver tareas del hogar
+GET http://localhost:8080/api/tareas/hogar/1
+
+### Completar una tarea
+POST http://localhost:8080/api/tareas/completar
+Content-Type: application/json
+
+{
+  "tareaId": 1,
+  "usuarioId": 2,
+  "imagenUrl": "https://img.com/foto.jpg"
+}
+
+### Reportar tarea mal hecha
+POST http://localhost:8080/api/incidencias/reportar
+Content-Type: application/json
+
+{
+  "registroTareaId": 1,
+  "reportadorId": 1,
+  "motivo": "Sigue sucio"
+}
+
+### Resolver la incidencia
+POST http://localhost:8080/api/incidencias/resolver
+Content-Type: application/json
+
+{
+  "incidenciaId": 1,
+  "aFavorDelAcusado": true
+}

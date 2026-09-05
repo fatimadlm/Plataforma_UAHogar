@@ -1,0 +1,111 @@
+    %% Entidades
+    USUARIO {
+        Long id PK
+        String email
+        String password
+    }
+    HOGAR {
+        Long id PK
+        String nombre
+        String codigoInvitacion
+    }
+    %%Permite que un usuario tenga varios hogares, enriqueciendo la información del usuario
+    MIEMBRO_HOGAR {
+        Long id PK
+        Integer puntos
+        String rol
+        Long usuario_id FK
+        Long hogar_id FK
+    }
+
+    ESTANCIA {
+        Long id PK
+        String nombre
+        String tipo
+        Double metrosCuadrados
+        Long hogar_id FK
+    }
+
+
+    TAREA {
+        Long id PK
+        String nombre
+        Integer puntos
+        String frecuencia
+        Long hogar_id FK
+        Long estancia_id FK
+        Long usuario_asignado_id FK
+    }
+%%Enriquece la entidad tarea
+    REGISTRO_TAREA {
+        Long id PK
+        LocalDateTime fechaCompletada
+        Integer puntosSumados
+        String estado
+        Long tarea_id FK
+        Long usuario_id FK
+        Long hogar_id FK
+    }
+
+    %%FEED
+    COMENTARIO {
+        Long id PK
+        String texto
+        LocalDateTime fechaCreacion
+        Long usuario_id FK
+        Long registro_tarea_id FK
+    }
+    INCIDENCIA {
+        Long id PK
+        String motivo
+        String estado
+        Long registro_tarea_id FK
+        Long reportador_id FK
+    }
+
+    %% Comunicación
+    MENSAJE {
+        Long id PK
+        String contenido
+        String tipo_mensaje
+        Long remitente_id FK
+        Long hogar_id FK "Solo Grupo"
+        Long receptor_id FK "Solo Privado"
+    }
+    NOTIFICACION {
+        Long id PK
+        String titulo
+        String tipo
+        Boolean leida
+        Long usuario_id FK
+        Long tarea_id FK "Opcional"
+        Long incidencia_id FK "Opcional"
+        Long mensaje_id FK "Opcional"
+    }
+
+    %% Relaciones
+    USUARIO ||--o{ MIEMBRO_HOGAR : "pertenece como"
+    HOGAR ||--o{ MIEMBRO_HOGAR : "tiene"
+
+    HOGAR ||--o{ ESTANCIA : "se divide en"
+    HOGAR ||--o{ TAREA : "agrupa"
+    ESTANCIA ||--o{ TAREA : "ubica"
+    USUARIO |o--o{ TAREA : "es responsable de"
+
+    TAREA ||--o{ REGISTRO_TAREA : "genera historial"
+    USUARIO ||--o{ REGISTRO_TAREA : "completa"
+    HOGAR ||--o{ REGISTRO_TAREA : "pertenece a"
+
+    REGISTRO_TAREA ||--o{ COMENTARIO : "recibe"
+    USUARIO ||--o{ COMENTARIO : "escribe"
+
+    REGISTRO_TAREA ||--o{ INCIDENCIA : "sufre"
+    USUARIO ||--o{ INCIDENCIA : "reporta"
+
+    USUARIO ||--o{ MENSAJE : "envía"
+    HOGAR |o--o{ MENSAJE : "aloja chat"
+
+    USUARIO ||--o{ NOTIFICACION : "recibe"
+    TAREA |o--o{ NOTIFICACION : "genera"
+    INCIDENCIA |o--o{ NOTIFICACION : "genera"
+    MENSAJE |o--o{ NOTIFICACION : "genera"

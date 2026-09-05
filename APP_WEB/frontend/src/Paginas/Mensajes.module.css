@@ -1,0 +1,620 @@
+.chatContainer {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 140px);
+  border-radius: 20px;
+}
+
+/*  PANEL IZQUIERDO  */
+.panelIzquierdo {
+  width: 300px;
+  border-right: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.4);
+  border-radius: 20px 0 0 20px;
+  overflow: hidden;
+}
+
+.panelHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #90b4ce;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.panelScroll {
+  overflow-y: auto;
+  flex: 1;
+}
+
+/*
+  Buscador de compis
+*/
+.panelBusqueda {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  flex-shrink: 0;
+}
+
+.panelBusquedaBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.panelIconoBuscar {
+  position: absolute;
+  left: 10px;
+  color: #90b4ce;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.panelBuscarInput {
+  width: 100%;
+  padding: 7px 26px 7px 30px;
+  border-radius: 9px;
+  border: 1px solid rgba(144,180,206,0.28);
+  background: rgba(255,255,255,0.6);
+  color: #3d5a80;
+  font-size: 0.8rem;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.panelBuscarInput::placeholder { color: #a9c0d3; }
+
+.panelBuscarInput:focus {
+  border-color: #90b4ce;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(144,180,206,0.12);
+}
+
+.panelBtnLimpiar {
+  position: absolute;
+  right: 6px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(144,180,206,0.15);
+  color: #90b4ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.panelBtnLimpiar:hover {
+  background: #90b4ce;
+  color: white;
+}
+
+.sinResultadosPanel {
+  padding: 28px 20px;
+  text-align: center;
+  color: #b0c4d8;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.contactoItem {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contactoItem:hover { background: rgba(255,255,255,0.7); }
+.activo {
+  background: white;
+  border-left: 3px solid #90b4ce;
+}
+
+.avatarItem {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: white;
+  flex-shrink: 0;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.avatarItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.contactoTexto { flex: 1; min-width: 0; }
+
+.contactoNombre {
+  font-weight: 700;
+  color: #3d5a80;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contactoUltimo {
+  color: #90b4ce;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.contactoHora {
+  font-size: 0.72rem;
+  color: #b0c4d8;
+  flex-shrink: 0;
+}
+
+/* sugerencias */
+.sugerenciaItem {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sugerenciaItem:hover { background: rgba(255,255,255,0.6); }
+
+/*  VENTANA DE CHAT  */
+.ventanaChat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  min-width: 0;
+}
+
+.headerChat {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  background: rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headerAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: opacity 0.15s;
+}
+
+.headerAvatar:hover { opacity: 0.85; }
+
+.headerAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/*
+  Buscador de mensajes.
+  Antes: input con emoji como placeholder, borde solido grueso (#90b4ce)
+  y una linea divisoria dura debajo. Ahora usa el icono Search de lucide,
+  un borde fino translucido igual que el resto de tarjetas (headerChat,
+  pickerTareas), fondo suave y un boton "X" para limpiar que solo aparece
+  con texto escrito.
+*/
+.buscarWrap {
+  padding: 10px 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  background: rgba(255,255,255,0.35);
+}
+
+.buscarBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.iconoBuscar {
+  position: absolute;
+  left: 12px;
+  color: #90b4ce;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.buscarInput {
+  width: 100%;
+  padding: 8px 32px 8px 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(144,180,206,0.28);
+  background: rgba(255,255,255,0.7);
+  color: #3d5a80;
+  font-size: 0.84rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.buscarInput::placeholder { color: #a9c0d3; }
+
+.buscarInput:focus {
+  border-color: #90b4ce;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(144,180,206,0.12);
+}
+
+.btnLimpiarBusqueda {
+  position: absolute;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(144,180,206,0.15);
+  color: #90b4ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.btnLimpiarBusqueda:hover {
+  background: #90b4ce;
+  color: white;
+}
+
+.historialMensajes {
+  flex: 1;
+  padding: 20px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/*  BURBUJAS  */
+.burbujaWrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 68%;
+}
+
+.burbujaWrapMia  { align-self: flex-end;  align-items: flex-end; }
+.burbujaWrapOtro { align-self: flex-start; align-items: flex-start; }
+
+.burbujaRemitente {
+  font-size: 0.72rem;
+  color: #90b4ce;
+  font-weight: 700;
+  margin-bottom: 3px;
+  padding: 0 4px;
+}
+
+.burbuja {
+  padding: 10px 16px;
+  border-radius: 18px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.burbujaMia {
+  background: #eaf1f7;
+  color: #3d5a80;
+  border: 1px solid #90b4ce;
+  border-bottom-right-radius: 4px;
+}
+
+.burbujaOtro {
+  background: white;
+  color: #3d5a80;
+  border-bottom-left-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.burbujaMia .enlaceTarea {
+  background: rgba(144,180,206,0.15);
+  border-color: rgba(144,180,206,0.35);
+  color: #3d5a80;
+}
+
+/* Enlace de tarea dentro de burbuja */
+.enlaceTarea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: background 0.15s;
+}
+
+.burbujaOtro .enlaceTarea {
+  background: rgba(144,180,206,0.1);
+  border-color: rgba(144,180,206,0.25);
+  color: #3d5a80;
+}
+
+.enlaceTarea:hover { opacity: 0.85; }
+
+.horaMsj {
+  font-size: 0.68rem;
+  opacity: 0.65;
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+/* input*/
+.inputArea {
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.5);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputChat {
+  flex: 1;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #3d5a80;
+  outline: none;
+  font-size: 0.95rem;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+  font-family: inherit;
+}
+
+/*
+  Botón "Tareas" para enlazar tareas pendientes
+*/
+.btnTarea {
+  background: rgba(144,180,206,0.15);
+  border: 1px solid rgba(144,180,206,0.3);
+  border-radius: 22px;
+  height: 42px;
+  padding: 0 14px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #90b4ce;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: inherit;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.btnTarea:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.btnTareaActivo {
+  background: rgba(144,180,206,0.18);
+  border-color: rgba(144,180,206,0.45);
+  color: #3d5a80;
+}
+
+.btnTareaActivo:hover {
+  background: rgba(144,180,206,0.32);
+  transform: translateY(-1px);
+}
+
+.btnTareaBadge {
+  background: #90b4ce;
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 800;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+.btnEnviar {
+  background: #90b4ce;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(144,180,206,0.3);
+  flex-shrink: 0;
+}
+
+.btnEnviar:hover { transform: scale(1.05); background: #3d5a80; }
+
+/* Picker de tareas */
+.pickerTareas {
+  position: absolute;
+  bottom: 80px;
+  left: 310px;
+  right: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  padding: 16px;
+  z-index: 10;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.pickerTituloItem {
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #3d5a80;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.pickerTituloItem:hover { background: #f0f4f8; }
+
+/* Pantalla vacía */
+.sinChat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #90b4ce;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .panelIzquierdo { width: 70px; }
+  .contactoTexto, .contactoHora, .panelHeader { display: none; }
+  .panelBusqueda { display: none; }
+}
+
+.mainMensajes {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.tituloPrincipal {
+  color: #3d5a80;
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.contenedorEdicion {
+  display: flex;
+  gap: 8px;
+}
+
+.inputEdicion {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #90b4ce;
+}
+
+.btnGuardarEdicion {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.btnCancelarEdicion {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.accionesBurbuja {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.btnAccionMsg {
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 0;
+}
+
+.btnBorrarMsg {
+  color: #e74c3c;
+}
+
+.reaccionesContenedor {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.btnReaccion {
+  border-radius: 12px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.reaccionActiva {
+  background: #e8f5e9;
+  border: 1px solid #4caf50;
+}
+
+.reaccionInactiva {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ccc;
+}
+
+.contadorReaccion {
+  font-size: 11px;
+  margin-left: 2px;
+}

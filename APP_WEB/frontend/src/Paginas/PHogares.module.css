@@ -1,0 +1,168 @@
+.tituloPrincipal {
+  color: #3d5a80;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.subtituloPrincipal {
+  color: #5c6b7a;
+  margin-top: 5px;
+}
+
+.textoCargando {
+  color: #90b4ce;
+  margin-top: 30px;
+}
+
+.textoError {
+  color: #e76f51;
+  margin-top: 30px;
+}
+
+.gridHogares { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 25px; 
+  margin-top: 30px; 
+}
+
+.tarjetaHogar {
+  padding: 30px; 
+  transition: all 0.3s ease; 
+  cursor: pointer; 
+  position: relative; 
+  overflow: hidden;
+}
+
+.tarjetaHogar:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 12px 30px rgba(144, 180, 206, 0.2); 
+  border-color: #90b4ce; 
+}
+
+.cabeceraTarjeta {
+  height: 110px;
+  border-radius: 20px 20px 0 0;
+  margin: -30px -30px 20px -30px;
+  width: calc(100% + 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cuerpoTarjeta {
+  padding: 0;
+}
+
+.filaTituloHogar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.nombreHogar {
+  color: #3d5a80;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.miembrosHogar {
+  color: #5c6b7a;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.btnEntrarTablon {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.btnAdd {
+  border: 2px dashed #90b4ce; 
+  background: transparent; 
+  color: #90b4ce;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 10px;
+  box-shadow: none; 
+}
+
+.btnAdd:hover { 
+  background: rgba(144, 180, 206, 0.05); 
+}
+
+.textoAdd {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.badgeCodigo { 
+  background: #eef2f6; 
+  padding: 5px 12px; 
+  border-radius: 10px; 
+  font-size: 0.8rem; 
+  color: #3d5a80; 
+  font-weight: 700; 
+}
+
+/* Modal Añadir */
+.tituloModal {
+  color: #3d5a80;
+  margin: 0 0 10px 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.subtituloModal {
+  color: #5c6b7a;
+  margin-bottom: 10px;
+}
+
+.accionesModal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btnCrearHogar {
+  width: 100%;
+}
+
+.separadorModal {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 5px 0;
+}
+
+.lineaSeparador {
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+}
+
+.textoSeparador {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.btnUnirseCodigo {
+  width: 100%;
+  padding: 15px;
+  border-radius: 50px;
+  border: 2px solid #90b4ce;
+  color: #3d5a80;
+  background: transparent;
+  font-weight: 700;
+  cursor: pointer;
+}

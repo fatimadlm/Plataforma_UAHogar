@@ -1,0 +1,103 @@
+
+.contenedor {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.formaFondo1 {
+  position: absolute;
+  top: -10%;
+  left: -10vw;
+  width: 40vw;
+  height: 40vw;
+  min-width: 250px;
+  min-height: 250px;
+  background-color: #ffb5a7;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(60px);
+  z-index: 0;
+}
+
+.formaFondo2 {
+  position: absolute;
+  bottom: -15%;
+  right: -10vw;
+  width: 50vw;
+  height: 50vw;
+  min-width: 300px;
+  min-height: 300px;
+  background-color: #a2d2ff;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(70px);
+  z-index: 0;
+}
+
+.formaFondo3 {
+  position: absolute;
+  top: 20%;
+  right: 5vw;
+  width: 25vw;
+  height: 25vw;
+  min-width: 150px;
+  min-height: 150px;
+  background-color: #fcd5ce;
+  border-radius: 50%;
+  opacity: 0.6;
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.tarjetaAuth {
+  width: 85%;
+  max-width: 450px;
+  padding: 40px;
+  z-index: 1;
+}
+
+.titulo {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: #3d5a80;
+  margin: 0 0 25px 0;
+  font-weight: 800;
+  text-align: center;
+}
+
+.mensajeError {
+  color: #e76f51;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.formulario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btnAuth {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.textoFooter {
+  margin-top: 25px;
+  color: #5c6b7a;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.linkAccion {
+  color: #3d5a80;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: underline;
+}

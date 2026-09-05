@@ -1,0 +1,313 @@
+.headerPanel {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background: linear-gradient(135deg, #3d5a80, #90b4ce);
+}
+
+.headerIcono {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.headerTitulo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.headerSubtitulo {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin: 4px 0 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.tabBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  background: rgba(255, 255, 255, 0.6);
+  color: #5c6b7a;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabBtn:hover {
+  background: #f0f4f8;
+}
+
+.tabActiva {
+  background: #90b4ce;
+  color: white;
+}
+
+.gridMetricas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.tarjetaMetrica {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 25px;
+}
+
+.metricaIcono {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metricaValor {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #3d5a80;
+}
+
+.metricaLabel {
+  font-size: 0.9rem;
+  color: #5c6b7a;
+  font-weight: 600;
+}
+
+.barraFiltros {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.campoBusqueda {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 0 16px;
+}
+
+.inputBusqueda {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 12px 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #3d5a80;
+}
+
+.selectFiltro {
+  padding: 12px 16px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+  color: #3d5a80;
+  font-family: inherit;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filaUsuario {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+}
+
+.flex1 { flex: 1; min-width: 0; }
+
+.avatarMini {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eaf1f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  font-weight: 700;
+  color: #3d5a80;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.filaTitulo {
+  font-weight: 700;
+  color: #3d5a80;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filaMeta {
+  font-size: 0.85rem;
+  color: #5c6b7a;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badgeSupervisor {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #90b4ce;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.badgeBloqueado {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #ffe3e3;
+  color: #e76f51;
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.badgeEstado {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #f0f4f8;
+  color: #3d5a80;
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.badgePuntos {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #fff4e0;
+  color: #f4a261;
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.badgeFantasma {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #ede7f6;
+  color: #7c5fd1;
+  padding: 2px 10px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btnLimpiarFantasmas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  border-radius: 20px;
+  border: 2px solid #ede7f6;
+  background: #ede7f6;
+  color: #7c5fd1;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btnLimpiarFantasmas:hover {
+  background: #e0d6f7;
+}
+
+.filaAcciones {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btnAccionMini {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(144, 180, 206, 0.15);
+  color: #3d5a80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnAccionMini:hover {
+  background: rgba(144, 180, 206, 0.3);
+  transform: scale(1.08);
+}
+
+.btnAccionPeligro:hover {
+  background: #ffe3e3;
+  color: #e76f51;
+}
+
+.textoEstado {
+  color: #5c6b7a;
+  padding: 20px 0;
+}
+
+.mensajeError {
+  color: #e76f51;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.tarjetaVacia {
+  padding: 30px;
+  text-align: center;
+  color: #5c6b7a;
+}
+
+@media (max-width: 768px) {
+  .headerIcono { display: none; }
+  .filaUsuario { flex-wrap: wrap; }
+}

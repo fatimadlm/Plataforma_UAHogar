@@ -1,0 +1,102 @@
+.tarjeta {
+  max-width: 560px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cabecera {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.titulo {
+  color: #3d5a80;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 0 0 6px 0;
+}
+
+.badgeAbierta {
+  background: rgba(231, 111, 81, 0.12);
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  border-radius: 50px;
+}
+
+.badgeCerrada {
+  background: rgba(6, 214, 160, 0.12);
+  color: #06d6a0;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  border-radius: 50px;
+}
+
+.meta {
+  color: #90b4ce;
+  font-size: 0.85rem;
+  margin: 0 0 10px 0;
+}
+
+.bloqueDescripcion {
+  background: rgba(144, 180, 206, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.descripcion {
+  color: #5c6b7a;
+  font-style: italic;
+  margin: 0 0 8px 0;
+}
+
+.fecha {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  color: #90b4ce;
+}
+
+.fechaCierre {
+  margin-top: 10px;
+}
+
+.textoCargando {
+  color: #90b4ce;
+}
+
+.textoError {
+  color: #e76f51;
+  font-weight: 700;
+}
+
+.mensajeError {
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.botonVolver {
+  background: transparent;
+  border: none;
+  color: #90b4ce;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.botonCerrar {
+  margin-top: 16px;
+  width: 100%;
+}

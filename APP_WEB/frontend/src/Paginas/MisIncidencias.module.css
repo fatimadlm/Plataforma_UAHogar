@@ -1,0 +1,227 @@
+.tituloSeccion {
+  color: #3d5a80;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin: 0 0 12px 0;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemIncidencia {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 18px 20px;
+}
+
+.itemClickable {
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.itemClickable:hover {
+  background: rgba(144, 180, 206, 0.08);
+}
+
+.itemFlecha {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.itemCerrada {
+  opacity: 0.7;
+}
+
+.itemIcono {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemNombre {
+  font-weight: 700;
+  color: #3d5a80;
+  font-size: 1rem;
+}
+
+.itemMeta {
+  font-size: 0.8rem;
+  color: #90b4ce;
+  margin-top: 2px;
+}
+
+.itemDescripcion {
+  color: #5c6b7a;
+  font-size: 0.9rem;
+  margin: 8px 0 4px 0;
+  font-style: italic;
+}
+
+.itemFecha {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  color: #90b4ce;
+}
+
+.badgeAbierta {
+  background: rgba(231, 111, 81, 0.12);
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.badgeRol {
+  display: inline-block;
+  background: rgba(61, 90, 128, 0.08);
+  color: #3d5a80;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin: 4px 0;
+}
+.tituloPrincipal {
+  color: #3d5a80;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 5px 0;
+}
+
+.subtituloPrincipal {
+  color: #5c6b7a;
+  margin-bottom: 25px;
+}
+
+.tituloSeccion {
+  color: #3d5a80;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin: 0 0 12px 0;
+}
+
+.tituloSeccionCerradas {
+  margin-top: 30px;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemIncidencia {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 18px 20px;
+}
+
+.itemClickable {
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.itemClickable:hover {
+  background: rgba(144, 180, 206, 0.08);
+}
+
+.itemFlecha {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.itemCerrada {
+  opacity: 0.7;
+}
+
+.itemIcono {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemNombre {
+  font-weight: 700;
+  color: #3d5a80;
+  font-size: 1rem;
+}
+
+.itemMeta {
+  font-size: 0.8rem;
+  color: #90b4ce;
+  margin-top: 2px;
+}
+
+.itemDescripcion {
+  color: #5c6b7a;
+  font-size: 0.9rem;
+  margin: 8px 0 4px 0;
+  font-style: italic;
+}
+
+.itemFecha {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  color: #90b4ce;
+}
+
+.badgeAbierta {
+  background: rgba(231, 111, 81, 0.12);
+  color: #e76f51;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.badgeRol {
+  display: inline-block;
+  background: rgba(61, 90, 128, 0.08);
+  color: #3d5a80;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin: 4px 0;
+}
+
+.botonVolver {
+  background: transparent;
+  border: none;
+  color: #90b4ce;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.textoCargando {
+  color: #90b4ce;
+}
+
+.tarjetaVacia {
+  padding: 30px;
+  text-align: center;
+  color: #90b4ce;
+}

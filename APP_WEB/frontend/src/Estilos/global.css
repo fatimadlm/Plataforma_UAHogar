@@ -1,0 +1,217 @@
+/* Importamos la fuente para toda la app */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+/* Reset básico para toda la página */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #fdfbf7;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* ESTRUCTURA */
+.pantalla-dividida {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.2); 
+}
+
+/* SIDEBAR*/
+.sidebar {
+  width: 260px;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.nav-item {
+  padding: 12px 20px;
+  margin-bottom: 8px;
+  border-radius: 15px;
+  color: #5c6b7a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-item:hover {
+  background-color: #f0f4f8;
+  color: #3d5a80;
+  transform: translateX(5px);
+}
+
+.nav-item.active {
+  background-color: #90b4ce;
+  color: white;
+}
+
+/* TARJETAS Y BOTONES */
+.tarjeta-cristal {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+.boton-primario {
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  background-color: #90b4ce;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(144, 180, 206, 0.2);
+}
+
+.boton-primario:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(144, 180, 206, 0.4);
+}
+
+/* 
+   FORMULARIOS Y CAMPOS DE TEXTO
+ */
+.input-estetico {
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: inherit;
+  font-size: 1rem;
+  color: #3d5a80;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box; 
+}
+
+.input-estetico:focus {
+  border-color: #90b4ce;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 15px rgba(144, 180, 206, 0.3);
+}
+
+/*  MÓVILES*/
+@media (max-width: 768px) {
+  .sidebar { width: 70px; padding: 20px 10px; }
+  .nav-text { display: none; }
+  .main-content { padding: 20px; }
+}
+
+/* 
+   FONDO GEOMÉTRICO ANIMADO
+   */
+.fondo-burbuja {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none; 
+}
+
+.burbuja-1 {
+  top: -10%; left: -10vw; width: 40vw; height: 40vw; min-width: 250px; min-height: 250px;
+  background-color: #ffb5a7; opacity: 0.5; filter: blur(60px);
+  animation: flotar1 10s infinite alternate ease-in-out;
+}
+
+.burbuja-2 {
+  bottom: -15%; right: -10vw; width: 50vw; height: 50vw; min-width: 300px; min-height: 300px;
+  background-color: #a2d2ff; opacity: 0.5; filter: blur(70px);
+  animation: flotar2 12s infinite alternate ease-in-out;
+}
+
+.burbuja-3 {
+  top: 20%; right: 5vw; width: 25vw; height: 25vw; min-width: 150px; min-height: 150px;
+  background-color: #fcd5ce; opacity: 0.6; filter: blur(40px);
+  animation: flotar3 14s infinite alternate ease-in-out;
+}
+
+/* Animaciones */
+@keyframes flotar1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 40px) scale(1.05); }
+}
+@keyframes flotar2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-40px, -20px) scale(1.1); }
+}
+@keyframes flotar3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-20px, 40px) scale(0.95); }
+}
+
+/* Modal*/
+.modal-overlay {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); 
+  backdrop-filter: blur(4px);     
+  z-index: 100;                   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: aparecerFondo 0.3s ease;
+}
+
+.modal-contenido {
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  position: relative;
+  animation: subirModal 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btn-cerrar-modal {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: rgba(144, 180, 206, 0.2);
+  border: none; border-radius: 50%;
+  width: 35px; height: 35px;
+  display: flex; justify-content: center; align-items: center;
+  color: #5c6b7a; cursor: pointer; transition: 0.2s;
+}
+.btn-cerrar-modal:hover { 
+  background: #ffe3e3; color: #e76f51; transform: scale(1.1); 
+}
+
+@keyframes aparecerFondo {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes subirModal {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}

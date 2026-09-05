@@ -1,0 +1,36 @@
+
+.contenedor {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tarjetaCentral {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  text-align: center;
+  width: 85%;
+  max-width: 500px;
+}
+
+.logo {
+  width: 250px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  color: #5c6b7a;
+  margin-bottom: 40px;
+  font-weight: 400;
+  line-height: 1.5;
+}

@@ -1,0 +1,230 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btnVolver {
+  background: transparent;
+  border: none;
+  color: #90b4ce;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.header {
+  width: 100%;
+  height: 140px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 25px 30px;
+  margin-bottom: 5px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.headerIcono {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.3;
+}
+
+.gridTotales {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.tarjetaTotal {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.totalIcono {
+  color: #90b4ce;
+}
+
+.totalValor {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #3d5a80;
+}
+
+.totalLabel {
+  font-size: 0.78rem;
+  color: #90b4ce;
+  font-weight: 600;
+}
+
+.rankingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rankingTitulo {
+  color: #3d5a80;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navMeses {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnMes {
+  background: transparent;
+  border: 1.5px solid rgba(144, 180, 206, 0.4);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #90b4ce;
+  transition: background 0.2s;
+}
+
+.btnMes:hover:not(:disabled) {
+  background: rgba(144, 180, 206, 0.1);
+}
+
+.btnMes:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.nombreMes {
+  color: #3d5a80;
+  font-weight: 700;
+  font-size: 0.9rem;
+  min-width: 130px;
+  text-align: center;
+}
+
+.listaRanking {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filaRanking {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: rgba(144, 180, 206, 0.04);
+}
+
+.filaRankingPrimero {
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.labelPosicion {
+  font-size: 0.82rem;
+  font-weight: 800;
+  min-width: 24px;
+}
+
+.avatarRanking {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.nombreRanking {
+  flex: 1;
+  font-weight: 700;
+  color: #3d5a80;
+}
+
+.puntosRanking {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.gridStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tarjetaStat {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statTitulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: #3d5a80;
+  font-size: 0.88rem;
+}
+
+.statDescripcion {
+  color: #5c6b7a;
+  font-size: 0.82rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.vacio {
+  color: #90b4ce;
+  font-size: 0.9rem;
+}
+
+.tarjetaFechaCreacion {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.textoFechaCreacion {
+  color: #5c6b7a;
+  font-size: 0.9rem;
+}
+
+.fechaDestacada {
+  color: #3d5a80;
+}
+
+.tarjetaRankingMensual {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

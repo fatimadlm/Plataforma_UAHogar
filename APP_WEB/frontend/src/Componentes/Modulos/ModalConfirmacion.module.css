@@ -1,0 +1,44 @@
+.modalTitulo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #3d5a80;
+}
+
+.modalTexto {
+  color: #5c6b7a;
+  line-height: 1.5;
+}
+
+.modalAcciones {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.btnCancelar {
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: none;
+  background: #f0f4f8;
+  color: #5c6b7a;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btnConfirmarPeligro {
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: none;
+  background: #e76f51;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btnConfirmarPeligro:disabled,
+.btnCancelar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
