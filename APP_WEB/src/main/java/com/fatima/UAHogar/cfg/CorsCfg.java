@@ -14,7 +14,7 @@ public class CorsCfg {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173"));                         //Puerto React
+        config.setAllowedOrigins(List.of("http://localhost:5173", "https://app-uahogar-frontend-fabrcyccb9fqhzg5.spaincentral-01.azurewebsites.net"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));//Metodos permitidos
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
