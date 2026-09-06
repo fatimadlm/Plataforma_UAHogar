@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.HogarDAO;
 import com.fatima.UAHogar.DAO.MensajeDAO;
 import com.fatima.UAHogar.DAO.MensajeGrupoDAO;
@@ -162,7 +164,7 @@ public class MensajeServicio {
         }
 
         msg.setContenido(nuevoContenido.trim());
-        msg.setEditadoEn(LocalDateTime.now());
+        msg.setEditadoEn(LocalDateTime.now(ZonaHorariaApp.ZONA));
 
         return mensajeDAO.save(msg);
     }
@@ -177,7 +179,7 @@ public class MensajeServicio {
         }
 
         msg.setEliminado(true);
-        msg.setEliminadoEn(LocalDateTime.now());
+        msg.setEliminadoEn(LocalDateTime.now(ZonaHorariaApp.ZONA));
 
         mensajeDAO.save(msg);
     }

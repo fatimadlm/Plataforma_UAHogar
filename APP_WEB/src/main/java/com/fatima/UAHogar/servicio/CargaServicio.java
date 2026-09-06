@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
 import com.fatima.UAHogar.modelo.MiembroHogar;
@@ -38,8 +40,8 @@ public class CargaServicio {
 
     // Carga acumulada de un usuario en un hogar: pendientes/vencidas ya asignadas (aunque no esten completadas) + completadas dentro de la quincena actual
     public int calcularCargaAcumulada(Long usuarioId, Long hogarId) {
-        LocalDateTime inicio = inicioQuincena(LocalDate.now()).atStartOfDay();
-        LocalDateTime fin = finQuincena(LocalDate.now()).atTime(23, 59, 59);
+        LocalDateTime inicio = inicioQuincena(LocalDate.now(ZonaHorariaApp.ZONA)).atStartOfDay();
+        LocalDateTime fin = finQuincena(LocalDate.now(ZonaHorariaApp.ZONA)).atTime(23, 59, 59);
 
         int cargaPendiente = registroTareaDAO.sumarCargaPendienteAsignada(usuarioId, hogarId);
         int cargaCompletada = registroTareaDAO.sumarCargaCompletadaEnPeriodo(usuarioId, hogarId, inicio, fin);
@@ -49,8 +51,8 @@ public class CargaServicio {
     // Carga objetivo por mienro ->carga total planificada de la quincena entre los miembros activos.
 
     public double calcularCargaObjetivo(Long hogarId) {
-        LocalDateTime inicio = inicioQuincena(LocalDate.now()).atStartOfDay();
-        LocalDateTime fin = finQuincena(LocalDate.now()).atTime(23, 59, 59);
+        LocalDateTime inicio = inicioQuincena(LocalDate.now(ZonaHorariaApp.ZONA)).atStartOfDay();
+        LocalDateTime fin = finQuincena(LocalDate.now(ZonaHorariaApp.ZONA)).atTime(23, 59, 59);
 
         int cargaTotal = registroTareaDAO.sumarCargaPlanificadaHogarEnPeriodo(hogarId, inicio, fin);
         int numMiembros = miembroHogarDAO.findByHogarId(hogarId).size();

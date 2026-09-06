@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.IncidenciaDAO;
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
@@ -109,7 +111,7 @@ public class IncidenciaServicio {
             throw new IllegalArgumentException("Solo un administrador del hogar puede cerrar incidencias");
 
         incidencia.setEstado("CLOSED");
-        incidencia.setFechaCierre(LocalDateTime.now());
+        incidencia.setFechaCierre(LocalDateTime.now(ZonaHorariaApp.ZONA));
         incidencia.setCerradaPor(admin.getUsuario());
 
         incidenciaDAO.save(incidencia);

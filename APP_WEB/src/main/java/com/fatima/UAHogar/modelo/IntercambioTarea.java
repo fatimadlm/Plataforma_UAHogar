@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -44,7 +46,7 @@ public class IntercambioTarea {
         this.solicitante = solicitante;
         this.destinatario = destinatario;
         this.estado = "PENDIENTE";
-        this.fechaSolicitud = LocalDateTime.now();
+        this.fechaSolicitud = LocalDateTime.now(ZonaHorariaApp.ZONA);
     }
 
     // Getters y setters

@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.dto;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.modelo.RegistroTarea;
 import com.fatima.UAHogar.util.PlazosUtil;
 import java.time.LocalDateTime;
@@ -48,15 +50,15 @@ public class InstanciaTareaDTO {
 
         // Calculamos dias restantes y urgencia
         if (rt.getFechaLimite() != null) {
-            this.diasRestantes = ChronoUnit.DAYS.between(LocalDateTime.now(), rt.getFechaLimite());
-            this.horasRestantes = ChronoUnit.HOURS.between(LocalDateTime.now(), rt.getFechaLimite());
+            this.diasRestantes = ChronoUnit.DAYS.between(LocalDateTime.now(ZonaHorariaApp.ZONA), rt.getFechaLimite());
+            this.horasRestantes = ChronoUnit.HOURS.between(LocalDateTime.now(ZonaHorariaApp.ZONA), rt.getFechaLimite());
             this.esUrgente = this.horasRestantes <= 48;
 
             // La tarea esta en margen de gracia si vencio pero sigue dentro de su margen  proporcional a la frecuencia
-            boolean vencida = LocalDateTime.now().isAfter(rt.getFechaLimite());
+            boolean vencida = LocalDateTime.now(ZonaHorariaApp.ZONA).isAfter(rt.getFechaLimite());
             long margenHoras = PlazosUtil.margenGraciaHoras(this.frecuencia);
             boolean dentroDelMargen = vencida &&
-                    LocalDateTime.now().isBefore(rt.getFechaLimite().plusHours(margenHoras));
+                    LocalDateTime.now(ZonaHorariaApp.ZONA).isBefore(rt.getFechaLimite().plusHours(margenHoras));
             this.completableConMargen = dentroDelMargen;
         } else {
             this.diasRestantes = null;

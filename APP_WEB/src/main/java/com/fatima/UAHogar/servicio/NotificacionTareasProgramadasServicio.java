@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
 import com.fatima.UAHogar.modelo.RegistroTarea;
 import com.fatima.UAHogar.modelo.TipoNotificacion;
@@ -28,7 +30,7 @@ public class NotificacionTareasProgramadasServicio {
     @Scheduled(fixedRate = 3600000)
     @Transactional
     public void comprobarNotificacionesTareas() {
-        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime ahora = LocalDateTime.now(ZonaHorariaApp.ZONA);
         List<RegistroTarea> pendientes = registroTareaDAO.findByEstadoAndFechaLimiteBefore("PENDIENTE", ahora);
         procesarMargenGracia(pendientes, ahora);
         comprobarUrgencias(ahora);

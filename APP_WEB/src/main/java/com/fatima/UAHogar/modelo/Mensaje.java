@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import java.time.LocalDateTime;
@@ -45,7 +47,7 @@ public abstract class Mensaje {
     public Mensaje(String contenido, Usuario remitente) {
         this.contenido = contenido;
         this.remitente = remitente;
-        this.fechaEnvio = LocalDateTime.now();
+        this.fechaEnvio = LocalDateTime.now(ZonaHorariaApp.ZONA);
         this.eliminado = false;
     }
 

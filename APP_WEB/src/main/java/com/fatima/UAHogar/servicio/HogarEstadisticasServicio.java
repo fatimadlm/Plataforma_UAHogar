@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.HogarDAO;
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
@@ -41,7 +43,7 @@ public class HogarEstadisticasServicio {
 
         // Tareas vencidas de este hogar (se usan tanto para "más puntos" como para "más pelotas")
         List<RegistroTarea> vencidas = registroTareaDAO
-                .findByEstadoAndFechaLimiteBefore("VENCIDA", LocalDateTime.now())
+                .findByEstadoAndFechaLimiteBefore("VENCIDA", LocalDateTime.now(ZonaHorariaApp.ZONA))
                 .stream()
                 .filter(r -> r.getHogar().getId().equals(hogarId))
                 .collect(Collectors.toList());

@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -33,7 +35,7 @@ public class AuditoriaSupervisor {
         this.supervisor = supervisor;
         this.accion = accion;
         this.detalles = detalles;
-        this.fecha = LocalDateTime.now();
+        this.fecha = LocalDateTime.now(ZonaHorariaApp.ZONA);
     }
 //GETEERS Y SETTERS
     public Long getId() { return id; }

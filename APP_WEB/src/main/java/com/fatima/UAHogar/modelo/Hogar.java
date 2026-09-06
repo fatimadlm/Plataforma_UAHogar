@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
@@ -41,7 +43,7 @@ public class Hogar {
     public Hogar(String nombre) {
         this.nombre = nombre;
         this.codigoInvitacion = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        this.fechaCreacion = LocalDate.now();
+        this.fechaCreacion = LocalDate.now(ZonaHorariaApp.ZONA);
     }
 
     public Long getId() { return id; }

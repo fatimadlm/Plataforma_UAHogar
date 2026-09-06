@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.HogarDAO;
 import com.fatima.UAHogar.DAO.IncidenciaDAO;
 import com.fatima.UAHogar.DAO.IntercambioTareaDAO;
@@ -108,7 +110,7 @@ public class HogarServicio {
             nuevoHogar.setAparienciaId(aparienciaId);
         }
 
-        nuevoHogar.setFechaCreacion(LocalDate.now());
+        nuevoHogar.setFechaCreacion(LocalDate.now(ZonaHorariaApp.ZONA));
 
         nuevoHogar = hogarDAO.save(nuevoHogar);
 

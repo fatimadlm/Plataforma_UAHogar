@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.NotificacionDAO;
 import com.fatima.UAHogar.modelo.Hogar;
@@ -86,7 +88,7 @@ public class NotificacionServicio {
             n.setReferenciaId(referenciaId);
             n.setUrlOrigen(urlOrigen);
             n.setLeida(false);
-            n.setFechaCreacion(LocalDateTime.now());
+            n.setFechaCreacion(LocalDateTime.now(ZonaHorariaApp.ZONA));
             notificacionDAO.save(n);
         } catch (Exception e) {
             // Una notificación no debe romper la operación principal

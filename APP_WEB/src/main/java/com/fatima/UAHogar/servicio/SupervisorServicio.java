@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.HogarDAO;
 import com.fatima.UAHogar.DAO.IncidenciaDAO;
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
@@ -330,7 +332,7 @@ public class SupervisorServicio {
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
         incidencia.setEstado("CLOSED");
-        incidencia.setFechaCierre(LocalDateTime.now());
+        incidencia.setFechaCierre(LocalDateTime.now(ZonaHorariaApp.ZONA));
         incidencia.setCerradaPor(supervisor);
 
         incidenciaDAO.save(incidencia);

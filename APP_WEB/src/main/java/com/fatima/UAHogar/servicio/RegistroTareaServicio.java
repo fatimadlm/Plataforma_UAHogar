@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.servicio;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
 import com.fatima.UAHogar.DAO.TareaDAO;
@@ -76,7 +78,7 @@ public class RegistroTareaServicio {
 
             instancia = enMargen.stream()
                     .filter(r -> r.getTarea().getId().equals(tareaId))
-                    .filter(r -> r.getFechaLimite() != null && LocalDateTime.now().isBefore(
+                    .filter(r -> r.getFechaLimite() != null && LocalDateTime.now(ZonaHorariaApp.ZONA).isBefore(
                             r.getFechaLimite().plusHours(PlazosUtil.margenGraciaHoras(tarea.getFrecuencia()))))
                     .findFirst()
                     .orElse(null);
@@ -102,8 +104,8 @@ public class RegistroTareaServicio {
         // Comprobamos si está dentro del margen de gracia
         long margenHoras = PlazosUtil.margenGraciaHoras(tarea.getFrecuencia());
         boolean dentroDelMargen = instancia.getFechaLimite() != null
-                && LocalDateTime.now().isAfter(instancia.getFechaLimite())
-                && LocalDateTime.now().isBefore(instancia.getFechaLimite().plusHours(margenHoras));
+                && LocalDateTime.now(ZonaHorariaApp.ZONA).isAfter(instancia.getFechaLimite())
+                && LocalDateTime.now(ZonaHorariaApp.ZONA).isBefore(instancia.getFechaLimite().plusHours(margenHoras));
 
         // En plazo: 100% — margen de gracia: 70%
         int puntosFinales = dentroDelMargen ? (int) Math.round(tarea.getPuntos() * 0.70) : tarea.getPuntos();
@@ -112,7 +114,7 @@ public class RegistroTareaServicio {
         // Actualizamos la instancia
         instancia.setUsuario(usuario);
         instancia.setEstado("COMPLETADA");
-        instancia.setFechaCompletada(LocalDateTime.now());
+        instancia.setFechaCompletada(LocalDateTime.now(ZonaHorariaApp.ZONA));
         instancia.setPuntosSumados(puntosFinales);
         instancia.setPenalizacion(penalizacion);
         instancia.setImagenUrl(imagenUrl);
@@ -151,7 +153,7 @@ public class RegistroTareaServicio {
     @Scheduled(fixedRate = 3600000)
     @Transactional
     public void procesarVencidas() {
-        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime ahora = LocalDateTime.now(ZonaHorariaApp.ZONA);
         List<RegistroTarea> vencidasPorFecha = registroTareaDAO.findByEstadoAndFechaLimiteBefore("PENDIENTE", ahora);
 
         List<RegistroTarea> vencidas = vencidasPorFecha.stream()
@@ -291,7 +293,7 @@ public class RegistroTareaServicio {
 
     // Calcula la fecha límite de la siguiente instancia
     private LocalDateTime calcularSiguienteFechaLimite(String frecuencia) {
-        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime ahora = LocalDateTime.now(ZonaHorariaApp.ZONA);
         switch ((frecuencia != null ? frecuencia : "").toUpperCase()) {
             case "DIARIA": return ahora.plusHours(36);
             case "SEMANAL": return ahora.plusDays(7);

@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
@@ -73,7 +75,7 @@ public class RegistroTarea {
         this.hogar = hogar;
         this.puntosSumados = puntosSumados;
         this.imagenUrl = imagenUrl;
-        this.fechaCompletada = LocalDateTime.now();
+        this.fechaCompletada = LocalDateTime.now(ZonaHorariaApp.ZONA);
         this.estado = "COMPLETADA";
         this.penalizacion = 0;
     }
@@ -130,7 +132,7 @@ public class RegistroTarea {
     }
 
     public boolean estaVencida() {
-        return "PENDIENTE".equals(estado) && fechaLimite != null && LocalDateTime.now().isAfter(fechaLimite);
+        return "PENDIENTE".equals(estado) && fechaLimite != null && LocalDateTime.now(ZonaHorariaApp.ZONA).isAfter(fechaLimite);
     }
 
     public boolean fueEntregadaTarde() {

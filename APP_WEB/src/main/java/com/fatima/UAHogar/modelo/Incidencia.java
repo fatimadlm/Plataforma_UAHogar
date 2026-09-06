@@ -1,5 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -55,7 +57,7 @@ public class Incidencia {
         this.responsable = registroTarea.getUsuario();
         this.descripcion = descripcion;
         this.estado = "OPEN";
-        this.fechaCreacion = LocalDateTime.now();
+        this.fechaCreacion = LocalDateTime.now(ZonaHorariaApp.ZONA);
     }
 
     //Getters y Setters
