@@ -162,8 +162,10 @@ public class TareaControlador {
     // Completa una tarea y genera la siguiente instancia
     @PostMapping("/completar")
     public ResponseEntity<?> completarTarea(@RequestBody CompletarTareaRequest request) {
-        RegistroTarea registro = registroTareaServicio.completarTarea(
+        RegistroTareaServicio.ResultadoCompletar resultado = registroTareaServicio.completarTarea(
                 request.tareaId(), UsuarioActual.id(), request.imagenUrl());
+
+        RegistroTarea registro = resultado.completada;
 
         Map<String, Object> respuesta = new HashMap<>();
         respuesta.put("mensaje", "Tarea completada con éxito");
@@ -171,6 +173,10 @@ public class TareaControlador {
         respuesta.put("puntosNetos", registro.puntosNetos());
         respuesta.put("penalizacion", registro.getPenalizacion());
         respuesta.put("imagenUrl", registro.getImagenUrl());
+
+        //Fecha del siguiente ciclo
+        respuesta.put("siguienteFechaLimite",
+                resultado.siguiente != null ? resultado.siguiente.getFechaLimite() : null);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
     }
