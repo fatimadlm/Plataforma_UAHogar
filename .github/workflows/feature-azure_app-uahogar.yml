@@ -28,6 +28,15 @@ jobs:
         working-directory: APP_WEB
         run: mvn clean package -DskipTests
 
+      - name: Comprobar configuración del JAR
+        working-directory: APP_WEB
+        run: |
+          echo "=== Archivos application dentro del JAR ==="
+          jar tf target/UAHogar-0.0.1-SNAPSHOT.jar | grep application
+
+          echo "=== application-prod.yaml dentro del JAR ==="
+          unzip -p target/UAHogar-0.0.1-SNAPSHOT.jar BOOT-INF/classes/application-prod.yaml
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
