@@ -1,14 +1,9 @@
 package com.fatima.UAHogar.servicio;
 
-import com.fatima.UAHogar.util.ZonaHorariaApp;
-
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.NotificacionDAO;
-import com.fatima.UAHogar.modelo.Hogar;
-import com.fatima.UAHogar.modelo.MiembroHogar;
-import com.fatima.UAHogar.modelo.Notificacion;
-import com.fatima.UAHogar.modelo.TipoNotificacion;
-import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.modelo.*;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,6 +70,7 @@ public class NotificacionServicio {
         List<Notificacion> todas = notificacionDAO.findByUsuarioIdOrderByFechaCreacionDesc(usuarioId);
         notificacionDAO.deleteAll(todas);
     }
+
     // Crea una notificación individual
     public void crear(Usuario usuario, Hogar hogar, TipoNotificacion tipo, String titulo, String mensaje, Long referenciaId, String urlOrigen) {
         if (usuario == null) return;
@@ -119,7 +115,7 @@ public class NotificacionServicio {
                 Usuario usuario = miembro.getUsuario();
                 if (usuario == null) continue;
                 Long usuarioId = usuario.getId();
-                if (usuarioExcluirId != null && usuarioId != null && usuarioId.equals(usuarioExcluirId)) continue;
+                if (usuarioId != null && usuarioId.equals(usuarioExcluirId)) continue;
                 crear(usuario, hogar, tipo, titulo, mensaje, referenciaId, urlOrigen);
             }
         } catch (Exception e) {

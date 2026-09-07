@@ -6,4 +6,5 @@ public record PlantillaTareaSupervisionDTO(
         String tipo,
         Integer puntos,
         String frecuencia
-) {}
+) {
+}

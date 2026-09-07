@@ -7,4 +7,5 @@ public record PerfilAjeno(
         String imagenPerfil,
         long puntosComunes,
         long tareasComunes
-){}
+) {
+}

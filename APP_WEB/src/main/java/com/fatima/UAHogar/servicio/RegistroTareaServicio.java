@@ -1,18 +1,12 @@
 package com.fatima.UAHogar.servicio;
 
-import com.fatima.UAHogar.util.ZonaHorariaApp;
-
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
 import com.fatima.UAHogar.DAO.TareaDAO;
 import com.fatima.UAHogar.DAO.UsuarioDAO;
-import com.fatima.UAHogar.modelo.Hogar;
-import com.fatima.UAHogar.modelo.MiembroHogar;
-import com.fatima.UAHogar.modelo.RegistroTarea;
-import com.fatima.UAHogar.modelo.Tarea;
-import com.fatima.UAHogar.modelo.TipoNotificacion;
-import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.modelo.*;
 import com.fatima.UAHogar.util.PlazosUtil;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

@@ -1,12 +1,6 @@
 package com.fatima.UAHogar.controladores;
 
-import com.fatima.UAHogar.dto.AuditoriaSupervisionDTO;
-import com.fatima.UAHogar.dto.HogarDetalleAmpliadoDTO;
-import com.fatima.UAHogar.dto.HogarDetalleSupervisionDTO;
-import com.fatima.UAHogar.dto.HogarSupervisionDTO;
-import com.fatima.UAHogar.dto.IncidenciaSupervisionDTO;
-import com.fatima.UAHogar.dto.MetricasSupervisionDTO;
-import com.fatima.UAHogar.dto.TareaSupervisionDTO;
+import com.fatima.UAHogar.dto.*;
 import com.fatima.UAHogar.modelo.Usuario;
 import com.fatima.UAHogar.seguridad.UsuarioActual;
 import com.fatima.UAHogar.servicio.SupervisorServicio;
@@ -60,7 +54,8 @@ public class SupervisorControlador {
         }
     }
 
-    public record CambiarRolRequest(String rolGlobal) {}
+    public record CambiarRolRequest(String rolGlobal) {
+    }
 
     // Cambiar rol de usuario
     @PutMapping("/usuarios/{id}/rol")

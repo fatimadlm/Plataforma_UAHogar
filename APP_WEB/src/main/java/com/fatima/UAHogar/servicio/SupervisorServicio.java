@@ -1,30 +1,10 @@
 package com.fatima.UAHogar.servicio;
 
-import com.fatima.UAHogar.util.ZonaHorariaApp;
-
-import com.fatima.UAHogar.DAO.HogarDAO;
-import com.fatima.UAHogar.DAO.IncidenciaDAO;
-import com.fatima.UAHogar.DAO.MiembroHogarDAO;
-import com.fatima.UAHogar.DAO.RegistroTareaDAO;
-import com.fatima.UAHogar.DAO.TareaDAO;
-import com.fatima.UAHogar.DAO.UsuarioDAO;
-import com.fatima.UAHogar.dto.AuditoriaSupervisionDTO;
-import com.fatima.UAHogar.dto.HogarDetalleAmpliadoDTO;
-import com.fatima.UAHogar.dto.HogarDetalleSupervisionDTO;
-import com.fatima.UAHogar.dto.HogarSupervisionDTO;
-import com.fatima.UAHogar.dto.IncidenciaSupervisionDTO;
-import com.fatima.UAHogar.dto.MetricasSupervisionDTO;
-import com.fatima.UAHogar.dto.MiembroSupervisionDTO;
-import com.fatima.UAHogar.dto.PlantillaTareaSupervisionDTO;
-import com.fatima.UAHogar.dto.TareaSupervisionDTO;
-import com.fatima.UAHogar.modelo.Hogar;
-import com.fatima.UAHogar.modelo.Incidencia;
-import com.fatima.UAHogar.modelo.MiembroHogar;
-import com.fatima.UAHogar.modelo.RegistroTarea;
-import com.fatima.UAHogar.modelo.Tarea;
-import com.fatima.UAHogar.modelo.TipoAccionAuditoria;
-import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.DAO.*;
+import com.fatima.UAHogar.dto.*;
+import com.fatima.UAHogar.modelo.*;
 import com.fatima.UAHogar.seguridad.UsuarioActual;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

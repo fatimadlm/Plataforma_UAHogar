@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSesion } from '../Seguridad/ContextoSesion';
 import Sidebar from '../Componentes/Sidebar';
+import ImagenSas from '../Componentes/ImagenSas';
 import TareasHogar from './TareasHogar';
 import { Calendar, Users, History, PlusCircle, ArrowLeft, Clock, UserPlus, UserX, LogOut, X, Trophy, Medal, ClipboardList, AlertTriangle } from 'lucide-react';
 import { getApariencia } from '../Configuracion/AparienciasHogar';
 import { podiumConfig } from '../Configuracion/TareaConfig';
 import { getPanelHogar, expulsarMiembro, abandonarHogar } from '../Servicios/PeticionTarea';
-import { API_URL } from '../Configuracion/apiConfig';
 import styles from './PanelHogar.module.css';
 
 export default function PanelHogar() {
@@ -202,10 +202,12 @@ export default function PanelHogar() {
                         title={esMiMismo ? 'Eres tú' : `Ver perfil de ${m.nombre}`}
                       >
                         <div className={styles.avatarMini}>
-                          {m.imagenPerfil
-                            ? <img src={m.imagenPerfil.startsWith('http') ? m.imagenPerfil : `${API_URL}${m.imagenPerfil}`} alt={m.nombre} className={styles.avatarImg} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerText = m.nombre.charAt(0).toUpperCase(); }} />
-                            : m.nombre.charAt(0).toUpperCase()
-                          }
+                          <ImagenSas
+                            ruta={m.imagenPerfil}
+                            alt={m.nombre}
+                            className={styles.avatarImg}
+                            fallback={<span className={styles.avatarInicial}>{m.nombre?.charAt(0).toUpperCase() || 'U'}</span>}
+                          />
                         </div>
                         <div className={styles.flex1}>
                           <div className={styles.miembroNombre}>

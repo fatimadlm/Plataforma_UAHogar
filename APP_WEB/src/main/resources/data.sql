@@ -3,7 +3,7 @@
 INSERT INTO usuarios (email, imagen_perfil, nombre, password, telefono, usuario, rol_global, bloqueado)
 VALUES (
     'fatima@gmail.com',
-    'https://ui-avatars.com/api/?name=Fatima&background=3d5a80&color=fff&size=150&length=1',
+    NULL,
     'Fatima',
     '$2a$10$QHDShqnOT7y/H5sNNQ27aeRbJ6UTTsyLc1g60Ybu1a.vcKkN4gTAG',
     '+34611222333',
@@ -15,7 +15,7 @@ VALUES (
 INSERT INTO usuarios (email, imagen_perfil, nombre, password, telefono, usuario, rol_global, bloqueado)
 VALUES (
     'carlos@gmail.com',
-    'https://ui-avatars.com/api/?name=Carlos&background=3d5a80&color=fff&size=150&length=1',
+    NULL,
     'Carlos',
     '$2a$10$eMG5P0Wz9tHsL/CIpDfsXOchgCaN9ZAckWSy84lyedTL.3MnZflCa',
     '+34622333444',
@@ -27,7 +27,7 @@ VALUES (
 INSERT INTO usuarios (email, imagen_perfil, nombre, password, telefono, usuario, rol_global, bloqueado)
 VALUES (
     'ana.martinez@gmail.com',
-    'https://ui-avatars.com/api/?name=Ana&background=ef476f&color=fff&size=150&length=1',
+    NULL,
     'Ana',
     '$2a$10$2TPZ3ZFxWX9Sgtp8Hz.1JuyrWZsS8.NEFMcdtokZNm4lBAJ2B4iTC',
     '+34644555666',
@@ -39,7 +39,7 @@ VALUES (
 INSERT INTO usuarios (email, imagen_perfil, nombre, password, telefono, usuario, rol_global, bloqueado)
 VALUES (
     'miguel88@gmail.com',
-    'https://ui-avatars.com/api/?name=Miguel&background=06d6a0&color=fff&size=150&length=1',
+    NULL,
     'Miguel',
     '$2a$10$cTld1xG3K3eUiiW3fEoyTe0rJreW1i4c7wJVB3bJ.j.lBipIgD7ze',
     '+34677888999',
@@ -52,7 +52,7 @@ VALUES (
 INSERT INTO usuarios (email, imagen_perfil, nombre, password, telefono, usuario, rol_global, bloqueado)
 VALUES (
     'jaime@uahogar.com',
-    'https://ui-avatars.com/api/?name=Jaime&background=e76f51&color=fff&size=150&length=1',
+    NULL,
     'Jaime',
     '$2a$10$n817CDA9qaLfX/2KI.LXOu6aGN6yFzfmXJYT8pQ4WhkOcYZGS4vxm',
     '+34600000000',
@@ -60,6 +60,7 @@ VALUES (
     'SUPERVISOR',
     FALSE
 );
+
 -- HOGARES
 INSERT INTO hogares (id, nombre, codigo_invitacion, apariencia_id, fecha_creacion)
 VALUES (101, 'Piso Compartido', 'PISO101X', 'azul-noche', DATEADD('DAY', -365, CURRENT_DATE));

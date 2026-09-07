@@ -9,6 +9,7 @@ import { colorTipo } from '../Configuracion/TareaConfig';
 import { API_URL, manejarErrorImagen } from '../Configuracion/apiConfig';
 import ModalAyudaTarea from '../Componentes/Modulos/ModalAyudaTarea';
 import ModalIntercambioTarea from '../Componentes/Modulos/ModalIntercambioTarea';
+import ImagenSas from '../Componentes/ImagenSas';
 
 export default function Feed() {
 
@@ -369,12 +370,12 @@ export default function Feed() {
                     <div className={styles.tarjetaCuerpo}>
                       <div className={styles.tarjetaImagen}>
                         {h.imagenUrl ? (
-                          <img
-                            src={`${API_URL}${h.imagenUrl}`}
-                            alt="Imagen de la tarea"
-                            className={`${styles.imagenTarea} ${styles.imagenHistorial}`}
-                            onError={manejarErrorImagen}
-                          />
+                          <ImagenSas
+                ruta={h.imagenUrl}
+                alt="Imagen de la tarea"
+                className={`${styles.imagenTarea} ${styles.imagenHistorial}`}
+                onError={manejarErrorImagen}
+              />
                         ) : (
                           <CheckCircle2 size={32} className={styles.iconoHistorial} strokeWidth={1.5} />
                         )}

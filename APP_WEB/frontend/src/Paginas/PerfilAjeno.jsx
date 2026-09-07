@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSesion } from '../Seguridad/ContextoSesion';
 import { getPerfilAjeno, getTareasRecientesComunes } from '../Servicios/PeticionTarea';
-import { API_URL } from '../Configuracion/apiConfig';
 import styles from './Perfil.module.css';
 import Sidebar from '../Componentes/Sidebar';
+import ImagenSas from '../Componentes/ImagenSas';
 
 export default function PerfilAjeno() {
   const { id } = useParams();
@@ -15,6 +15,7 @@ export default function PerfilAjeno() {
   const [tareasRecientes, setTareasRecientes] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [imagenPerfilError, setImagenPerfilError] = useState(false);
 
   useEffect(() => {
     const cargarDatos = async () => {
@@ -26,6 +27,7 @@ export default function PerfilAjeno() {
 
         const datosPerfil = await getPerfilAjeno(id, usuarioLogueado.id);
         setUsuarioVisitado(datosPerfil);
+        setImagenPerfilError(false);
 
         const datosTareas = await getTareasRecientesComunes(id, usuarioLogueado.id);
         setTareasRecientes(datosTareas);
@@ -101,6 +103,9 @@ export default function PerfilAjeno() {
     return null;
   }
 
+  const tieneFotoPerfil =
+    usuarioVisitado?.imagenPerfil && !usuarioVisitado.imagenPerfil.includes('ui-avatars.com');
+
   // Nunca mostramos un identificador interno de una cuenta eliminada
   const nombreVisible = usuarioEliminado
     ? 'Usuario eliminado'
@@ -123,24 +128,20 @@ export default function PerfilAjeno() {
             {/* Avatar y nombre */}
             <div className={styles.avatarSeccion}>
               <div className={styles.avatarContenedor}>
-                <img
-                  src={
-                    usuarioVisitado.imagenPerfil
-                      ? (
-                        usuarioVisitado.imagenPerfil.startsWith('http')
-                          ? usuarioVisitado.imagenPerfil
-                          : `${API_URL}${usuarioVisitado.imagenPerfil}`
-                      )
-                      : `https://ui-avatars.com/api/?name=${encodeURIComponent(nombreVisible)}`
-                  }
-                  alt={nombreVisible}
-                  className={styles.avatarImg}
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.parentElement.innerText =
-                      nombreVisible.charAt(0).toUpperCase();
-                  }}
-                />
+                {tieneFotoPerfil && !imagenPerfilError ? (
+                  <ImagenSas
+                    ruta={usuarioVisitado.imagenPerfil}
+                    alt={nombreVisible}
+                    className={styles.avatarImg}
+                    onError={(e) => {
+                      setImagenPerfilError(true);
+                    }}
+                  />
+                ) : (
+                  <span className={styles.inicialPerfil}>
+                    {nombreVisible?.charAt(0).toUpperCase() || 'U'}
+                  </span>
+                )}
               </div>
               <h2 className={styles.nombreUsuario}>{nombreVisible}</h2>
               {!usuarioEliminado && usuarioVisible && (<p className={styles.tagUsuario}> @{usuarioVisible} </p> )}

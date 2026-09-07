@@ -10,4 +10,5 @@ public record HogarDetalleSupervisionDTO(
         LocalDate fechaCreacion,
         List<MiembroSupervisionDTO> miembros,
         List<TareaSupervisionDTO> tareas
-) {}
+) {
+}

@@ -11,6 +11,11 @@ public class EstadisticasDTO {
     }
 
     // Getters necesarios para que el controlador pueda extraer los valores
-    public long getPuntosComunes() { return puntosComunes; }
-    public long getTareasComunes() { return tareasComunes; }
+    public long getPuntosComunes() {
+        return puntosComunes;
+    }
+
+    public long getTareasComunes() {
+        return tareasComunes;
+    }
 }

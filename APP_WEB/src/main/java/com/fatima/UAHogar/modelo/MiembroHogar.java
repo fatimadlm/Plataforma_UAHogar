@@ -27,7 +27,8 @@ public class MiembroHogar {
     private String rol;
 
     // Constructor vacío
-    public MiembroHogar() {}
+    public MiembroHogar() {
+    }
 
     // Constructor para añadir a alguien a una casa
     public MiembroHogar(Usuario usuario, Hogar hogar, String rol) {
@@ -37,15 +38,35 @@ public class MiembroHogar {
     }
 
     // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Hogar getHogar() { return hogar; }
-    public void setHogar(Hogar hogar) { this.hogar = hogar; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-    public String getRol() { return rol; }
-    public void setRol(String rol) { this.rol = rol; }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Hogar getHogar() {
+        return hogar;
+    }
+
+    public void setHogar(Hogar hogar) {
+        this.hogar = hogar;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }

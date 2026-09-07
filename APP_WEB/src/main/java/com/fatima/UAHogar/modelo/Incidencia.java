@@ -1,9 +1,8 @@
 package com.fatima.UAHogar.modelo;
 
 import com.fatima.UAHogar.util.ZonaHorariaApp;
-
-
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -48,7 +47,8 @@ public class Incidencia {
     private Usuario cerradaPor;
 
     //Constructor vacío
-    public Incidencia() {}
+    public Incidencia() {
+    }
 
     // Constructor para reportar
     public Incidencia(RegistroTarea registroTarea, Usuario reportante, String descripcion) {
@@ -61,30 +61,75 @@ public class Incidencia {
     }
 
     //Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public RegistroTarea getRegistroTarea() { return registroTarea; }
-    public void setRegistroTarea(RegistroTarea registroTarea) { this.registroTarea = registroTarea; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Usuario getReportante() { return reportante; }
-    public void setReportante(Usuario reportante) { this.reportante = reportante; }
+    public RegistroTarea getRegistroTarea() {
+        return registroTarea;
+    }
 
-    public Usuario getResponsable() { return responsable; }
-    public void setResponsable(Usuario responsable) { this.responsable = responsable; }
+    public void setRegistroTarea(RegistroTarea registroTarea) {
+        this.registroTarea = registroTarea;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public Usuario getReportante() {
+        return reportante;
+    }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public void setReportante(Usuario reportante) {
+        this.reportante = reportante;
+    }
 
-    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
-    public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }
+    public Usuario getResponsable() {
+        return responsable;
+    }
 
-    public LocalDateTime getFechaCierre() { return fechaCierre; }
-    public void setFechaCierre(LocalDateTime fechaCierre) { this.fechaCierre = fechaCierre; }
+    public void setResponsable(Usuario responsable) {
+        this.responsable = responsable;
+    }
 
-    public Usuario getCerradaPor() { return cerradaPor; }
-    public void setCerradaPor(Usuario cerradaPor) { this.cerradaPor = cerradaPor; }
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public LocalDateTime getFechaCierre() {
+        return fechaCierre;
+    }
+
+    public void setFechaCierre(LocalDateTime fechaCierre) {
+        this.fechaCierre = fechaCierre;
+    }
+
+    public Usuario getCerradaPor() {
+        return cerradaPor;
+    }
+
+    public void setCerradaPor(Usuario cerradaPor) {
+        this.cerradaPor = cerradaPor;
+    }
 }

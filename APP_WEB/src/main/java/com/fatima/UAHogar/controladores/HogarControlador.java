@@ -24,8 +24,11 @@ public class HogarControlador {
         this.estadisticasServicio = estadisticasServicio;
     }
 
-    public record CrearHogarRequest(String nombreHogar, String aparienciaId) {}
-    public record UnirseHogarRequest(String codigoInvitacion) {}
+    public record CrearHogarRequest(String nombreHogar, String aparienciaId) {
+    }
+
+    public record UnirseHogarRequest(String codigoInvitacion) {
+    }
 
     // Crea una nueva casa y nombra al creador como ADMIN
     @PostMapping("/crear")

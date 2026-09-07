@@ -26,7 +26,7 @@ public class UsuarioControlador {
         this.jwtServicio = jwtServicio;
     }
 
-//Para registrar un usuario nuevo
+    //Para registrar un usuario nuevo
     @PostMapping("/registrar")
     public ResponseEntity<?> registrarUsuario(@RequestBody RegistroRequest datos) {
         Usuario usuarioCreado = usuarioServicio.registrarUsuario(datos);
@@ -34,7 +34,8 @@ public class UsuarioControlador {
     }
 
     // La respuesta del login incluye el usuario y el token
-    public record LoginResponse(Usuario usuario, String token) {}
+    public record LoginResponse(Usuario usuario, String token) {
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUsuario(@RequestBody LoginRequest request) {
@@ -73,7 +74,8 @@ public class UsuarioControlador {
             String imagenPerfil,
             String contrasenaActual,
             String nuevaContrasena
-    ) {}
+    ) {
+    }
 
     //Actualiza el perfil de un usuario y devuelve el usuario actualizado
     @PutMapping("/{id}/editar")
@@ -142,7 +144,8 @@ public class UsuarioControlador {
         return new ResponseEntity<>(respuesta, HttpStatus.OK);
     }
 
-    public record EliminarCuentaRequest(String password) {}
+    public record EliminarCuentaRequest(String password) {
+    }
 
     // Elimina la propia cuenta del usuario
     @DeleteMapping("/cuenta")

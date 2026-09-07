@@ -1,6 +1,9 @@
 package com.fatima.UAHogar.modelo;
 
-import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("GRUPO")
@@ -22,6 +25,11 @@ public class MensajeGrupo extends Mensaje {
     }
 
     // Getter y Setter
-    public Hogar getHogar() { return hogar; }
-    public void setHogar(Hogar hogar) { this.hogar = hogar; }
+    public Hogar getHogar() {
+        return hogar;
+    }
+
+    public void setHogar(Hogar hogar) {
+        this.hogar = hogar;
+    }
 }

@@ -1,7 +1,5 @@
 package com.fatima.UAHogar.servicio;
 
-import com.fatima.UAHogar.util.ZonaHorariaApp;
-
 import com.fatima.UAHogar.DAO.HogarDAO;
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
@@ -9,6 +7,7 @@ import com.fatima.UAHogar.dto.EstadisticasHogarDTO;
 import com.fatima.UAHogar.modelo.Hogar;
 import com.fatima.UAHogar.modelo.MiembroHogar;
 import com.fatima.UAHogar.modelo.RegistroTarea;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

@@ -24,7 +24,8 @@ public class IncidenciaControlador {
         this.hogarServicio = hogarServicio;
     }
 
-    public record ReportarIncidenciaRequest(Long registroTareaId, String descripcion) {}
+    public record ReportarIncidenciaRequest(Long registroTareaId, String descripcion) {
+    }
 
     // Reporta una incidencia 
     @PostMapping("/reportar")

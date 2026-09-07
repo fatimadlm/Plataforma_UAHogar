@@ -5,11 +5,11 @@ import Sidebar from '../Componentes/Sidebar';
 import { ArrowLeft, Clock, CheckCircle2, ChevronDown, Image, AlertTriangle, X } from 'lucide-react';
 import { getApariencia } from '../Configuracion/AparienciasHogar';
 import { getHistorialHogar, reportarIncidencia } from '../Servicios/PeticionTarea';
-import { API_URL, manejarErrorImagen } from '../Configuracion/apiConfig';
+import { manejarErrorImagen } from '../Configuracion/apiConfig';
 import styles from './FeedHogar.module.css';
+import ImagenSas from '../Componentes/ImagenSas';
 
 const LIMITE = 40;
-const BASE_SERVIDOR = API_URL;
 
 export default function FeedHogar() {
   const { state } = useLocation();
@@ -159,8 +159,8 @@ export default function FeedHogar() {
                     title={r.imagenUrl ? 'Haz clic para ver la imagen' : ''}
                   >
                     {r.imagenUrl ? (
-                      <img
-                        src={`${BASE_SERVIDOR}${r.imagenUrl}`}
+                      <ImagenSas
+                        ruta={r.imagenUrl}
                         alt="Imagen de la tarea"
                         className={styles.itemImagenMini}
                         onError={manejarErrorImagen}
@@ -174,12 +174,12 @@ export default function FeedHogar() {
                     <div className={styles.itemNombre}>{r.nombre}</div>
                     <div className={styles.itemMeta}>
                       <span
-                        className={`${styles.usuarioMeta} ${r.usuarioId === usuarioLogueado?.id ? styles.usuarioPropio : ''}`}
-                        onClick={() => r.usuarioId !== usuarioLogueado?.id && navigate(`/perfil-ajeno/${r.usuarioId}`)}
-                        title={r.usuarioId === usuarioLogueado?.id ? 'Eres tú' : `Ver perfil de ${r.nombreUsuario}`}
+                        className={`${styles.usuarioMeta} ${Number(r.usuarioId) === Number(usuarioLogueado?.id) ? styles.usuarioPropio : ''}`}
+                        onClick={() => Number(r.usuarioId) !== Number(usuarioLogueado?.id) && navigate(`/perfil-ajeno/${r.usuarioId}`)}
+                        title={Number(r.usuarioId) === Number(usuarioLogueado?.id) ? 'Eres tú' : `Ver perfil de ${r.nombreUsuario}`}
                       >
                         {r.nombreUsuario}
-                        {r.usuarioId === usuarioLogueado?.id && <span className={styles.etiquetaTu}> (tú)</span>}
+                        {Number(r.usuarioId) === Number(usuarioLogueado?.id) && <span className={styles.etiquetaTu}> (tú)</span>}
                       </span>
                       <span className={styles.separadorPunto}>·</span>
                       <Clock size={13} color="#90b4ce" />
@@ -194,8 +194,8 @@ export default function FeedHogar() {
 
                     {r.imagenUrl && imagenAmpliada === r.id && (
                       <div className={styles.contenedorImagenDesplegada}>
-                        <img
-                          src={`${BASE_SERVIDOR}${r.imagenUrl}`}
+                        <ImagenSas
+                          ruta={r.imagenUrl}
                           alt="Imagen de la tarea ampliada"
                           className={styles.imagenDesplegada}
                           onError={manejarErrorImagen}
@@ -206,7 +206,7 @@ export default function FeedHogar() {
 
                   <div className={styles.itemPuntos}>+{r.puntosSumados} pts</div>
 
-                  {r.usuarioId !== usuarioLogueado?.id && !reportadas.has(r.id) && (
+                  {Number(r.usuarioId) !== Number(usuarioLogueado?.id) && !reportadas.has(r.id) && (
                     <button
                       className={styles.btnIncidencia}
                       title="Reportar incidencia"
@@ -241,8 +241,8 @@ export default function FeedHogar() {
       {/* Modal imagen a pantalla completa al hacer clic en la miniatura */}
       {imagenAmpliada && registros.find(r => r.id === imagenAmpliada)?.imagenUrl && (
         <div className={styles.overlayVisor} onClick={() => setImagenAmpliada(null)}>
-          <img
-            src={`${BASE_SERVIDOR}${registros.find(r => r.id === imagenAmpliada).imagenUrl}`}
+          <ImagenSas
+            ruta={registros.find(r => r.id === imagenAmpliada)?.imagenUrl}
             alt="Imagen ampliada"
             className={styles.imagenVisor}
             onClick={e => e.stopPropagation()}

@@ -25,7 +25,8 @@ public class IntercambioTareaControlador {
     }
 
     // Datos necesarios para solicitar un intercambio
-    public record SolicitarIntercambioRequest(Long registroTareaId, Long destinatarioId) {}
+    public record SolicitarIntercambioRequest(Long registroTareaId, Long destinatarioId) {
+    }
 
     // Solicitamos intercambiar una tarea propia con otro miembro
     @PostMapping("/solicitar")

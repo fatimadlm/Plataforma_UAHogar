@@ -8,4 +8,5 @@ public record MiembroPuntosDTO(
         String imagenPerfil,
         String rol,
         int puntos
-) {}
+) {
+}

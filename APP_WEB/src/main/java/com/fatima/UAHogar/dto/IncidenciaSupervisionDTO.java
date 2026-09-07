@@ -13,4 +13,5 @@ public record IncidenciaSupervisionDTO(
         String nombreResponsable,
         LocalDateTime fechaCreacion,
         LocalDateTime fechaCierre
-) {}
+) {
+}

@@ -1,8 +1,8 @@
 package com.fatima.UAHogar.modelo;
 
 import com.fatima.UAHogar.util.ZonaHorariaApp;
-
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -38,7 +38,8 @@ public class IntercambioTarea {
     @Column(nullable = true)
     private LocalDateTime fechaRespuesta;
 
-    public IntercambioTarea() {}
+    public IntercambioTarea() {
+    }
 
     // Inicializamos una nueva solicitud en estado pendiente
     public IntercambioTarea(RegistroTarea registroTarea, Usuario solicitante, Usuario destinatario) {
@@ -50,24 +51,59 @@ public class IntercambioTarea {
     }
 
     // Getters y setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public RegistroTarea getRegistroTarea() { return registroTarea; }
-    public void setRegistroTarea(RegistroTarea registroTarea) { this.registroTarea = registroTarea; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Usuario getSolicitante() { return solicitante; }
-    public void setSolicitante(Usuario solicitante) { this.solicitante = solicitante; }
+    public RegistroTarea getRegistroTarea() {
+        return registroTarea;
+    }
 
-    public Usuario getDestinatario() { return destinatario; }
-    public void setDestinatario(Usuario destinatario) { this.destinatario = destinatario; }
+    public void setRegistroTarea(RegistroTarea registroTarea) {
+        this.registroTarea = registroTarea;
+    }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public Usuario getSolicitante() {
+        return solicitante;
+    }
 
-    public LocalDateTime getFechaSolicitud() { return fechaSolicitud; }
-    public void setFechaSolicitud(LocalDateTime fechaSolicitud) { this.fechaSolicitud = fechaSolicitud; }
+    public void setSolicitante(Usuario solicitante) {
+        this.solicitante = solicitante;
+    }
 
-    public LocalDateTime getFechaRespuesta() { return fechaRespuesta; }
-    public void setFechaRespuesta(LocalDateTime fechaRespuesta) { this.fechaRespuesta = fechaRespuesta; }
+    public Usuario getDestinatario() {
+        return destinatario;
+    }
+
+    public void setDestinatario(Usuario destinatario) {
+        this.destinatario = destinatario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getFechaSolicitud() {
+        return fechaSolicitud;
+    }
+
+    public void setFechaSolicitud(LocalDateTime fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
+    }
+
+    public LocalDateTime getFechaRespuesta() {
+        return fechaRespuesta;
+    }
+
+    public void setFechaRespuesta(LocalDateTime fechaRespuesta) {
+        this.fechaRespuesta = fechaRespuesta;
+    }
 }

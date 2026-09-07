@@ -1,14 +1,10 @@
 package com.fatima.UAHogar.controladores;
 
 import com.fatima.UAHogar.dto.RegistroTareaDTO;
-import com.fatima.UAHogar.servicio.ConsejoTareaServicio;
-import com.fatima.UAHogar.servicio.EstimacionTareaServicio;
-import com.fatima.UAHogar.servicio.HogarServicio;
-import com.fatima.UAHogar.servicio.RegistroTareaServicio;
-import com.fatima.UAHogar.servicio.TareaServicio;
 import com.fatima.UAHogar.modelo.RegistroTarea;
 import com.fatima.UAHogar.modelo.Tarea;
 import com.fatima.UAHogar.seguridad.UsuarioActual;
+import com.fatima.UAHogar.servicio.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,15 +38,26 @@ public class TareaControlador {
         this.hogarServicio = hogarServicio;
     }
 
-    public record CompletarTareaRequest(Long tareaId, String imagenUrl) {}
-    public record EstimarTareaRequest(String nombre, String descripcion, String tipo) {}
-    public record EstimarTareaResponse(Integer estimatedMinutes, Double confidence, Integer points) {}
-    public record ConsultarTareaRequest(Long tareaId, boolean regenerar) {}
+    public record CompletarTareaRequest(Long tareaId, String imagenUrl) {
+    }
+
+    public record EstimarTareaRequest(String nombre, String descripcion, String tipo) {
+    }
+
+    public record EstimarTareaResponse(Integer estimatedMinutes, Double confidence, Integer points) {
+    }
+
+    public record ConsultarTareaRequest(Long tareaId, boolean regenerar) {
+    }
+
     public record ConsultarTareaResponse(String consejo, List<String> pasos,
-                                         List<String> productosRecomendados, List<String> precauciones) {}
+                                         List<String> productosRecomendados, List<String> precauciones) {
+    }
+
     public record CrearTareaRequest(String nombre, String descripcion, String tipo, String frecuencia,
                                     Integer puntos, String tiempoEstimado, String fechaInicio,
-                                    Long usuarioAsignadoId) {}
+                                    Long usuarioAsignadoId) {
+    }
 
     // Estima el tiempo de una tarea y calcula sus puntos
     @PostMapping("/estimar-tiempo")
@@ -136,7 +143,7 @@ public class TareaControlador {
     // Elimina una plantilla
     @DeleteMapping("/{tareaId}/eliminar")
     public ResponseEntity<?> eliminarPlantilla(@PathVariable Long tareaId,
-                                                @RequestParam String opcion) {
+                                               @RequestParam String opcion) {
         Long hogarId = tareaServicio.obtenerHogarIdDeTarea(tareaId);
         hogarServicio.verificarPertenencia(UsuarioActual.id(), hogarId);
 
@@ -200,7 +207,7 @@ public class TareaControlador {
     // Devuelve tareas completadas en hogares compartidos entre dos usuarios
     @GetMapping("/recientes-comunes")
     public ResponseEntity<?> obtenerTareasRecientesComunes(@RequestParam Long usuarioId,
-                                                            @RequestParam Long miId) {
+                                                           @RequestParam Long miId) {
         Long yo = UsuarioActual.id();
         if (!usuarioId.equals(yo) && !miId.equals(yo)) {
             throw new SecurityException(
