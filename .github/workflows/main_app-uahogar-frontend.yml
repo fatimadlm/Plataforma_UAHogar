@@ -34,6 +34,22 @@ jobs:
         with:
           name: node-app
           path: .
+      - name: Install dependencies
+        working-directory: APP_WEB/frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: APP_WEB/frontend
+        env:
+          VITE_API_URL: https://app-uahogar-cqhqgxcucaakg4b2.spaincentral-01.azurewebsites.net
+        run: npm run build
+
+      - name: Upload frontend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: APP_WEB/frontend/dist
+
 
   deploy:
     runs-on: ubuntu-latest
