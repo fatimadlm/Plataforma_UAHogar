@@ -23,6 +23,7 @@ export default function Feed() {
   const [archivosSeleccionados, setArchivosSeleccionados] = useState({});
   const [imagenesPrevias, setImagenesPrevias] = useState({});
   const [hogares, setHogares] = useState([]);
+  const [completandoIds, setCompletandoIds] = useState(() => new Set());
   const [tareaConsultada, setTareaConsultada] = useState(null);
   const [ayudaTarea, setAyudaTarea] = useState(null);
   const [cargandoAyuda, setCargandoAyuda] = useState(false);
@@ -111,6 +112,10 @@ export default function Feed() {
 
   // Completa la tarea subiendo la imagen si la hay
   const manejarCompletarTarea = async (instancia) => {
+    // Evita duplicados de doble click
+    if (completandoIds.has(instancia.id)) return;
+    setCompletandoIds(prev => new Set(prev).add(instancia.id));
+
     try {
       let imagenUrl = null;
       if (archivosSeleccionados[instancia.id]) {
@@ -118,11 +123,18 @@ export default function Feed() {
       }
       const resultado = await completarTarea(instancia.tareaId, imagenUrl);
 
-      if (instancia.completableConMargen) {
-        alert(`Tarea completada a tiempo (casi). +${resultado.puntosNetos} pts (70% de los puntos originales)`);
-      } else {
-        alert(`Tarea completada. +${resultado.puntosNetos} pts`);
+      let mensaje = instancia.completableConMargen
+        ? `Tarea completada a tiempo (casi). +${resultado.puntosNetos} pts (70% de los puntos originales)`
+        : `Tarea completada. +${resultado.puntosNetos} pts`;
+
+      // Si es una tarea recurrente,indicamos cuando vuelve a tocar
+      if (resultado.siguienteFechaLimite) {
+        const fechaSiguiente = new Date(resultado.siguienteFechaLimite)
+          .toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
+        mensaje += `\n\nSu siguiente fecha limite es : ${fechaSiguiente}.`;
       }
+
+      alert(mensaje);
 
       // Recargamos pendientes e historial
       await cargarPendientes();
@@ -130,6 +142,12 @@ export default function Feed() {
       await cargarHistorial(0, false);
     } catch (error) {
       alert(`No se pudo completar la tarea: ${error.message}`);
+    } finally {
+      setCompletandoIds(prev => {
+        const siguiente = new Set(prev);
+        siguiente.delete(instancia.id);
+        return siguiente;
+      });
     }
   };
 
@@ -207,8 +225,10 @@ export default function Feed() {
           </span>
         )}
         {!t.esUrgente && !t.completableConMargen && t.fechaLimite && (
-          <span className={styles.infoFecha}>
-            Hasta el {new Date(t.fechaLimite).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}
+          <span className={styles.infoFecha} title="Fecha límite de esta ronda">
+            {t.diasRestantes > 0
+              ? `Vence en ${t.diasRestantes} día${t.diasRestantes !== 1 ? 's' : ''} (${new Date(t.fechaLimite).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })})`
+              : `Hasta el ${new Date(t.fechaLimite).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}`}
           </span>
         )}
       </div>
@@ -269,8 +289,11 @@ export default function Feed() {
           <button
             className={`boton-primario ${styles.botonCompletar} ${t.completableConMargen ? styles.botonCompletarGracia : ''}`}
             onClick={() => manejarCompletarTarea(t)}
+            disabled={completandoIds.has(t.id)}
           >
-            {t.completableConMargen ? `Completar (${t.puntosConMargen} pts)` : 'Completar'}
+            {completandoIds.has(t.id)
+              ? 'Completando...'
+              : (t.completableConMargen ? `Completar (${t.puntosConMargen} pts)` : 'Completar')}
           </button>
           <button className={styles.botonSecundario} onClick={() => manejarConsultarTarea(t)}>
             <Lightbulb size={16} />

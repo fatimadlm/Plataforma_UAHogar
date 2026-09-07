@@ -20,6 +20,6 @@ public interface TareaDAO extends JpaRepository<Tarea, Long> {
     @Query("SELECT t FROM Tarea t WHERE t.usuarioAsignado.id = :usuarioId AND t.activa = true")
     List<Tarea> obtenerTareasPorUsuario(@Param("usuarioId") Long usuarioId);
 
-    // Buscamos plantillas inactivas cuya fecha de inicio ya llegó para activarlas
-    List<Tarea> findByActivaFalseAndFechaInicioLessThanEqual(LocalDate fecha);
+    // Buscamos plantillas inactivas cuya fecha de inicio ya llegó para activarlas.
+    List<Tarea> findByActivaFalseAndFinalizadaFalseAndFechaInicioLessThanEqual(LocalDate fecha);
 }

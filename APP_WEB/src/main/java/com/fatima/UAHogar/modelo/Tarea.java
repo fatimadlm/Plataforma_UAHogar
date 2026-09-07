@@ -34,6 +34,10 @@ public class Tarea {
     @Column(nullable = true, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean activa = false;
 
+    // Diferencia una tarea pendiente de empezar de una eliminada
+    @Column(nullable = true, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean finalizada = false;
+
     @Column(columnDefinition = "TEXT")
     private String consejoIA;
 
@@ -135,6 +139,14 @@ public class Tarea {
 
     public void setActiva(Boolean activa) {
         this.activa = activa;
+    }
+
+    public Boolean getFinalizada() {
+        return finalizada;
+    }
+
+    public void setFinalizada(Boolean finalizada) {
+        this.finalizada = finalizada;
     }
 
     public String getConsejoIA() {

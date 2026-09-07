@@ -44,9 +44,20 @@ public class RegistroTareaServicio {
         this.notificacionServicio = notificacionServicio;
     }
 
+    // Devuelve la tarea completada y la próxima fecha generada para avisar
+    public static class ResultadoCompletar {
+        public final RegistroTarea completada;
+        public final RegistroTarea siguiente;
+
+        public ResultadoCompletar(RegistroTarea completada, RegistroTarea siguiente) {
+            this.completada = completada;
+            this.siguiente = siguiente;
+        }
+    }
+
     // Marca una tarea como completada y genera la siguiente instancia
     @Transactional
-    public RegistroTarea completarTarea(Long tareaId, Long usuarioId, String imagenUrl) {
+    public ResultadoCompletar completarTarea(Long tareaId, Long usuarioId, String imagenUrl) {
         Tarea tarea = tareaDAO.findById(tareaId)
                 .orElseThrow(() -> new IllegalArgumentException("La tarea no existe"));
 
@@ -104,32 +115,41 @@ public class RegistroTareaServicio {
         // En plazo: 100% — margen de gracia: 70%
         int puntosFinales = dentroDelMargen ? (int) Math.round(tarea.getPuntos() * 0.70) : tarea.getPuntos();
         int penalizacion = tarea.getPuntos() - puntosFinales;
+        LocalDateTime fechaCompletada = LocalDateTime.now(ZonaHorariaApp.ZONA);
 
-        // Actualizamos la instancia
+            // Para evitar duplicar puntos si se envían dos clics
+        int filasActualizadas = registroTareaDAO.marcarCompletadaSiSigueAbierta(
+                instancia.getId(), usuario, fechaCompletada, puntosFinales, penalizacion, imagenUrl);
+
+        if (filasActualizadas == 0) {
+            throw new IllegalArgumentException(
+                    "Esta tarea ya se acaba de completar (probablemente por un doble envío). Refresca la página.");
+        }
+
+        // Reflejamos en memoria lo que ya se guardó, para notificaciones y respuesta
         instancia.setUsuario(usuario);
         instancia.setEstado("COMPLETADA");
-        instancia.setFechaCompletada(LocalDateTime.now(ZonaHorariaApp.ZONA));
+        instancia.setFechaCompletada(fechaCompletada);
         instancia.setPuntosSumados(puntosFinales);
         instancia.setPenalizacion(penalizacion);
         instancia.setImagenUrl(imagenUrl);
-        registroTareaDAO.save(instancia);
 
         // Creamos la siguiente instancia
-        generarSiguienteInstancia(tarea, tarea.getHogar());
+        RegistroTarea siguiente = generarSiguienteInstancia(tarea, tarea.getHogar());
 
         // Avisamos al resto del hogar
         notificarCompletada(instancia, usuario, penalizacion, dentroDelMargen);
 
-        return instancia;
+        return new ResultadoCompletar(instancia, siguiente);
     }
 
     // Crea la siguiente instancia pendiente cuando se completa la anterior
-    private void generarSiguienteInstancia(Tarea tarea, Hogar hogar) {
-        if (tarea.getActiva() == null || !tarea.getActiva()) return;
-        if ("OCASIONAL".equalsIgnoreCase(tarea.getFrecuencia())) return;
+    private RegistroTarea generarSiguienteInstancia(Tarea tarea, Hogar hogar) {
+        if (tarea.getActiva() == null || !tarea.getActiva()) return null;
+        if ("OCASIONAL".equalsIgnoreCase(tarea.getFrecuencia())) return null;
 
         if (registroTareaDAO.existsByTareaIdAndHogarIdAndEstado(tarea.getId(), hogar.getId(), "PENDIENTE")) {
-            return;
+            return null;
         }
 
         LocalDateTime nuevaFechaLimite = calcularSiguienteFechaLimite(tarea.getFrecuencia());
@@ -141,6 +161,8 @@ public class RegistroTareaServicio {
         if (siguienteAsignado != null) {
             notificarAsignacion(nueva, siguienteAsignado);
         }
+
+        return nueva;
     }
 
     // Revisa cada hora las instancias cuyo margen de gracia ya se ha agotado
@@ -169,6 +191,9 @@ public class RegistroTareaServicio {
             if (registro.getUsuarioAsignado() != null) {
                 notificarVencimiento(registro, penalizacion);
             }
+
+            // Generamos el siguiente ciclo
+            generarSiguienteInstancia(registro.getTarea(), registro.getHogar());
         }
     }
 

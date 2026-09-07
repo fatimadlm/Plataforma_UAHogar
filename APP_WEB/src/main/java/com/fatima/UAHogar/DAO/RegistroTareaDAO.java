@@ -1,8 +1,10 @@
 package com.fatima.UAHogar.DAO;
 
 import com.fatima.UAHogar.modelo.RegistroTarea;
+import com.fatima.UAHogar.modelo.Usuario;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -141,4 +143,18 @@ public interface RegistroTareaDAO extends JpaRepository<RegistroTarea, Long> {
     @Query("SELECT COALESCE(SUM(r.penalizacion), 0) FROM RegistroTarea r " +
             "WHERE r.usuarioAsignado.id = :usuarioId AND r.hogar.id = :hogarId AND r.estado = 'VENCIDA'")
     Integer sumarPenalizacionVencidasTotales(@Param("usuarioId") Long usuarioId, @Param("hogarId") Long hogarId);
+
+    //Cambia el estado si sigue pendiente o vencida
+    @Modifying
+    @Query("UPDATE RegistroTarea r SET r.estado = 'COMPLETADA', r.usuario = :usuario, " +
+            "r.fechaCompletada = :fechaCompletada, r.puntosSumados = :puntosSumados, " +
+            "r.penalizacion = :penalizacion, r.imagenUrl = :imagenUrl " +
+            "WHERE r.id = :id AND r.estado IN ('PENDIENTE', 'VENCIDA')")
+    int marcarCompletadaSiSigueAbierta(
+            @Param("id") Long id,
+            @Param("usuario") Usuario usuario,
+            @Param("fechaCompletada") LocalDateTime fechaCompletada,
+            @Param("puntosSumados") Integer puntosSumados,
+            @Param("penalizacion") Integer penalizacion,
+            @Param("imagenUrl") String imagenUrl);
 }

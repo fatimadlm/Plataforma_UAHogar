@@ -309,7 +309,7 @@ public class TareaServicio {
         tareaDAO.deleteById(tareaId);
     }
 
-    // Marcamos la plantilla como inactiva para que no se regenere al completarse el ciclo actual
+    // Desactiva y finaliza la plantilla para evitar que se regenerepor error
     @Transactional
     public void eliminarPlantillaAlCompletarse(
             Long tareaId) {
@@ -322,22 +322,29 @@ public class TareaServicio {
                                 ));
 
         tarea.setActiva(false);
+        tarea.setFinalizada(true);
         tareaDAO.save(tarea);
     }
 
-    // Revisamos cada dia a las 6am las tareas inactivas cuya fecha de inicio ya llegó
+    // Revisa a las 6am tareas inactivas que deben empezar , ignorando las ya finalizadas
     @Scheduled(cron = "0 0 6 * * *")
     @Transactional
     public void activarTareasPorFechaInicio() {
 
         tareaDAO
-                .findByActivaFalseAndFechaInicioLessThanEqual(
+                .findByActivaFalseAndFinalizadaFalseAndFechaInicioLessThanEqual(
                         LocalDate.now(ZonaHorariaApp.ZONA)
                 )
                 .forEach(tarea -> {
 
                     tarea.setActiva(true);
                     tareaDAO.save(tarea);
+
+                   //Evitar duplicados
+                    if (registroTareaDAO.existsByTareaIdAndHogarIdAndEstado(
+                            tarea.getId(), tarea.getHogar().getId(), "PENDIENTE")) {
+                        return;
+                    }
 
                     Usuario asignado =
                             tarea.getUsuarioAsignado() != null
