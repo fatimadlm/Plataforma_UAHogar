@@ -6,4 +6,5 @@ public record MetricasSupervisionDTO(
         long totalHogares,
         long tareasActivas,
         long incidenciasAbiertas
-) {}
+) {
+}

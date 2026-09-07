@@ -5,6 +5,7 @@ import com.fatima.UAHogar.modelo.RegistroTarea;
 import com.fatima.UAHogar.modelo.TipoNotificacion;
 import com.fatima.UAHogar.modelo.Usuario;
 import com.fatima.UAHogar.util.PlazosUtil;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,7 @@ public class NotificacionTareasProgramadasServicio {
     @Scheduled(fixedRate = 3600000)
     @Transactional
     public void comprobarNotificacionesTareas() {
-        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime ahora = LocalDateTime.now(ZonaHorariaApp.ZONA);
         List<RegistroTarea> pendientes = registroTareaDAO.findByEstadoAndFechaLimiteBefore("PENDIENTE", ahora);
         procesarMargenGracia(pendientes, ahora);
         comprobarUrgencias(ahora);

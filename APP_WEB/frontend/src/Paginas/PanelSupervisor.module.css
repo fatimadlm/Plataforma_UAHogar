@@ -311,3 +311,15 @@
   .headerIcono { display: none; }
   .filaUsuario { flex-wrap: wrap; }
 }
+
+.avatarInicial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  line-height: 1;
+}

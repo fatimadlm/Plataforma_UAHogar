@@ -8,6 +8,7 @@ import com.fatima.UAHogar.modelo.IntercambioTarea;
 import com.fatima.UAHogar.modelo.RegistroTarea;
 import com.fatima.UAHogar.modelo.TipoNotificacion;
 import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,7 +94,7 @@ public class IntercambioTareaServicio {
             validarPartesSiguenEnHogar(intercambio);
         } catch (IllegalArgumentException e) {
             intercambio.setEstado("CADUCADA");
-            intercambio.setFechaRespuesta(LocalDateTime.now());
+            intercambio.setFechaRespuesta(LocalDateTime.now(ZonaHorariaApp.ZONA));
             intercambioTareaDAO.save(intercambio);
             notificarCaducidad(intercambio);
             throw e;
@@ -104,7 +105,7 @@ public class IntercambioTareaServicio {
         registroTareaDAO.save(registro);
 
         intercambio.setEstado("ACEPTADA");
-        intercambio.setFechaRespuesta(LocalDateTime.now());
+        intercambio.setFechaRespuesta(LocalDateTime.now(ZonaHorariaApp.ZONA));
         intercambioTareaDAO.save(intercambio);
 
         notificarRespuesta(intercambio, true);
@@ -119,7 +120,7 @@ public class IntercambioTareaServicio {
         IntercambioTarea intercambio = obtenerPendientePropio(intercambioId, usuarioId);
 
         intercambio.setEstado("RECHAZADA");
-        intercambio.setFechaRespuesta(LocalDateTime.now());
+        intercambio.setFechaRespuesta(LocalDateTime.now(ZonaHorariaApp.ZONA));
         intercambioTareaDAO.save(intercambio);
 
         notificarRespuesta(intercambio, false);
@@ -150,7 +151,7 @@ public class IntercambioTareaServicio {
 
         for (IntercambioTarea intercambio : pendientes) {
             intercambio.setEstado("CADUCADA");
-            intercambio.setFechaRespuesta(LocalDateTime.now());
+            intercambio.setFechaRespuesta(LocalDateTime.now(ZonaHorariaApp.ZONA));
             intercambioTareaDAO.save(intercambio);
 
             boolean seFueElSolicitante = intercambio.getSolicitante().getId().equals(usuarioId);

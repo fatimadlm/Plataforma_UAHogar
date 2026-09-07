@@ -1,5 +1,5 @@
 import styles from './ModalCompis.module.css';
-import { API_URL } from '../../Configuracion/apiConfig';
+import ImagenSas from '../ImagenSas';
 
 export default function ModalCompis({ isOpen, onClose, compis, onNavigate }) {
   if (!isOpen) return null;
@@ -14,14 +14,11 @@ export default function ModalCompis({ isOpen, onClose, compis, onNavigate }) {
             compis.map((c) => (
               <div key={c.id} style={{ textAlign: 'center' }}>
                 <div className={styles.avatarCompi} onClick={() => onNavigate(c.id)}>
-                  <img
-                    src={c.imagenPerfil.startsWith('http') ? c.imagenPerfil : `${API_URL}${c.imagenPerfil}`}
+                  <ImagenSas
+                    ruta={c.imagenPerfil}
                     alt={c.nombre}
                     style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.parentElement.innerText = c.nombre.charAt(0).toUpperCase();
-                    }}
+                    fallback={c.nombre?.charAt(0).toUpperCase() || 'U'}
                   />
                 </div>
                 <p className={styles.nombreCompi}>{c.nombre}</p>

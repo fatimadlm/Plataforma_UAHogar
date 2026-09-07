@@ -10,4 +10,5 @@ public record HogarSupervisionDTO(
         LocalDate fechaCreacion,
         int numMiembros,
         boolean fantasma
-) {}
+) {
+}

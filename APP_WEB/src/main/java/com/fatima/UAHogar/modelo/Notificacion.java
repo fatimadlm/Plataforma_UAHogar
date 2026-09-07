@@ -1,6 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -60,81 +61,110 @@ public class Notificacion {
     private Mensaje mensajeRelacionado;
 
     // Constructor vacío
-    public Notificacion() {}
+    public Notificacion() {
+    }
+
     //Getters y setters
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getTitulo() {
         return titulo;
     }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
     public String getMensaje() {
         return mensaje;
     }
+
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
     public TipoNotificacion getTipo() {
         return tipo;
     }
+
     public void setTipo(TipoNotificacion tipo) {
         this.tipo = tipo;
     }
+
     public Boolean getLeida() {
         return leida;
     }
+
     public void setLeida(Boolean leida) {
         this.leida = leida;
     }
+
     public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
+
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
     public String getUrlOrigen() {
         return urlOrigen;
     }
+
     public void setUrlOrigen(String urlOrigen) {
         this.urlOrigen = urlOrigen;
     }
+
     public Long getReferenciaId() {
         return referenciaId;
     }
+
     public void setReferenciaId(Long referenciaId) {
         this.referenciaId = referenciaId;
     }
+
     public Usuario getUsuario() {
         return usuario;
     }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
     public Hogar getHogar() {
         return hogar;
     }
+
     public void setHogar(Hogar hogar) {
         this.hogar = hogar;
     }
+
     public Tarea getTareaRelacionada() {
         return tareaRelacionada;
     }
+
     public void setTareaRelacionada(Tarea tareaRelacionada) {
         this.tareaRelacionada = tareaRelacionada;
     }
+
     public Incidencia getIncidenciaRelacionada() {
         return incidenciaRelacionada;
     }
-    public void setIncidenciaRelacionada(Incidencia incidenciaRelacionada) {this.incidenciaRelacionada = incidenciaRelacionada;}
+
+    public void setIncidenciaRelacionada(Incidencia incidenciaRelacionada) {
+        this.incidenciaRelacionada = incidenciaRelacionada;
+    }
+
     public Mensaje getMensajeRelacionado() {
         return mensajeRelacionado;
     }
+
     public void setMensajeRelacionado(Mensaje mensajeRelacionado) {
         this.mensajeRelacionado = mensajeRelacionado;
     }

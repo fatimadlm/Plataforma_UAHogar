@@ -1,6 +1,8 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,26 +29,50 @@ public class AuditoriaSupervisor {
     @Column(nullable = false)
     private LocalDateTime fecha;
 
-    public AuditoriaSupervisor() {}
+    public AuditoriaSupervisor() {
+    }
 
     public AuditoriaSupervisor(Usuario supervisor, String accion, String detalles) {
         this.supervisor = supervisor;
         this.accion = accion;
         this.detalles = detalles;
-        this.fecha = LocalDateTime.now();
+        this.fecha = LocalDateTime.now(ZonaHorariaApp.ZONA);
     }
-//GETEERS Y SETTERS
-    public Long getId() { return id; }
 
-    public Usuario getSupervisor() { return supervisor; }
-    public void setSupervisor(Usuario supervisor) { this.supervisor = supervisor; }
+    //GETEERS Y SETTERS
+    public Long getId() {
+        return id;
+    }
 
-    public String getAccion() { return accion; }
-    public void setAccion(String accion) { this.accion = accion; }
+    public Usuario getSupervisor() {
+        return supervisor;
+    }
 
-    public String getDetalles() { return detalles; }
-    public void setDetalles(String detalles) { this.detalles = detalles; }
+    public void setSupervisor(Usuario supervisor) {
+        this.supervisor = supervisor;
+    }
 
-    public LocalDateTime getFecha() { return fecha; }
-    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
+    public String getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 }

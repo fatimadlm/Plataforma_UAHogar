@@ -4,10 +4,10 @@ import Sidebar from '../Componentes/Sidebar';
 import { useSesion } from '../Seguridad/ContextoSesion';
 import { User, Star, CheckCircle, Mail, Phone, Award, AlertTriangle, Trash2 } from 'lucide-react';
 import styles from './Perfil.module.css';
-import { getEstadisticasUsuario, getCompis } from '../Servicios/PeticionTarea'; 
+import { getEstadisticasUsuario, getCompis } from '../Servicios/PeticionTarea';
+import ImagenSas from '../Componentes/ImagenSas'; 
 import ModalCompis from '../Componentes/Modulos/ModalCompis';
 import ModalEliminarCuenta from '../Componentes/Modulos/ModalEliminarCuenta';
-import { API_URL } from '../Configuracion/apiConfig';
 
 export default function Perfil() {
   const navigate = useNavigate();
@@ -23,6 +23,7 @@ export default function Perfil() {
   const [mostrandoCompis, setMostrandoCompis] = useState(false);
 
   const [mostrandoEliminarCuenta, setMostrandoEliminarCuenta] = useState(false);
+  const [imagenPerfilError, setImagenPerfilError] = useState(false);
 
   // Petición para obtener las estadísticas del usuario
   useEffect(() => {
@@ -74,6 +75,9 @@ export default function Perfil() {
     );
   }
 
+  const tieneFotoPerfil =
+    usuario.imagenPerfil && !usuario.imagenPerfil.includes('ui-avatars.com');
+
   const rangoActual = calcularRango(puntosMes);
 
   return (
@@ -88,19 +92,20 @@ export default function Perfil() {
 
         <div className={`tarjeta-cristal ${styles.perfilContainer}`}>
           <div className={styles.avatarContenedor}>
-            <img
-              src={
-                usuario.imagenPerfil 
-                  ? (usuario.imagenPerfil.startsWith('http') ? usuario.imagenPerfil : `${API_URL}${usuario.imagenPerfil}`)
-                  : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(usuario.nombre)
-              }
-              alt={usuario.nombre}
-              className={styles.avatarImg}
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.parentElement.innerText = usuario.nombre.charAt(0).toUpperCase();
-              }}
-            />
+            {tieneFotoPerfil && !imagenPerfilError ? (
+              <ImagenSas
+                ruta={usuario.imagenPerfil}
+                alt={usuario.nombre}
+                className={styles.avatarImg}
+                onError={(e) => {
+                  setImagenPerfilError(true);
+                }}
+              />
+            ) : (
+              <span className={styles.inicialPerfil}>
+                {usuario.nombre?.charAt(0).toUpperCase() || 'U'}
+              </span>
+            )}
           </div>
           
           <h2 className={styles.nombreUsuario}>{usuario.nombre}</h2>

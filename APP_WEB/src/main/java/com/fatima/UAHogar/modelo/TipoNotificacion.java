@@ -1,6 +1,7 @@
 package com.fatima.UAHogar.modelo;
 
-public enum TipoNotificacion {UNION_HOGAR,
+public enum TipoNotificacion {
+    UNION_HOGAR,
     INCIDENCIA_NUEVA,
     INCIDENCIA_CERRADA,
     TAREA_ASIGNADA,

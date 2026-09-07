@@ -1,7 +1,9 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,7 +32,7 @@ public abstract class Mensaje {
 
     @Column(name = "editado_en", nullable = true)
     private LocalDateTime editadoEn;
-   // delete de mensaje propio
+    // delete de mensaje propio
     @Column(nullable = false)
     @ColumnDefault("false")
     private Boolean eliminado = false;
@@ -45,32 +47,81 @@ public abstract class Mensaje {
     public Mensaje(String contenido, Usuario remitente) {
         this.contenido = contenido;
         this.remitente = remitente;
-        this.fechaEnvio = LocalDateTime.now();
+        this.fechaEnvio = LocalDateTime.now(ZonaHorariaApp.ZONA);
         this.eliminado = false;
     }
 
     // Getters y Setters de id, contenido, fechaEnvio y remitente...
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getContenido() { return contenido; }
-    public void setContenido(String contenido) { this.contenido = contenido; }
-    public LocalDateTime getFechaEnvio() { return fechaEnvio; }
-    public void setFechaEnvio(LocalDateTime fechaEnvio) { this.fechaEnvio = fechaEnvio; }
-    public Usuario getRemitente() { return remitente; }
-    public void setRemitente(Usuario remitente) { this.remitente = remitente; }
-    public String getContenidoOriginal() { return contenidoOriginal; }
-    public void setContenidoOriginal(String contenidoOriginal) { this.contenidoOriginal = contenidoOriginal; }
+    public Long getId() {
+        return id;
+    }
 
-    public LocalDateTime getEditadoEn() { return editadoEn; }
-    public void setEditadoEn(LocalDateTime editadoEn) { this.editadoEn = editadoEn; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Boolean getEliminado() { return eliminado; }
-    public void setEliminado(Boolean eliminado) { this.eliminado = eliminado; }
+    public String getContenido() {
+        return contenido;
+    }
 
-    public LocalDateTime getEliminadoEn() { return eliminadoEn; }
-    public void setEliminadoEn(LocalDateTime eliminadoEn) { this.eliminadoEn = eliminadoEn; }
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public LocalDateTime getFechaEnvio() {
+        return fechaEnvio;
+    }
+
+    public void setFechaEnvio(LocalDateTime fechaEnvio) {
+        this.fechaEnvio = fechaEnvio;
+    }
+
+    public Usuario getRemitente() {
+        return remitente;
+    }
+
+    public void setRemitente(Usuario remitente) {
+        this.remitente = remitente;
+    }
+
+    public String getContenidoOriginal() {
+        return contenidoOriginal;
+    }
+
+    public void setContenidoOriginal(String contenidoOriginal) {
+        this.contenidoOriginal = contenidoOriginal;
+    }
+
+    public LocalDateTime getEditadoEn() {
+        return editadoEn;
+    }
+
+    public void setEditadoEn(LocalDateTime editadoEn) {
+        this.editadoEn = editadoEn;
+    }
+
+    public Boolean getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(Boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+    public LocalDateTime getEliminadoEn() {
+        return eliminadoEn;
+    }
+
+    public void setEliminadoEn(LocalDateTime eliminadoEn) {
+        this.eliminadoEn = eliminadoEn;
+    }
 
     // Helpers
-    public boolean esEditado() { return editadoEn != null; }
-    public boolean esEliminado() { return Boolean.TRUE.equals(eliminado); }
+    public boolean esEditado() {
+        return editadoEn != null;
+    }
+
+    public boolean esEliminado() {
+        return Boolean.TRUE.equals(eliminado);
+    }
 }

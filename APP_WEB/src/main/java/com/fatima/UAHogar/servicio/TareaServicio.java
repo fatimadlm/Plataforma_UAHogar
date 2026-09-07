@@ -5,13 +5,9 @@ import com.fatima.UAHogar.DAO.RegistroTareaDAO;
 import com.fatima.UAHogar.DAO.TareaDAO;
 import com.fatima.UAHogar.DAO.UsuarioDAO;
 import com.fatima.UAHogar.dto.InstanciaTareaDTO;
-import com.fatima.UAHogar.modelo.Hogar;
-import com.fatima.UAHogar.modelo.Notificacion;
-import com.fatima.UAHogar.modelo.RegistroTarea;
-import com.fatima.UAHogar.modelo.Tarea;
-import com.fatima.UAHogar.modelo.TipoNotificacion;
-import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.modelo.*;
 import com.fatima.UAHogar.util.PlazosUtil;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -130,7 +126,7 @@ public class TareaServicio {
             );
         }
 
-        if (fechaInicio.isBefore(LocalDate.now())) {
+        if (fechaInicio.isBefore(LocalDate.now(ZonaHorariaApp.ZONA))) {
 
             throw new IllegalArgumentException(
                     "La fecha de inicio no puede ser anterior a hoy"
@@ -141,7 +137,7 @@ public class TareaServicio {
 
         // Si la fecha de inicio es hoy la activamos directamente
         boolean activaYa =
-                !fechaInicio.isAfter(LocalDate.now());
+                !fechaInicio.isAfter(LocalDate.now(ZonaHorariaApp.ZONA));
 
         nuevaTarea.setActiva(activaYa);
 
@@ -240,7 +236,7 @@ public class TareaServicio {
                         .stream()
                         .filter(r ->
                                 r.getFechaLimite() != null
-                                        && LocalDateTime.now()
+                                        && LocalDateTime.now(ZonaHorariaApp.ZONA)
                                         .isBefore(
                                                 r.getFechaLimite()
                                                         .plusHours(
@@ -268,7 +264,7 @@ public class TareaServicio {
             Long hogarId) {
 
         LocalDateTime limite =
-                LocalDateTime.now().plusDays(15);
+                LocalDateTime.now(ZonaHorariaApp.ZONA).plusDays(15);
 
         return registroTareaDAO
                 .findByHogarIdOrderByFechaLimiteAsc(hogarId)
@@ -336,7 +332,7 @@ public class TareaServicio {
 
         tareaDAO
                 .findByActivaFalseAndFechaInicioLessThanEqual(
-                        LocalDate.now()
+                        LocalDate.now(ZonaHorariaApp.ZONA)
                 )
                 .forEach(tarea -> {
 
@@ -390,7 +386,7 @@ public class TareaServicio {
                         ? LocalDate
                         .parse(fechaInicioStr)
                         .atStartOfDay()
-                        : LocalDateTime.now();
+                        : LocalDateTime.now(ZonaHorariaApp.ZONA);
 
         String frec =
                 (frecuencia != null

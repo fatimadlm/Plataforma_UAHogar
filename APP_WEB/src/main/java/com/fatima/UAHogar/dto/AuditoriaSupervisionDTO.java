@@ -9,4 +9,5 @@ public record AuditoriaSupervisionDTO(
         String accion,
         String detalles,
         LocalDateTime fecha
-) {}
+) {
+}

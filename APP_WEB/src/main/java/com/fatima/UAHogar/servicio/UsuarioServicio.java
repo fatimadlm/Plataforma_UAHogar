@@ -1,7 +1,11 @@
 package com.fatima.UAHogar.servicio;
 
-import com.fatima.UAHogar.DAO.*;
-import com.fatima.UAHogar.dto.*;
+import com.fatima.UAHogar.DAO.MiembroHogarDAO;
+import com.fatima.UAHogar.DAO.RegistroTareaDAO;
+import com.fatima.UAHogar.DAO.TareaDAO;
+import com.fatima.UAHogar.DAO.UsuarioDAO;
+import com.fatima.UAHogar.dto.EstadisticasDTO;
+import com.fatima.UAHogar.dto.RegistroRequest;
 import com.fatima.UAHogar.modelo.MiembroHogar;
 import com.fatima.UAHogar.modelo.Tarea;
 import com.fatima.UAHogar.modelo.TipoAccionAuditoria;
@@ -136,6 +140,11 @@ public class UsuarioServicio {
         return usuarioDAO.save(usuario);
     }
 
+    // Guarda los cambios de un usuario.
+    public Usuario guardarUsuario(Usuario usuario) {
+        return usuarioDAO.save(usuario);
+    }
+
     public Usuario buscarPorId(Long id) {
         return usuarioDAO.findById(id).orElse(null);
     }
@@ -221,7 +230,8 @@ public class UsuarioServicio {
 
         return guardado;
     }
-//Saca a usuario de sus hogares
+
+    //Saca a usuario de sus hogares
     @Transactional
     public void salirDeHogaresYPlantillas(Long usuarioId) {
         List<MiembroHogar> membresias = miembroHogarDAO.findByUsuarioId(usuarioId);
@@ -251,7 +261,7 @@ public class UsuarioServicio {
                 "Elimino al usuario @" + nombreUsuario);
     }
 
-//Anoniminzamos si el usuario tiene entidades pendientes
+    //Anoniminzamos si el usuario tiene entidades pendientes
     @Transactional
     public void anonimizarComoAlternativaAlBorrado(Long usuarioId) {
         Usuario usuario = usuarioDAO.findById(usuarioId)

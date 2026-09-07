@@ -1,98 +1,113 @@
 package com.fatima.UAHogar.controladores;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import org.springframework.web.multipart.MultipartFile;
+import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.seguridad.UsuarioActual;
+import com.fatima.UAHogar.servicio.AlmacenamientoImagenServicio;
+import com.fatima.UAHogar.servicio.UsuarioServicio;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/imagenes")
 public class ImagenControlador {
 
-    // Tipos de imagen permitidos
-    private static final Set<String> TIPOS_PERMITIDOS = Set.of(
-            "image/jpeg", "image/png", "image/webp", "image/gif"
-    );
+    private final AlmacenamientoImagenServicio almacenamientoImagenServicio;
+    private final UsuarioServicio usuarioServicio;
 
-    // Extension fija por tipo,asi evitamos un .. o una / y escribir fuera de la carpeta de subidas
-    private static final Map<String, String> EXTENSION_POR_TIPO = Map.of(
-            "image/jpeg", ".jpg",
-            "image/png",  ".png",
-            "image/webp", ".webp",
-            "image/gif",  ".gif"
-    );
-
-    // Tamaño máximo: 5 MB
-    private static final long TAMAÑO_MAX_BYTES = 5 * 1024 * 1024;
-
-    // Carpetas separadas por tipo
-    private static final String CARPETA_TAREAS  = "uploads/tareas/";
-    private static final String CARPETA_PERFIL  = "uploads/perfiles/";
+    public ImagenControlador(
+            AlmacenamientoImagenServicio almacenamientoImagenServicio,
+            UsuarioServicio usuarioServicio) {
+        this.almacenamientoImagenServicio = almacenamientoImagenServicio;
+        this.usuarioServicio = usuarioServicio;
+    }
 
     //Sube una imagen asociada a una tarea completada.
     @PostMapping("/subir/tarea")
-    public ResponseEntity<String> subirImagenTarea(@RequestParam("archivo") MultipartFile archivo) {
-        return guardar(archivo, CARPETA_TAREAS, "/tareas/");
+    public ResponseEntity<String> subirImagenTarea(
+            @RequestParam("archivo") MultipartFile archivo) {
+        return subir(archivo, "tareas");
     }
 
-     //Sube una imagen de perfil de usuario.
+    //Sube una imagen de perfil de usuario.
     @PostMapping("/subir/perfil")
-    public ResponseEntity<String> subirImagenPerfil(@RequestParam("archivo") MultipartFile archivo) {
-        return guardar(archivo, CARPETA_PERFIL, "/perfiles/");
+    public ResponseEntity<String> subirImagenPerfil(
+            @RequestParam("archivo") MultipartFile archivo) {
+        return subir(archivo, "perfiles");
     }
 
-     // Redirige a /subir/tarea para no romper el frontend actual
-    @PostMapping("/subir")
-    public ResponseEntity<String> subirImagenLegacy(@RequestParam("archivo") MultipartFile archivo) {
-        return guardar(archivo, CARPETA_TAREAS, "/tareas/");
-    }
-
-    // Guardar
-    private ResponseEntity<String> guardar(MultipartFile archivo, String carpeta, String urlBase) {
-        // Validación de tipo
-        String tipo = archivo.getContentType();
-        if (tipo == null || !TIPOS_PERMITIDOS.contains(tipo)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Tipo de archivo no permitido. Usa JPG, PNG, WEBP o GIF.");
-        }
-
-        // Validación de tamaño
-        if (archivo.getSize() > TAMAÑO_MAX_BYTES) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("La imagen no puede superar los 5 MB.");
-        }
-
+    // Elimina la foto de perfil del usuario actual
+    @DeleteMapping("/perfil")
+    public ResponseEntity<String> eliminarImagenPerfil() {
         try {
-            // Ruta absoluta para evitar problemas según directorio de trabajo
-            String dirTrabajo = System.getProperty("user.dir");
-            Path rutaCarpeta = Paths.get(dirTrabajo, carpeta);
-            Files.createDirectories(rutaCarpeta);
+            Long usuarioId = UsuarioActual.id();
+            Usuario usuario = usuarioServicio.buscarPorId(usuarioId);
 
-            // Nombre unico con una extension fija segun el tipo
-            String extension = EXTENSION_POR_TIPO.getOrDefault(tipo, ".jpg");
-            String nombre = UUID.randomUUID() + extension;
-            Path destino = rutaCarpeta.resolve(nombre).normalize();
-
-            // destino final dentro de la carpeta de subidas
-            if (!destino.startsWith(rutaCarpeta.normalize())) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nombre de archivo no válido.");
+            if (usuario == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Usuario no encontrado.");
             }
 
-            Files.write(destino, archivo.getBytes());
+            String rutaAnterior = usuario.getImagenPerfil();
+            usuario.setImagenPerfil(null);
+            usuarioServicio.guardarUsuario(usuario);
 
-            // Devuelve la URL pública relativa al servidor Spring
-            return ResponseEntity.ok(urlBase + nombre);
+            if (rutaAnterior != null && !rutaAnterior.isBlank()) {
+                try {
+                    almacenamientoImagenServicio.eliminar(rutaAnterior);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
-        } catch (IOException e) {
-                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al guardar la imagen.");
+            return ResponseEntity.ok("Foto de perfil eliminada correctamente.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("No se pudo eliminar la foto de perfil.");
+        }
+    }
+
+    @PostMapping("/subir")
+    public ResponseEntity<String> subirImagenLegacy(
+            @RequestParam("archivo") MultipartFile archivo) {
+        return subir(archivo, "tareas");
+    }
+
+    // Genera una URL SAS de lectura
+    @GetMapping("/url")
+    public ResponseEntity<Map<String, String>> obtenerUrl(
+            @RequestParam("ruta") String ruta) {
+
+        try {
+            String url = almacenamientoImagenServicio.generarUrlSas(ruta);
+            return ResponseEntity.ok(Map.of("url", url));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("error", e.getMessage()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "No se pudo obtener la URL de la imagen."));
+        }
+    }
+
+    // Llama a almacenamientoImagenServicio para subir la imagen
+    private ResponseEntity<String> subir(MultipartFile archivo, String carpeta) {
+        try {
+            String ruta = almacenamientoImagenServicio.subir(archivo, carpeta);
+            return ResponseEntity.ok(ruta);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("No se pudo guardar la imagen.");
         }
     }
 }

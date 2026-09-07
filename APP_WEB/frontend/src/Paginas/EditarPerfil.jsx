@@ -1,19 +1,28 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Componentes/Sidebar';
 import { useSesion } from '../Seguridad/ContextoSesion';
-import { ArrowLeft, User, AtSign, Mail, Phone, Save, Camera, Lock, Key } from 'lucide-react';
+import { ArrowLeft, User, AtSign, Mail, Phone, Save, Camera, Trash2, Lock, Key } from 'lucide-react';
 import styles from './EditarPerfil.module.css';
-import { actualizarPerfilUsuario, subirImagenPerfil } from '../Servicios/PeticionTarea';
+import { actualizarPerfilUsuario, subirImagenPerfil, eliminarImagenPerfil, obtenerUrlImagenSas } from '../Servicios/PeticionTarea';
 import { telefonoRegex } from '../Seguridad/Validaciones';
-import { API_URL } from '../Configuracion/apiConfig';
 
-const obtenerUrlImagen = (imagenPerfil) => {
-  if (!imagenPerfil) return null;
-  if (imagenPerfil.startsWith('http://') || imagenPerfil.startsWith('https://')) {
+const obtenerUrlImagen = async (imagenPerfil) => {
+  if (!imagenPerfil || imagenPerfil.includes('ui-avatars.com')) return null;
+
+  if (
+    imagenPerfil.startsWith('http://') ||
+    imagenPerfil.startsWith('https://') ||
+    imagenPerfil.startsWith('blob:')
+  ) {
     return imagenPerfil;
   }
-  return `${API_URL}${imagenPerfil.startsWith('/') ? '' : '/'}${imagenPerfil}`;
+
+  try {
+    return await obtenerUrlImagenSas(imagenPerfil);
+  } catch {
+    return null;
+  }
 };
 
 export default function EditarPerfil() {
@@ -28,23 +37,68 @@ export default function EditarPerfil() {
     telefono: usuario?.telefono || ''
   }));
   const [passwords, setPasswords] = useState({ actual: '', nueva: '', confirmar: '' });
-  const [imagenPrevia, setImagenPrevia] = useState(() => obtenerUrlImagen(usuario?.imagenPerfil));
+  const [imagenPrevia, setImagenPrevia] = useState(null);
   const [archivoImagen, setArchivoImagen] = useState(null);
   const [mensaje, setMensaje] = useState({ texto: '', tipo: '' });
   const [imagenError, setImagenError] = useState(false);
+
+  useEffect(() => {
+    let activo = true;
+
+    const cargarImagen = async () => {
+      const url = await obtenerUrlImagen(usuario?.imagenPerfil);
+      if (activo) {
+        setImagenPrevia(url);
+        setImagenError(false);
+      }
+    };
+
+    cargarImagen();
+
+    return () => {
+      activo = false;
+    };
+  }, [usuario?.imagenPerfil]);
 
   const manejarErrorImagen = () => {
     setImagenError(true);
   };
 
-  const inicialUsuario = formData.nombre ? formData.nombre.charAt(0).toUpperCase() : 'U';
+  const inicialUsuario = formData.nombre ? formData.nombre.trim().charAt(0).toUpperCase() : 'U';
+  const mostrarImagen = Boolean(imagenPrevia && !imagenError);
 
   const manejarCambioImagen = (e) => {
     const file = e.target.files[0];
+
     if (file) {
       setArchivoImagen(file);
       setImagenPrevia(URL.createObjectURL(file));
       setImagenError(false);
+    }
+  };
+
+  const manejarBorrarImagen = async () => {
+    if (!usuario?.imagenPerfil || !mostrarImagen) return;
+
+    if (!window.confirm('¿Quieres eliminar tu foto de perfil?')) return;
+
+    try {
+      setMensaje({ texto: 'Eliminando foto...', tipo: 'info' });
+      await eliminarImagenPerfil();
+
+      const usuarioSinImagen = { ...usuario, imagenPerfil: null };
+      iniciarSesion(usuarioSinImagen);
+      setImagenPrevia(null);
+      setArchivoImagen(null);
+      setImagenError(false);
+
+      if (inputArchivoRef.current) {
+        inputArchivoRef.current.value = '';
+      }
+
+      setMensaje({ texto: 'Foto de perfil eliminada.', tipo: 'exito' });
+    } catch (error) {
+      setMensaje({ texto: error.message, tipo: 'error' });
     }
   };
 
@@ -74,9 +128,9 @@ export default function EditarPerfil() {
     }
 
     try {
-      let urlNuevaImagen = usuario.imagenPerfil;
+      let urlNuevaImagen = usuario.imagenPerfil?.includes('ui-avatars.com') ? null : usuario.imagenPerfil;
       if (archivoImagen) {
-        urlNuevaImagen = await subirImagenPerfil(archivoImagen); 
+        urlNuevaImagen = await subirImagenPerfil(archivoImagen);
       }
 
       const datosActualizados = {
@@ -90,6 +144,7 @@ export default function EditarPerfil() {
       const usuarioActualizado = await actualizarPerfilUsuario(usuario.id, datosActualizados);
       iniciarSesion(usuarioActualizado); 
       
+      setArchivoImagen(null);
       setMensaje({ texto: '¡Perfil actualizado!', tipo: 'exito' });
       setTimeout(() => navigate('/perfil'), 2000);
 
@@ -122,11 +177,12 @@ export default function EditarPerfil() {
 
             <div className={styles.avatarEditarContenedor}>
               <div className={styles.avatarCirculo}>
-                {imagenPrevia && !imagenError ? (
+                {mostrarImagen ? (
                   <img src={imagenPrevia} alt="Foto de perfil" onError={manejarErrorImagen} className={styles.imagenPerfilEditar} />
                 ) : (
                   <span className={styles.inicialPerfilEditar}>{inicialUsuario}</span>
                 )}
+
                 <input 
                   type="file" 
                   accept="image/jpeg,image/png,image/webp,image/gif" 
@@ -142,6 +198,17 @@ export default function EditarPerfil() {
                 >
                   <Camera size={18} strokeWidth={2.5} />
                 </button>
+
+                {mostrarImagen && usuario?.imagenPerfil && (
+                  <button
+                    type="button"
+                    className={styles.btnBorrarFoto}
+                    onClick={manejarBorrarImagen}
+                    title="Eliminar foto de perfil"
+                  >
+                    <Trash2 size={17} strokeWidth={2.5} />
+                  </button>
+                )}
               </div>
             </div>
 

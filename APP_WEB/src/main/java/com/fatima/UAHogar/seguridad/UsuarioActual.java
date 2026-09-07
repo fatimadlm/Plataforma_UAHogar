@@ -5,7 +5,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 // Obtiene el usuario autenticado desde el JWT validado
 public class UsuarioActual {
 
-    private UsuarioActual() {}
+    private UsuarioActual() {
+    }
 
     // Retorna el ID autenticado
     public static Long id() {

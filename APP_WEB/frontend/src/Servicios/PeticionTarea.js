@@ -204,6 +204,48 @@ export async function subirImagenPerfil(archivo) {
   return (await res.text()).trim();
 }
 
+// Elimina la foto de perfil del usuario
+export async function eliminarImagenPerfil() {
+  const res = await apiFetch(`${BASE_IMAGENES}/perfil`, {
+    method: 'DELETE'
+  });
+
+  const mensaje = await res.text();
+
+  if (!res.ok) {
+    throw new Error(mensaje || 'No se pudo eliminar la foto de perfil');
+  }
+
+  return mensaje;
+}
+
+// Obtiene una URL SAS temporal para una imagen guardada en Azure Blob Storage
+export async function obtenerUrlImagenSas(rutaImagen) {
+  if (!rutaImagen) return null;
+
+  if (
+    rutaImagen.startsWith('http://') ||
+    rutaImagen.startsWith('https://') ||
+    rutaImagen.startsWith('blob:')
+  ) {
+    return rutaImagen;
+  }
+
+  const res = await apiFetch(
+    `${BASE_IMAGENES}/url?ruta=${encodeURIComponent(rutaImagen)}`
+  );
+
+  if (!res.ok) {
+    const msg = await res.text();
+    throw new Error(msg || 'No se pudo obtener la URL de la imagen');
+  }
+
+  const datos = await res.json();
+
+  return datos.url;
+}
+
+
 // USUARIOS
 
 // Actualiza los datos del usuario en la base de datos

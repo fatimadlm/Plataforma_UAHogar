@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Sidebar from '../Componentes/Sidebar';
+import ImagenSas from '../Componentes/ImagenSas';
 import { useSesion } from '../Seguridad/ContextoSesion';
 import { apiFetch } from '../Servicios/apiFetch';
 import { Send, MessageSquare, Link2, X, CheckCircle2, Trash2, Edit2, Search, Shield } from 'lucide-react';
@@ -328,11 +329,14 @@ export default function Mensajes() {
   };
 
   const getAvatar = (imagenUrl, nombre) => {
-    if (imagenUrl) {
-      const src = imagenUrl.startsWith('http') ? imagenUrl : `${BASE}${imagenUrl}`;
-      return <img src={src} alt={nombre} onError={(e) => { e.target.style.display = 'none'; }} />;
-    }
-    return nombre?.charAt(0).toUpperCase() || '?';
+    return (
+      <ImagenSas
+        ruta={imagenUrl}
+        alt={nombre}
+        className={styles.avatarImagen}
+        fallback={<span className={styles.avatarInicial}>{nombre?.charAt(0).toUpperCase() || 'U'}</span>}
+      />
+    );
   };
 
   const esMio = (msg) => msg.remitenteId === usuario.id;

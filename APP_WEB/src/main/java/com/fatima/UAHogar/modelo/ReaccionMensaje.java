@@ -32,14 +32,31 @@ public class ReaccionMensaje {
     }
 
     // Getters y Setters
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Mensaje getMensaje() { return mensaje; }
-    public void setMensaje(Mensaje mensaje) { this.mensaje = mensaje; }
+    public Mensaje getMensaje() {
+        return mensaje;
+    }
 
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public void setMensaje(Mensaje mensaje) {
+        this.mensaje = mensaje;
+    }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

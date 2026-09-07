@@ -7,4 +7,5 @@ public record MiembroSupervisionDTO(
         String imagenPerfil,
         String rol,
         int puntos
-) {}
+) {
+}

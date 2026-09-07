@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginRegistro.module.css';
 import { usuarioRegex, telefonoRegex, passwordRegex } from '../Seguridad/Validaciones';
+import { apiFetch } from '../Servicios/apiFetch';
 import { API_URL } from '../Configuracion/apiConfig';
 
 export default function Registro() {
@@ -40,7 +41,7 @@ export default function Registro() {
     
     try {
       //Apuntamos a registrar
-      const respuesta = await fetch(`${API_URL}/api/usuarios/registrar`, {
+      const respuesta = await apiFetch(`${API_URL}/api/usuarios/registrar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -49,7 +50,7 @@ export default function Registro() {
           email: email,
           telefono: telefonoLimpio,
           password: password,
-          imagenPerfil: `https://ui-avatars.com/api/?name=${nombre}&background=90b4ce&color=fff&size=150&length=1`
+          imagenPerfil: null
         })
       });
 

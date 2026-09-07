@@ -12,4 +12,5 @@ public record HogarDetalleAmpliadoDTO(
         List<MiembroSupervisionDTO> miembros,
         List<PlantillaTareaSupervisionDTO> plantillas,
         List<TareaSupervisionDTO> tareasActivas
-) {}
+) {
+}

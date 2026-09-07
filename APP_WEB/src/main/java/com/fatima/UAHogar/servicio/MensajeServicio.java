@@ -1,21 +1,8 @@
 package com.fatima.UAHogar.servicio;
 
-import com.fatima.UAHogar.DAO.HogarDAO;
-import com.fatima.UAHogar.DAO.MensajeDAO;
-import com.fatima.UAHogar.DAO.MensajeGrupoDAO;
-import com.fatima.UAHogar.DAO.MensajePrivadoDAO;
-import com.fatima.UAHogar.DAO.MiembroHogarDAO;
-import com.fatima.UAHogar.DAO.ReaccionMensajeDAO;
-import com.fatima.UAHogar.DAO.UsuarioDAO;
-import com.fatima.UAHogar.modelo.Hogar;
-import com.fatima.UAHogar.modelo.Mensaje;
-import com.fatima.UAHogar.modelo.MensajeGrupo;
-import com.fatima.UAHogar.modelo.MensajePrivado;
-import com.fatima.UAHogar.modelo.MiembroHogar;
-import com.fatima.UAHogar.modelo.ReaccionMensaje;
-import com.fatima.UAHogar.modelo.TipoNotificacion;
-import com.fatima.UAHogar.modelo.TipoReaccion;
-import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.DAO.*;
+import com.fatima.UAHogar.modelo.*;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -96,9 +83,12 @@ public class MensajeServicio {
                         "/chat"
                 );
             } catch (Exception e) {
-                e.printStackTrace();}   }
+                e.printStackTrace();
+            }
+        }
         return msg;
     }
+
     // Privado
     public List<MensajePrivado> getMensajesPrivados(Long usuarioId, Long otroId) {
         return mensajePrivadoDAO
@@ -162,7 +152,7 @@ public class MensajeServicio {
         }
 
         msg.setContenido(nuevoContenido.trim());
-        msg.setEditadoEn(LocalDateTime.now());
+        msg.setEditadoEn(LocalDateTime.now(ZonaHorariaApp.ZONA));
 
         return mensajeDAO.save(msg);
     }
@@ -177,7 +167,7 @@ public class MensajeServicio {
         }
 
         msg.setEliminado(true);
-        msg.setEliminadoEn(LocalDateTime.now());
+        msg.setEliminadoEn(LocalDateTime.now(ZonaHorariaApp.ZONA));
 
         mensajeDAO.save(msg);
     }
@@ -218,6 +208,7 @@ public class MensajeServicio {
         List<ReaccionMensaje> reacciones = reaccionMensajeDAO.findByMensajeId(mensajeId);
         return construirResumenReacciones(reacciones, usuarioId);
     }
+
     public Map<Long, Map<String, Object>> obtenerReaccionesPorMensajes(List<Long> mensajeIds, Long usuarioId) {
         Map<Long, List<ReaccionMensaje>> agrupadas = reaccionMensajeDAO.findByMensajeIdIn(mensajeIds).stream()
                 .collect(Collectors.groupingBy(r -> r.getMensaje().getId()));

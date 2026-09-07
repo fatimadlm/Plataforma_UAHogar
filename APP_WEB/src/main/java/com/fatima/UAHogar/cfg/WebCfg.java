@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebCfg implements WebMvcConfigurer {
-//Tratamiento de las rutas de las imagenes
+    //Tratamiento de las rutas de las imagenes
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         String dirTrabajo = System.getProperty("user.dir");

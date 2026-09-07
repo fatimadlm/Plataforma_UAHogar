@@ -4,11 +4,8 @@ import com.fatima.UAHogar.DAO.IncidenciaDAO;
 import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.DAO.RegistroTareaDAO;
 import com.fatima.UAHogar.DAO.UsuarioDAO;
-import com.fatima.UAHogar.modelo.Incidencia;
-import com.fatima.UAHogar.modelo.MiembroHogar;
-import com.fatima.UAHogar.modelo.RegistroTarea;
-import com.fatima.UAHogar.modelo.TipoNotificacion;
-import com.fatima.UAHogar.modelo.Usuario;
+import com.fatima.UAHogar.modelo.*;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -109,7 +106,7 @@ public class IncidenciaServicio {
             throw new IllegalArgumentException("Solo un administrador del hogar puede cerrar incidencias");
 
         incidencia.setEstado("CLOSED");
-        incidencia.setFechaCierre(LocalDateTime.now());
+        incidencia.setFechaCierre(LocalDateTime.now(ZonaHorariaApp.ZONA));
         incidencia.setCerradaPor(admin.getUsuario());
 
         incidenciaDAO.save(incidencia);

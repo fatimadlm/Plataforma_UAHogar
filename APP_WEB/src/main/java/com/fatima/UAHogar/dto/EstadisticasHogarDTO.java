@@ -17,38 +17,94 @@ public class EstadisticasHogarDTO {
     private String tareaEstrella;
     private String fechaCreacion;
 
-    public EstadisticasHogarDTO() {}
+    public EstadisticasHogarDTO() {
+    }
 
-    public List<Map<String, Object>> getRankingMensual() { return rankingMensual; }
-    public void setRankingMensual(List<Map<String, Object>> r) { this.rankingMensual = r; }
+    public List<Map<String, Object>> getRankingMensual() {
+        return rankingMensual;
+    }
 
-    public String getMasLimpio() { return masLimpio; }
-    public void setMasLimpio(String m) { this.masLimpio = m; }
+    public void setRankingMensual(List<Map<String, Object>> r) {
+        this.rankingMensual = r;
+    }
 
-    public String getMasPelotas() { return masPelotas; }
-    public void setMasPelotas(String m) { this.masPelotas = m; }
+    public String getMasLimpio() {
+        return masLimpio;
+    }
 
-    public String getMasNuevo() { return masNuevo; }
-    public void setMasNuevo(String m) { this.masNuevo = m; }
+    public void setMasLimpio(String m) {
+        this.masLimpio = m;
+    }
 
-    public String getMasAntiguo() { return masAntiguo; }
-    public void setMasAntiguo(String m) { this.masAntiguo = m; }
+    public String getMasPelotas() {
+        return masPelotas;
+    }
 
-    public Integer getTotalCompletadas() { return totalCompletadas; }
-    public void setTotalCompletadas(Integer t) { this.totalCompletadas = t; }
+    public void setMasPelotas(String m) {
+        this.masPelotas = m;
+    }
 
-    public Integer getTotalMiembros() { return totalMiembros; }
-    public void setTotalMiembros(Integer t) { this.totalMiembros = t; }
+    public String getMasNuevo() {
+        return masNuevo;
+    }
 
-    public Integer getTotalPuntos() { return totalPuntos; }
-    public void setTotalPuntos(Integer t) { this.totalPuntos = t; }
+    public void setMasNuevo(String m) {
+        this.masNuevo = m;
+    }
 
-    public String getTipoTareaFavorita() { return tipoTareaFavorita; }
-    public void setTipoTareaFavorita(String t) { this.tipoTareaFavorita = t; }
+    public String getMasAntiguo() {
+        return masAntiguo;
+    }
 
-    public String getTareaEstrella() { return tareaEstrella; }
-    public void setTareaEstrella(String t) { this.tareaEstrella = t; }
+    public void setMasAntiguo(String m) {
+        this.masAntiguo = m;
+    }
 
-    public String getFechaCreacion() { return fechaCreacion; }
-    public void setFechaCreacion(String f) { this.fechaCreacion = f; }
+    public Integer getTotalCompletadas() {
+        return totalCompletadas;
+    }
+
+    public void setTotalCompletadas(Integer t) {
+        this.totalCompletadas = t;
+    }
+
+    public Integer getTotalMiembros() {
+        return totalMiembros;
+    }
+
+    public void setTotalMiembros(Integer t) {
+        this.totalMiembros = t;
+    }
+
+    public Integer getTotalPuntos() {
+        return totalPuntos;
+    }
+
+    public void setTotalPuntos(Integer t) {
+        this.totalPuntos = t;
+    }
+
+    public String getTipoTareaFavorita() {
+        return tipoTareaFavorita;
+    }
+
+    public void setTipoTareaFavorita(String t) {
+        this.tipoTareaFavorita = t;
+    }
+
+    public String getTareaEstrella() {
+        return tareaEstrella;
+    }
+
+    public void setTareaEstrella(String t) {
+        this.tareaEstrella = t;
+    }
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(String f) {
+        this.fechaCreacion = f;
+    }
 }

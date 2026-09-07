@@ -13,4 +13,5 @@ public record TareaSupervisionDTO(
         String nombreAsignado,
         Integer puntos,
         LocalDateTime fechaLimite
-) {}
+) {
+}

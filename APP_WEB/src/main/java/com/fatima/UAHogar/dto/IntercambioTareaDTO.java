@@ -2,6 +2,7 @@ package com.fatima.UAHogar.dto;
 
 import com.fatima.UAHogar.modelo.IntercambioTarea;
 import com.fatima.UAHogar.modelo.RegistroTarea;
+
 import java.time.LocalDateTime;
 
 public class IntercambioTareaDTO {
@@ -51,18 +52,59 @@ public class IntercambioTareaDTO {
     }
 
     // Getters
-    public Long getId() { return id; }
-    public Long getRegistroTareaId() { return registroTareaId; }
-    public String getNombreTarea() { return nombreTarea; }
-    public Integer getPuntos() { return puntos; }
-    public LocalDateTime getFechaLimite() { return fechaLimite; }
-    public Long getHogarId() { return hogarId; }
-    public String getNombreHogar() { return nombreHogar; }
-    public Long getSolicitanteId() { return solicitanteId; }
-    public String getNombreSolicitante() { return nombreSolicitante; }
-    public Long getDestinatarioId() { return destinatarioId; }
-    public String getNombreDestinatario() { return nombreDestinatario; }
-    public String getEstado() { return estado; }
-    public LocalDateTime getFechaSolicitud() { return fechaSolicitud; }
-    public LocalDateTime getFechaRespuesta() { return fechaRespuesta; }
+    public Long getId() {
+        return id;
+    }
+
+    public Long getRegistroTareaId() {
+        return registroTareaId;
+    }
+
+    public String getNombreTarea() {
+        return nombreTarea;
+    }
+
+    public Integer getPuntos() {
+        return puntos;
+    }
+
+    public LocalDateTime getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public Long getHogarId() {
+        return hogarId;
+    }
+
+    public String getNombreHogar() {
+        return nombreHogar;
+    }
+
+    public Long getSolicitanteId() {
+        return solicitanteId;
+    }
+
+    public String getNombreSolicitante() {
+        return nombreSolicitante;
+    }
+
+    public Long getDestinatarioId() {
+        return destinatarioId;
+    }
+
+    public String getNombreDestinatario() {
+        return nombreDestinatario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public LocalDateTime getFechaSolicitud() {
+        return fechaSolicitud;
+    }
+
+    public LocalDateTime getFechaRespuesta() {
+        return fechaRespuesta;
+    }
 }

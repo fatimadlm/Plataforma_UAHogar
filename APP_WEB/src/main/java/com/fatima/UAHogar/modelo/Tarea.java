@@ -3,6 +3,7 @@ package com.fatima.UAHogar.modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -60,56 +61,135 @@ public class Tarea {
     private String estado;
 
     // Constructor vacío
-    public Tarea() {}
+    public Tarea() {
+    }
 
     // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public Integer getPuntos() { return puntos; }
-    public void setPuntos(Integer puntos) { this.puntos = puntos; }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-    public String getTiempoEstimado() { return tiempoEstimado; }
-    public void setTiempoEstimado(String tiempoEstimado) { this.tiempoEstimado = tiempoEstimado; }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-    public String getFrecuencia() { return frecuencia; }
-    public void setFrecuencia(String frecuencia) { this.frecuencia = frecuencia; }
+    public String getTipo() {
+        return tipo;
+    }
 
-    public LocalDate getFechaInicio() { return fechaInicio; }
-    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
-    public Boolean getActiva() { return activa; }
-    public void setActiva(Boolean activa) { this.activa = activa; }
+    public Integer getPuntos() {
+        return puntos;
+    }
 
-    public String getConsejoIA() { return consejoIA; }
-    public void setConsejoIA(String consejoIA) { this.consejoIA = consejoIA; }
+    public void setPuntos(Integer puntos) {
+        this.puntos = puntos;
+    }
 
-    public String getPasosIA() { return pasosIA; }
-    public void setPasosIA(String pasosIA) { this.pasosIA = pasosIA; }
+    public String getTiempoEstimado() {
+        return tiempoEstimado;
+    }
 
-    public String getProductosIA() { return productosIA; }
-    public void setProductosIA(String productosIA) { this.productosIA = productosIA; }
+    public void setTiempoEstimado(String tiempoEstimado) {
+        this.tiempoEstimado = tiempoEstimado;
+    }
 
-    public String getPrecaucionesIA() { return precaucionesIA; }
-    public void setPrecaucionesIA(String precaucionesIA) { this.precaucionesIA = precaucionesIA; }
+    public String getFrecuencia() {
+        return frecuencia;
+    }
 
-    public Hogar getHogar() { return hogar; }
-    public void setHogar(Hogar hogar) { this.hogar = hogar; }
+    public void setFrecuencia(String frecuencia) {
+        this.frecuencia = frecuencia;
+    }
 
-    public Usuario getUsuarioAsignado() { return usuarioAsignado; }
-    public void setUsuarioAsignado(Usuario usuarioAsignado) { this.usuarioAsignado = usuarioAsignado; }
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    public void setActiva(Boolean activa) {
+        this.activa = activa;
+    }
+
+    public String getConsejoIA() {
+        return consejoIA;
+    }
+
+    public void setConsejoIA(String consejoIA) {
+        this.consejoIA = consejoIA;
+    }
+
+    public String getPasosIA() {
+        return pasosIA;
+    }
+
+    public void setPasosIA(String pasosIA) {
+        this.pasosIA = pasosIA;
+    }
+
+    public String getProductosIA() {
+        return productosIA;
+    }
+
+    public void setProductosIA(String productosIA) {
+        this.productosIA = productosIA;
+    }
+
+    public String getPrecaucionesIA() {
+        return precaucionesIA;
+    }
+
+    public void setPrecaucionesIA(String precaucionesIA) {
+        this.precaucionesIA = precaucionesIA;
+    }
+
+    public Hogar getHogar() {
+        return hogar;
+    }
+
+    public void setHogar(Hogar hogar) {
+        this.hogar = hogar;
+    }
+
+    public Usuario getUsuarioAsignado() {
+        return usuarioAsignado;
+    }
+
+    public void setUsuarioAsignado(Usuario usuarioAsignado) {
+        this.usuarioAsignado = usuarioAsignado;
+    }
 
     public String getEstado() {
         return this.estado != null ? this.estado : "PENDIENTE";
     }
-    public void setEstado(String estado) { this.estado = estado; }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

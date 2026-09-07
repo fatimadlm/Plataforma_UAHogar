@@ -117,6 +117,7 @@ public interface RegistroTareaDAO extends JpaRepository<RegistroTarea, Long> {
     // Instancias pendientes que ya superaron su fecha limite
     List<RegistroTarea> findByEstadoAndFechaLimiteBefore(
             String estado, LocalDateTime ahora);
+
     //Para urgencia
     List<RegistroTarea> findByEstadoAndFechaLimiteBetween(
             String estado,

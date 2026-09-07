@@ -128,8 +128,15 @@ public class MensajeControlador {
     }
 
     // Records para los request bodies
-    public record EnviarGrupoRequest(Long hogarId, String contenido) {}
-    public record EnviarPrivadoRequest(Long receptorId, String contenido) {}
-    public record EditarMensajeRequest(String nuevoContenido) {}
-    public record ReaccionRequest(String tipoReaccion) {}
+    public record EnviarGrupoRequest(Long hogarId, String contenido) {
+    }
+
+    public record EnviarPrivadoRequest(Long receptorId, String contenido) {
+    }
+
+    public record EditarMensajeRequest(String nuevoContenido) {
+    }
+
+    public record ReaccionRequest(String tipoReaccion) {
+    }
 }

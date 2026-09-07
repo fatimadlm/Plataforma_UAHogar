@@ -2,6 +2,7 @@ package com.fatima.UAHogar.dto;
 
 import com.fatima.UAHogar.modelo.Incidencia;
 import com.fatima.UAHogar.modelo.RegistroTarea;
+
 import java.time.LocalDateTime;
 
 public class IncidenciaDTO {
@@ -47,18 +48,59 @@ public class IncidenciaDTO {
     }
 
     // Getters
-    public Long getId() { return id; }
-    public Long getRegistroTareaId() { return registroTareaId; }
-    public String getNombreTarea() { return nombreTarea; }
-    public Long getHogarId() { return hogarId; }
-    public String getNombreHogar() { return nombreHogar; }
-    public Long getReportanteId() { return reportanteId; }
-    public String getNombreReportante() { return nombreReportante; }
-    public Long getResponsableId() { return responsableId; }
-    public String getNombreResponsable() { return nombreResponsable; }
-    public String getDescripcion() { return descripcion; }
-    public String getEstado() { return estado; }
-    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
-    public LocalDateTime getFechaCierre() { return fechaCierre; }
-    public String getNombreCerradaPor() { return nombreCerradaPor; }
+    public Long getId() {
+        return id;
+    }
+
+    public Long getRegistroTareaId() {
+        return registroTareaId;
+    }
+
+    public String getNombreTarea() {
+        return nombreTarea;
+    }
+
+    public Long getHogarId() {
+        return hogarId;
+    }
+
+    public String getNombreHogar() {
+        return nombreHogar;
+    }
+
+    public Long getReportanteId() {
+        return reportanteId;
+    }
+
+    public String getNombreReportante() {
+        return nombreReportante;
+    }
+
+    public Long getResponsableId() {
+        return responsableId;
+    }
+
+    public String getNombreResponsable() {
+        return nombreResponsable;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public LocalDateTime getFechaCierre() {
+        return fechaCierre;
+    }
+
+    public String getNombreCerradaPor() {
+        return nombreCerradaPor;
+    }
 }

@@ -8,4 +8,5 @@ public record RegistroRequest(
         String telefono,
         String password,
         String imagenPerfil
-) {}
+) {
+}

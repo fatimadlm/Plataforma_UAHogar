@@ -1,6 +1,7 @@
 package com.fatima.UAHogar.dto;
 
 import com.fatima.UAHogar.modelo.RegistroTarea;
+
 import java.time.LocalDateTime;
 
 /**
@@ -23,19 +24,43 @@ public class RegistroTareaDTO {
         this.id = rt.getId();
         this.nombre = rt.getTarea() != null ? rt.getTarea().getNombre() : "Tarea desconocida";
         this.nombreHogar = rt.getHogar() != null ? rt.getHogar().getNombre() : "Hogar";
-        this.nombreUsuario = rt.getUsuario() != null ? rt.getUsuario().getNombre() : "";        this.puntosSumados = rt.getPuntosSumados();
+        this.nombreUsuario = rt.getUsuario() != null ? rt.getUsuario().getNombre() : "";
+        this.puntosSumados = rt.getPuntosSumados();
         this.fechaCompletada = rt.getFechaCompletada();
         this.imagenUrl = rt.getImagenUrl();
         this.usuarioId = rt.getUsuario() != null ? rt.getUsuario().getId() : null;
     }
 
     // Getters
-    public Long getId() { return id; }
-    public String getNombre() { return nombre; }
-    public String getNombreHogar() { return nombreHogar; }
-    public String getNombreUsuario() { return nombreUsuario; }
-    public Integer getPuntosSumados() { return puntosSumados; }
-    public LocalDateTime getFechaCompletada() { return fechaCompletada; }
-    public String getImagenUrl() { return imagenUrl; }
-    public Long getUsuarioId() { return usuarioId; }
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getNombreHogar() {
+        return nombreHogar;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public Integer getPuntosSumados() {
+        return puntosSumados;
+    }
+
+    public LocalDateTime getFechaCompletada() {
+        return fechaCompletada;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
 }

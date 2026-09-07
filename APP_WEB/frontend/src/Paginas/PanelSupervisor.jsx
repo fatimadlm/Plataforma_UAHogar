@@ -2,14 +2,14 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSesion } from '../Seguridad/ContextoSesion';
 import Sidebar from '../Componentes/Sidebar';
-import { Shield, Users, Home as HomeIcon, ClipboardList, Search, Lock, Unlock, Trash2, ShieldCheck, ShieldOff, UserCircle2, Building2, AlertTriangle, MessageSquare, Ghost, CheckCircle2, Eye, History } from 'lucide-react';
+import ImagenSas from '../Componentes/ImagenSas';
+import { Shield, Users, Home as HomeIcon, ClipboardList, Search, Lock, Unlock, Trash2, ShieldCheck, ShieldOff, Building2, AlertTriangle, MessageSquare, Ghost, CheckCircle2, Eye, History } from 'lucide-react';
 import { TIPOS, ESTADOS_TAREA } from '../Configuracion/TareaConfig';
 import { getMetricasGlobales,getUsuariosSupervision, alternarBloqueoUsuario, cambiarRolUsuario, eliminarUsuarioSupervision,getHogaresSupervision, eliminarHogarSupervision, limpiarHogaresFantasma,getTareasSupervision, eliminarTareaSupervision, getIncidenciasSupervision, cerrarIncidenciaSupervision, getAuditoriaSupervision} from '../Servicios/PeticionSupervisor';
 import ModalConfirmacion from '../Componentes/Modulos/ModalConfirmacion';
 import ModalDetalleHogar from '../Componentes/Modulos/ModalDetalleHogar';
 import styles from './PanelSupervisor.module.css';
 import {ACCIONES_AUDITORIA} from '../Configuracion/SupervisorConfig';
-import { API_URL, manejarErrorImagen } from '../Configuracion/apiConfig';
 
 
 export default function PanelSupervisor() {
@@ -279,20 +279,12 @@ function PestanaUsuarios() {
               className={`tarjeta-cristal ${styles.filaUsuario}`}
             >
               <div className={styles.avatarMini}>
-                {u.imagenPerfil ? (
-                  <img
-                    src={
-                      u.imagenPerfil.startsWith('http')
-                        ? u.imagenPerfil
-                        : `${API_URL}${u.imagenPerfil}`
-                    }
-                    alt={u.nombre}
-                    className={styles.avatarImg}
-                    onError={manejarErrorImagen}
-                  />
-                ) : (
-                  <UserCircle2 size={22} color="#90b4ce" />
-                )}
+                <ImagenSas
+                  ruta={u.imagenPerfil}
+                  alt={u.nombre}
+                  className={styles.avatarImg}
+                  fallback={<span className={styles.avatarInicial}>{u.nombre?.charAt(0).toUpperCase() || 'U'}</span>}
+                />
               </div>
 
               <div className={styles.flex1}>

@@ -1,9 +1,11 @@
 package com.fatima.UAHogar.modelo;
 
+import com.fatima.UAHogar.util.ZonaHorariaApp;
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "registros_tareas")
@@ -63,7 +65,8 @@ public class RegistroTarea {
     @OneToMany(mappedBy = "registroTarea", cascade = CascadeType.ALL)
     private List<Incidencia> incidencias = new ArrayList<>();
 
-    public RegistroTarea() {}
+    public RegistroTarea() {
+    }
 
     // Constructor
     public RegistroTarea(Tarea tarea, Usuario usuario, Hogar hogar, Integer puntosSumados, String imagenUrl) {
@@ -73,7 +76,7 @@ public class RegistroTarea {
         this.hogar = hogar;
         this.puntosSumados = puntosSumados;
         this.imagenUrl = imagenUrl;
-        this.fechaCompletada = LocalDateTime.now();
+        this.fechaCompletada = LocalDateTime.now(ZonaHorariaApp.ZONA);
         this.estado = "COMPLETADA";
         this.penalizacion = 0;
     }
@@ -89,48 +92,108 @@ public class RegistroTarea {
     }
 
     // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Tarea getTarea() { return tarea; }
-    public void setTarea(Tarea tarea) { this.tarea = tarea; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Usuario getUsuarioAsignado() { return usuarioAsignado; }
-    public void setUsuarioAsignado(Usuario u) { this.usuarioAsignado = u; }
+    public Tarea getTarea() {
+        return tarea;
+    }
 
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public void setTarea(Tarea tarea) {
+        this.tarea = tarea;
+    }
 
-    public Hogar getHogar() { return hogar; }
-    public void setHogar(Hogar hogar) { this.hogar = hogar; }
+    public Usuario getUsuarioAsignado() {
+        return usuarioAsignado;
+    }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public void setUsuarioAsignado(Usuario u) {
+        this.usuarioAsignado = u;
+    }
 
-    public LocalDateTime getFechaLimite() { return fechaLimite; }
-    public void setFechaLimite(LocalDateTime f) { this.fechaLimite = f; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-    public LocalDateTime getFechaCompletada() { return fechaCompletada; }
-    public void setFechaCompletada(LocalDateTime f) { this.fechaCompletada = f; }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-    public Integer getPuntosSumados() { return puntosSumados; }
-    public void setPuntosSumados(Integer p) { this.puntosSumados = p; }
+    public Hogar getHogar() {
+        return hogar;
+    }
 
-    public Integer getPenalizacion() { return penalizacion; }
-    public void setPenalizacion(Integer p) { this.penalizacion = p; }
+    public void setHogar(Hogar hogar) {
+        this.hogar = hogar;
+    }
 
-    public String getImagenUrl() { return imagenUrl; }
-    public void setImagenUrl(String url) { this.imagenUrl = url; }
+    public String getEstado() {
+        return estado;
+    }
 
-    public List<Incidencia> getIncidencias() { return incidencias; }
-    public void setIncidencias(List<Incidencia> i) { this.incidencias = i; }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public void setFechaLimite(LocalDateTime f) {
+        this.fechaLimite = f;
+    }
+
+    public LocalDateTime getFechaCompletada() {
+        return fechaCompletada;
+    }
+
+    public void setFechaCompletada(LocalDateTime f) {
+        this.fechaCompletada = f;
+    }
+
+    public Integer getPuntosSumados() {
+        return puntosSumados;
+    }
+
+    public void setPuntosSumados(Integer p) {
+        this.puntosSumados = p;
+    }
+
+    public Integer getPenalizacion() {
+        return penalizacion;
+    }
+
+    public void setPenalizacion(Integer p) {
+        this.penalizacion = p;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String url) {
+        this.imagenUrl = url;
+    }
+
+    public List<Incidencia> getIncidencias() {
+        return incidencias;
+    }
+
+    public void setIncidencias(List<Incidencia> i) {
+        this.incidencias = i;
+    }
 
     public boolean tieneImagen() {
         return imagenUrl != null && !imagenUrl.isEmpty();
     }
 
     public boolean estaVencida() {
-        return "PENDIENTE".equals(estado) && fechaLimite != null && LocalDateTime.now().isAfter(fechaLimite);
+        return "PENDIENTE".equals(estado) && fechaLimite != null && LocalDateTime.now(ZonaHorariaApp.ZONA).isAfter(fechaLimite);
     }
 
     public boolean fueEntregadaTarde() {
@@ -141,6 +204,7 @@ public class RegistroTarea {
     public int puntosNetos() {
         return (puntosSumados != null ? puntosSumados : 0) - penalizacion;
     }
+
     public Boolean getNotificacionUrgenciaEnviada() {
         return notificacionUrgenciaEnviada;
     }

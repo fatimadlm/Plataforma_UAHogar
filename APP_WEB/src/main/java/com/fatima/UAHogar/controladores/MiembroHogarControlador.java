@@ -1,12 +1,15 @@
 package com.fatima.UAHogar.controladores;
 
+import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.modelo.MiembroHogar;
 import com.fatima.UAHogar.modelo.Usuario;
-import com.fatima.UAHogar.DAO.MiembroHogarDAO;
 import com.fatima.UAHogar.seguridad.UsuarioActual;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +27,8 @@ public class MiembroHogarControlador {
     public record CompiDTO(Long id, String nombre, String usuario, String imagenPerfil) {
 
         public CompiDTO(Usuario u) {
-            this( u.getId(),u.getNombre(),
-                    u.getUsuario().startsWith("usuario_eliminado_")? null : u.getUsuario(),
+            this(u.getId(), u.getNombre(),
+                    u.getUsuario().startsWith("usuario_eliminado_") ? null : u.getUsuario(),
                     u.getImagenPerfil()
             );
         }

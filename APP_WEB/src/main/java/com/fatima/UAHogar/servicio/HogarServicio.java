@@ -1,22 +1,9 @@
 package com.fatima.UAHogar.servicio;
 
-import com.fatima.UAHogar.DAO.HogarDAO;
-import com.fatima.UAHogar.DAO.IncidenciaDAO;
-import com.fatima.UAHogar.DAO.IntercambioTareaDAO;
-import com.fatima.UAHogar.DAO.MensajeGrupoDAO;
-import com.fatima.UAHogar.DAO.NotificacionDAO;
-import com.fatima.UAHogar.DAO.ReaccionMensajeDAO;
-import com.fatima.UAHogar.DAO.RegistroTareaDAO;
+import com.fatima.UAHogar.DAO.*;
 import com.fatima.UAHogar.dto.MiembroPuntosDTO;
-import com.fatima.UAHogar.modelo.Mensaje;
-import com.fatima.UAHogar.modelo.MensajeGrupo;
-import com.fatima.UAHogar.modelo.RegistroTarea;
-import com.fatima.UAHogar.DAO.MiembroHogarDAO;
-import com.fatima.UAHogar.DAO.UsuarioDAO;
-import com.fatima.UAHogar.modelo.Hogar;
-import com.fatima.UAHogar.modelo.MiembroHogar;
-import com.fatima.UAHogar.modelo.Usuario;
-import com.fatima.UAHogar.modelo.TipoNotificacion;
+import com.fatima.UAHogar.modelo.*;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -108,7 +95,7 @@ public class HogarServicio {
             nuevoHogar.setAparienciaId(aparienciaId);
         }
 
-        nuevoHogar.setFechaCreacion(LocalDate.now());
+        nuevoHogar.setFechaCreacion(LocalDate.now(ZonaHorariaApp.ZONA));
 
         nuevoHogar = hogarDAO.save(nuevoHogar);
 
@@ -125,7 +112,7 @@ public class HogarServicio {
                 .orElseThrow(() -> new IllegalArgumentException("Código de invitación no válido"));
 
         Usuario usuario = usuarioDAO.findById(usuarioId)
-                .orElseThrow(() -> new IllegalArgumentException( "El usuario no existe"));
+                .orElseThrow(() -> new IllegalArgumentException("El usuario no existe"));
 
         Optional<MiembroHogar> yaEsMiembro =
                 miembroHogarDAO.findByUsuarioIdAndHogarId(
@@ -179,6 +166,7 @@ public class HogarServicio {
     public int contarMiembros(Long hogarId) {
         return miembroHogarDAO.findByHogarId(hogarId).size();
     }
+
     // Valida que el usuario del JWT pertenezca al hogar antes de acceder o modificar sus datos
     public void verificarPertenencia(Long usuarioId, Long hogarId) {
         miembroHogarDAO.findByUsuarioIdAndHogarId(usuarioId, hogarId)
@@ -190,7 +178,7 @@ public class HogarServicio {
             Long usuarioId,
             Long hogarId) {
 
-        MiembroHogar miembroQueSeVa = miembroHogarDAO .findByUsuarioIdAndHogarId(usuarioId, hogarId)
+        MiembroHogar miembroQueSeVa = miembroHogarDAO.findByUsuarioIdAndHogarId(usuarioId, hogarId)
                 .orElseThrow(() ->
                         new IllegalArgumentException(
                                 "No eres miembro de este hogar"));

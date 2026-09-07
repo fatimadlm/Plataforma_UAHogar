@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Users, ClipboardList, ListChecks, X, UserCircle2, Crown, Award } from 'lucide-react';
 import { getDetalleAmpliadoHogarSupervision } from '../../Servicios/PeticionSupervisor';
-import { API_URL, manejarErrorImagen } from '../../Configuracion/apiConfig';
+import ImagenSas from '../ImagenSas';
 import styles from './ModalDetalleHogar.module.css';
 
 
@@ -45,9 +45,12 @@ export default function DetalleHogarModal({ hogarId, nombreHogar, onCerrar }) {
               {detalle.miembros.map(m => (
                 <div key={m.usuarioId} className={`tarjeta-cristal ${styles.filaUsuario}`}>
                   <div className={styles.avatarMini}>
-                    {m.imagenPerfil
-                      ? <img src={m.imagenPerfil.startsWith('http') ? m.imagenPerfil : `${API_URL}${m.imagenPerfil}`} alt={m.nombre} className={styles.avatarImg} onError={manejarErrorImagen} />
-                      : <UserCircle2 size={20} color="#90b4ce" />}
+                    <ImagenSas
+                      ruta={m.imagenPerfil}
+                      alt={m.nombre}
+                      className={styles.avatarImg}
+                      fallback={<span className={styles.avatarInicial}>{m.nombre?.charAt(0).toUpperCase() || 'U'}</span>}
+                    />
                   </div>
                   <div className={styles.flex1}>
                     <div className={styles.filaTitulo}>

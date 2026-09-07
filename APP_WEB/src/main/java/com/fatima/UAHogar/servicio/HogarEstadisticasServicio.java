@@ -7,6 +7,7 @@ import com.fatima.UAHogar.dto.EstadisticasHogarDTO;
 import com.fatima.UAHogar.modelo.Hogar;
 import com.fatima.UAHogar.modelo.MiembroHogar;
 import com.fatima.UAHogar.modelo.RegistroTarea;
+import com.fatima.UAHogar.util.ZonaHorariaApp;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -41,7 +42,7 @@ public class HogarEstadisticasServicio {
 
         // Tareas vencidas de este hogar (se usan tanto para "más puntos" como para "más pelotas")
         List<RegistroTarea> vencidas = registroTareaDAO
-                .findByEstadoAndFechaLimiteBefore("VENCIDA", LocalDateTime.now())
+                .findByEstadoAndFechaLimiteBefore("VENCIDA", LocalDateTime.now(ZonaHorariaApp.ZONA))
                 .stream()
                 .filter(r -> r.getHogar().getId().equals(hogarId))
                 .collect(Collectors.toList());
