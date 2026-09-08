@@ -1,0 +1,193 @@
+.contenedor {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  z-index: 1;
+}
+
+.botonVolver {
+  align-self: flex-start;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+  color: #5c6b7a;
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.botonVolver:hover {
+  color: #3d5a80;
+}
+
+.tarjetaCabecera,
+.tarjetaSeccion {
+  width: 100%;
+  max-width: 900px;
+  padding: 40px;
+}
+
+.tarjetaCabecera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+}
+
+.eslogan {
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  color: #3d5a80;
+  font-weight: 700;
+  line-height: 1.5;
+  max-width: 620px;
+}
+
+.etiquetaTfg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5c6b7a;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: rgba(144, 180, 206, 0.15);
+  padding: 8px 18px;
+  border-radius: 50px;
+  margin-top: 4px;
+}
+
+.tituloSeccion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #3d5a80;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.parrafo {
+  color: #5c6b7a;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.parrafo:last-child {
+  margin-bottom: 0;
+}
+
+.gridTecnologias {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.bloqueTecnologia {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iconoBloque {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(144, 180, 206, 0.15);
+  color: #3d5a80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtituloBloque {
+  color: #3d5a80;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.listaTecnologias {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #5c6b7a;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.listaTecnologias li::before {
+  content: '•';
+  color: #90b4ce;
+  margin-right: 8px;
+  font-weight: 800;
+}
+
+.textoBloque {
+  color: #5c6b7a;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.enlacesDespliegue {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.enlaceDespliegue {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 50px;
+  background-color: #90b4ce;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(144, 180, 206, 0.2);
+}
+
+.enlaceDespliegue:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(144, 180, 206, 0.4);
+}
+
+.piePagina {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #90b4ce;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .gridTecnologias {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjetaCabecera,
+  .tarjetaSeccion {
+    padding: 28px 20px;
+  }
+}

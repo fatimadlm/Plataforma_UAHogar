@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Home, Building2, Calendar, MessageSquare, Bell, User, LogOut, Shield } from 'lucide-react';
+import { Home, Building2, Calendar, MessageSquare, Bell, User, LogOut, Shield, Menu, X } from 'lucide-react';
 import { useSesion } from '../Seguridad/ContextoSesion';
 import { getContadorNoLeidas } from '../Servicios/PeticionTarea';
 import logo from '../assets/logo.png';
@@ -9,6 +9,7 @@ export default function Sidebar({ paginaActiva }) {
   const navigate = useNavigate();
   const { usuario, cerrarSesion } = useSesion();
   const [noLeidas, setNoLeidas] = useState(0);
+  const [menuAbierto, setMenuAbierto] = useState(false);
 
   // Consulta el contador cada 30 segundos
   useEffect(() => {
@@ -35,8 +36,15 @@ export default function Sidebar({ paginaActiva }) {
 
   // Borra el token y el usuario guardados, y vuelve a la portada
   const handleCerrarSesion = () => {
+    setMenuAbierto(false);
     cerrarSesion();
     navigate('/');
+  };
+
+  // Navega y cierra el cajon
+  const irA = (ruta) => {
+    setMenuAbierto(false);
+    navigate(ruta);
   };
 
   const menuItems = [
@@ -54,50 +62,85 @@ export default function Sidebar({ paginaActiva }) {
   }
 
   return (
-    <aside className="sidebar">
+    <>
+      {/* Botón pata abrir el cajón en moviles */}
+      <div className="barra-superior-movil">
+        <button
+          className="btn-hamburguesa"
+          onClick={() => setMenuAbierto(true)}
+          aria-label="Abrir menu"
+        >
+          <Menu size={24} />
+        </button>
+        <img
+          src={logo}
+          alt="Logo UAHogar"
+          className="logo-sidebar"
+          style={{ maxWidth: '80px', cursor: 'pointer' }}
+          onClick={() => irA('/feed')}
+        />
+      </div>
+
+      {/* Fondo oscuro para cerrar*/}
       <div
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '40px', width: '100%', cursor: 'pointer' }}
-        onClick={() => navigate('/feed')}
-      >
-        <img src={logo} alt="Logo UAHogar" style={{ width: '140px', height: 'auto', objectFit: 'contain' }} />
-      </div>
+        className={`overlay-menu-movil ${menuAbierto ? 'visible' : ''}`}
+        onClick={() => setMenuAbierto(false)}
+      />
 
-      <nav style={{ flex: 1 }}>
-        {menuItems.map((item) => {
-          const Icono = item.icono;
-          const esActiva = paginaActiva === item.id;
-          const esBell = item.id === 'notificaciones';
+      <aside className={`sidebar ${menuAbierto ? 'sidebar-abierta' : ''}`}>
+        <button
+          className="btn-cerrar-menu-movil"
+          onClick={() => setMenuAbierto(false)}
+          aria-label="Cerrar menu"
+          style={{ alignSelf: 'flex-end', marginBottom: '10px' }}
+        >
+          <X size={22} />
+        </button>
 
-          return (
-            <div
-              key={item.id}
-              className={`nav-item ${esActiva ? 'active' : ''}`}
-              onClick={() => navigate(item.ruta)}
-            >
-              <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                <Icono size={20} color={esActiva ? '#ffffff' : '#90b4ce'} />
-                {esBell && paginaActiva !== 'notificaciones' && noLeidas > 0 && (
-                  <span style={{
-                    position: 'absolute', top: '-6px', right: '-8px',
-                    background: '#e76f51', color: 'white',
-                    borderRadius: '50%', width: '16px', height: '16px',
-                    fontSize: '0.65rem', fontWeight: '800',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center'
-                  }}>
-                    {(paginaActiva === 'notificaciones' ? 0 : noLeidas) > 9 ? '9+' : (paginaActiva === 'notificaciones' ? 0 : noLeidas)}
-                  </span>
-                )}
+        <div
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '40px', width: '100%', cursor: 'pointer' }}
+          onClick={() => irA('/feed')}
+        >
+          <img src={logo} alt="Logo UAHogar" className="logo-sidebar" />
+        </div>
+
+        <nav style={{ flex: 1 }}>
+          {menuItems.map((item) => {
+            const Icono = item.icono;
+            const esActiva = paginaActiva === item.id;
+            const esBell = item.id === 'notificaciones';
+
+            return (
+              <div
+                key={item.id}
+                className={`nav-item ${esActiva ? 'active' : ''}`}
+                onClick={() => irA(item.ruta)}
+              >
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                  <Icono size={20} color={esActiva ? '#ffffff' : '#90b4ce'} />
+                  {esBell && paginaActiva !== 'notificaciones' && noLeidas > 0 && (
+                    <span style={{
+                      position: 'absolute', top: '-6px', right: '-8px',
+                      background: '#e76f51', color: 'white',
+                      borderRadius: '50%', width: '16px', height: '16px',
+                      fontSize: '0.65rem', fontWeight: '800',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }}>
+                      {(paginaActiva === 'notificaciones' ? 0 : noLeidas) > 9 ? '9+' : (paginaActiva === 'notificaciones' ? 0 : noLeidas)}
+                    </span>
+                  )}
+                </div>
+                <span className="nav-text">{item.nombre}</span>
               </div>
-              <span className="nav-text">{item.nombre}</span>
-            </div>
-          );
-        })}
-      </nav>
+            );
+          })}
+        </nav>
 
-      <div className="nav-item" style={{ marginTop: 'auto', color: '#3d5a80' }} onClick={handleCerrarSesion}>
-        <LogOut size={20} color="#3d5a80" />
-        <span className="nav-text">Cerrar sesión</span>
-      </div>
-    </aside>
+        <div className="nav-item" style={{ marginTop: 'auto', color: '#3d5a80' }} onClick={handleCerrarSesion}>
+          <LogOut size={20} color="#3d5a80" />
+          <span className="nav-text">Cerrar sesión</span>
+        </div>
+      </aside>
+    </>
   );
 }
