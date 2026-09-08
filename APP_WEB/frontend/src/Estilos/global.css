@@ -42,6 +42,55 @@ body, html {
   padding: 30px 20px;
   z-index: 10;
   transition: all 0.3s ease;
+  overflow-y: auto;
+}
+
+.logo-sidebar {
+  max-width: 100px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: max-width 0.3s ease;
+}
+
+.barra-superior-movil {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  z-index: 260;
+}
+
+.btn-hamburguesa,
+.btn-cerrar-menu-movil {
+  background: transparent;
+  border: none;
+  color: #3d5a80;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.btn-cerrar-menu-movil {
+  display: none;
+}
+
+.overlay-menu-movil {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 250;
 }
 
 .nav-item {
@@ -120,11 +169,44 @@ body, html {
   box-shadow: 0 0 15px rgba(144, 180, 206, 0.3);
 }
 
-/*  MÓVILES*/
+/*  Menú de solo iconos*/
 @media (max-width: 768px) {
   .sidebar { width: 70px; padding: 20px 10px; }
   .nav-text { display: none; }
   .main-content { padding: 20px; }
+  .logo-sidebar { max-width: 36px; }
+}
+
+/*Cajon*/
+@media (max-width: 480px) {
+  .barra-superior-movil { display: flex; }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 78%;
+    max-width: 280px;
+    padding: 30px 20px;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.15);
+    z-index: 300;
+  }
+
+  .sidebar.sidebar-abierta {
+    transform: translateX(0);
+  }
+
+  .nav-text { display: inline; }
+  .logo-sidebar { max-width: 90px; }
+  .btn-cerrar-menu-movil { display: flex; }
+
+  .overlay-menu-movil.visible { display: block; }
+
+  .main-content {
+    padding: 76px 16px 24px;
+  }
 }
 
 /* 

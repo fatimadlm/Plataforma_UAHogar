@@ -34,3 +34,19 @@
   font-weight: 400;
   line-height: 1.5;
 }
+
+.enlaceAcercaDe {
+  background: transparent;
+  border: none;
+  color: #90b4ce;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.enlaceAcercaDe:hover {
+  color: #3d5a80;
+  text-decoration: underline;
+}

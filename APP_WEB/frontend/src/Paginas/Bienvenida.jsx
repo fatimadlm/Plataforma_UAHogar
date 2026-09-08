@@ -27,6 +27,13 @@ export default function Bienvenida() {
           Comenzar
         </button>
 
+        <button
+          className={styles.enlaceAcercaDe}
+          onClick={() => navigate('/acerca-de')}
+        >
+          Acerca de este proyecto
+        </button>
+
       </div>
     </div>
   );

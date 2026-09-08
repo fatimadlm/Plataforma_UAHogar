@@ -3,6 +3,7 @@ import './Estilos/global.css';
 
 // Importamos las pantallas
 import Bienvenida from './Paginas/Bienvenida';
+import AcercaDe from './Paginas/AcercaDe';
 import Login from './Paginas/Login';
 import Registro from './Paginas/Registro'; 
 import Feed from './Paginas/Feed';
@@ -48,6 +49,7 @@ export default function App() {
         <Routes>
           {/*Rutas publicas*/}
           <Route path="/" element={<Bienvenida />} />
+          <Route path="/acerca-de" element={<AcercaDe />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           {/* RUTAS PRIVADAS */}
